@@ -42,6 +42,7 @@ public class Medicine {
         Calendar calendar = new GregorianCalendar();
 
         int year = calendar.get(Calendar.YEAR);
+        // Mae, si ya usa day of year (1-365), podria deshacerse del month.
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_YEAR);
         int hour = calendar.get(Calendar.HOUR);
