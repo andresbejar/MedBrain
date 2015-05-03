@@ -8,18 +8,18 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class UsersView extends ActionBarActivity {
+public class AddNewUser extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users_view);
+        setContentView(R.layout.activity_add_new_user);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_users_view, menu);
+        getMenuInflater().inflate(R.menu.menu_add_new_user, menu);
         return true;
     }
 
@@ -38,7 +38,7 @@ public class UsersView extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void jumpToAddUser(View view){
+    public void saveData(View view){
         Intent intent = new Intent(this, AddNewUser.class);
         startActivity(intent);
     }

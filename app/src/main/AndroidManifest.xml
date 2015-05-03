@@ -24,6 +24,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.MainActivity" />
         </activity>
+        <activity
+            android:name=".AddNewUser"
+            android:label="@string/title_activity_add_new_user"
+            android:parentActivityName=".UsersView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UsersView" />
+        </activity>
     </application>
 
 </manifest>

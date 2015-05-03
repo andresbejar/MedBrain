@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_addUser"
         android:id="@+id/button3"
+        android:onClick="jumpToAddUser"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

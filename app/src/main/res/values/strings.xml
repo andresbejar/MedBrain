@@ -14,5 +14,6 @@
     <string name="button_createUser">Crear</string>
     <string name="button_Users">Perfiles</string>
     <string name="title_activity_users_view">UsersView</string>
+    <string name="title_activity_add_new_user">AddNewUser</string>
 
 </resources>
