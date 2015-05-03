@@ -57,9 +57,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "REFERENCES " + MedDBContract.MedicineContract.TABLE_NAME + "(" +
                 MedDBContract.MedicineContract._ID + "))";              //TODO: agregar ON DELETE CASCADE
 
+        final String CREATE_USERS_TABLE = "CREATE TABLE " + MedDBContract.UsersContract.TABLE_NAME +
+                "(" + MedDBContract.UsersContract.COLUMN_NAME_ID + "INTEGER PRIMARY KEY," +
+                MedDBContract.UsersContract.COLUMN_NAME_First_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + "INTEGER" + ")";
+
         db.execSQL(CREATE_MEDICINE_TABLE);
         db.execSQL(CREATE_PRESCRIPTION_TABLE);
         db.execSQL(CREATE_MEDPRESC_TABLE);
+        db.execSQL(CREATE_USERS_TABLE);
     }
 
     @Override
@@ -67,7 +75,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedicineContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.PrescriptionContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedPrescContract.TABLE_NAME);
-
+        db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.UsersContract.TABLE_NAME);
         onCreate(db);
     }
 
