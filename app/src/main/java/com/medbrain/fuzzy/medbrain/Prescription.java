@@ -11,9 +11,14 @@ public class Prescription {
     private String Doctor; //TODO: Cambiar el String por objeto Contacto
     private ArrayList<String> Medicines;
     private Calendar Expiration;
+    public int userID;
 
     public Prescription(){
         Medicines = new ArrayList<String>();
+    }
+
+    public void setUserID(int id){
+        userID = id;
     }
 
     public void setID(int _id){

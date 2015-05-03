@@ -1,8 +1,6 @@
 package com.medbrain.fuzzy.medbrain;
 
-/**
- * Created by andres on 30/04/15.
- */
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -34,41 +32,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         final String CREATE_MEDICINE_TABLE = "CREATE TABLE " + MedDBContract.MedicineContract.TABLE_NAME +
-                " (" + MedDBContract.MedicineContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
+                " (" + MedDBContract.MedicineContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.MedicineContract.COLUMN_NAME_TITLE + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.MedicineContract.COLUMN_NAME_DOSE + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.MedicineContract.COLUMN_NAME_DETAILS + MedDBContract.TEXT_TYPE +
                 ")";
 
         final String CREATE_PRESCRIPTION_TABLE = "CREATE TABLE " + MedDBContract.PrescriptionContract.TABLE_NAME +
-                "( " + MedDBContract.PrescriptionContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
+                "( " + MedDBContract.PrescriptionContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.PrescriptionContract.COLUMN_NAME_DATE + " INTEGER" +
                 ")";
 
+        //NOTA: tal vez haya que agregarle el _ID a esta tabla tambien. REVISAR!!
         final String CREATE_MEDPRESC_TABLE = "CREATE TABLE " + MedDBContract.MedPrescContract.TABLE_NAME +
-                "(" + MedDBContract.MedPrescContract.COLUMN_NAME_PRESC_ID + "INTEGER, " +
-                MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + "INTEGER, " +
+                "(" + MedDBContract.MedPrescContract.COLUMN_NAME_PRESC_ID + " INTEGER, " +
+                MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + " INTEGER, " +
                 "PRIMARY KEY(" + MedDBContract.MedPrescContract.COLUMN_NAME_PRESC_ID +
                 ", " + MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + "), " +
                 "FOREIGN KEY(" + MedDBContract.MedPrescContract.COLUMN_NAME_PRESC_ID + ") " +
                 "REFERENCES " + MedDBContract.PrescriptionContract.TABLE_NAME + "(" +
-                MedDBContract.PrescriptionContract._ID + ") ON DELETE CASCADE, " +
+                MedDBContract.PrescriptionContract._ID + "), " +        //TODO: agregar ON DELETE CASCADE
                 "FOREIGN KEY(" + MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + ") " +
                 "REFERENCES " + MedDBContract.MedicineContract.TABLE_NAME + "(" +
-                MedDBContract.MedicineContract._ID + ") ON DELETE CASCADE";
-
-        final String CREATE_USERS_TABLE = "CREATE TABLE" + MedDBContract.UsersContract.TABLE_NAME +
-                "(" + MedDBContract.UsersContract.COLUMN_NAME_ID + "INTEGER PRMARY KEY, " +
-                MedDBContract.UsersContract.COLUMN_NAME_First_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + MedDBContract.TEXT_TYPE + ")";
+                MedDBContract.MedicineContract._ID + "))";              //TODO: agregar ON DELETE CASCADE
 
         db.execSQL(CREATE_MEDICINE_TABLE);
         db.execSQL(CREATE_PRESCRIPTION_TABLE);
         db.execSQL(CREATE_MEDPRESC_TABLE);
-        db.execSQL(CREATE_USERS_TABLE);
     }
 
     @Override
@@ -76,23 +67,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedicineContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.PrescriptionContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedPrescContract.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.UsersContract.TABLE_NAME);
 
         onCreate(db);
     }
 
-    public void addUser(Users _user){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_ID, _user.getID());
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_First_NAME, _user.getFirstName());
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, _user.getSecondName());
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, _user.getThirdName());
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE, _user.getBirthDate());
-
-        db.insert(MedDBContract.UsersContract.TABLE_NAME, null, values);
-        db.close();
+    @Override
+    public void onConfigure(SQLiteDatabase db){
+        db.setForeignKeyConstraintsEnabled(true);
     }
 
     public void addMedicine(Medicine _med) {
@@ -121,32 +102,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Users getUser(String userName){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String[] projection = { MedDBContract.UsersContract.COLUMN_NAME_ID,
-                MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
-                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
-                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
-                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE};
-
-        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
-                new String[]{userName}, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-        Users user = new Users(userName);
-        user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_ID)));
-        user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
-        user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
-        user.setBirthDate(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE)));
-
-        cursor.close();
-        return user;
-    }
-
-
-
     public void addMedToPresc(Prescription _presc, Medicine _med) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -161,7 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Medicine getMedicine(String medName) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] projection = {MedDBContract.MedicineContract.COLUMN_NAME_ID,
+        String[] projection = {MedDBContract.MedicineContract._ID,
                 MedDBContract.MedicineContract.COLUMN_NAME_TITLE,
                 MedDBContract.MedicineContract.COLUMN_NAME_DOSE,
                 MedDBContract.MedicineContract.COLUMN_NAME_DETAILS};
@@ -172,7 +127,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
         Medicine returnMed = new Medicine(medName);
-        returnMed.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract.COLUMN_NAME_ID)));
+        returnMed.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract._ID)));
         returnMed.setDose(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract.COLUMN_NAME_DOSE)));
         returnMed.setDetails(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract.COLUMN_NAME_DETAILS)));
 
@@ -211,12 +166,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Prescription getPrescription(int ID) {
         String name = Integer.toString(ID);
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {MedDBContract.PrescriptionContract.COLUMN_NAME_ID,
+        String[] projection = {MedDBContract.PrescriptionContract._ID,
                 MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR,
                 MedDBContract.PrescriptionContract.COLUMN_NAME_DATE};
 
         Cursor cursor = db.query(MedDBContract.PrescriptionContract.TABLE_NAME, projection,
-                MedDBContract.PrescriptionContract.COLUMN_NAME_ID + " = ?", new String[]{name}, null, null, null);
+                MedDBContract.PrescriptionContract._ID + " = ?", new String[]{name}, null, null, null);
 
         if (cursor != null)
             cursor.moveToFirst();
@@ -235,4 +190,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return returnPresc;
     }
+
+    //TODO: Agregar parametro UserID para que nada mas jale las recetas del usuario actual
+    public Cursor getAllPrescriptions() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {MedDBContract.PrescriptionContract._ID,
+                                MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR };
+        Cursor cursor = db.query(MedDBContract.PrescriptionContract.TABLE_NAME, projection,
+                null, null, null, null, null);
+        return cursor;
+
+    }
 }
+

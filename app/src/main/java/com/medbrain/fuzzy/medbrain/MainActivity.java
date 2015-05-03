@@ -1,17 +1,31 @@
 package com.medbrain.fuzzy.medbrain;
 
+import android.app.ListActivity;
+import android.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.util.Log;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    private static final int CREAR_RECETA_REQUEST = 0;
+    private static final String TAG = "MedBrain-App";
+    Button crearRecetaBtn;
+    MyListFragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "Entered onCreate Main Activity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        crearRecetaBtn = (Button)findViewById(R.id.crearRecetaBtn);
+        fragment = new MyListFragment();
+
     }
 
 
@@ -36,4 +50,7 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
