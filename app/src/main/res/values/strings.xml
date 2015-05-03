@@ -6,6 +6,11 @@
     <string name="crearReceta">Crear nueva receta</string>
     <string name="button_addUser">Agregar</string>
     <string name="name_message">Nombre</string>
-    <string name="last_name_message">Apellido</string>
+    <string name="last_name_message">1er Apellido</string>
+    <string name="last_name_2_message">2do Apellido</string>
+    <string name="Bdate">dd/mm/aaaa</string>
+    <string name="Fecha_Nac">Fecha de nacimiento: </string>
+    <string name="ID_num">Identificación</string>
     <string name="button_createUser">Crear</string>
+
 </resources>

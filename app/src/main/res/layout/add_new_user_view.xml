@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Nombre"
+        android:text="@string/name_message"
         android:ems="10"
         android:id="@+id/editText"
         android:layout_marginStart="34dp"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="1er Apellido"
+        android:text="@string/last_name_message"
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_below="@+id/editText"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="2do Apellido"
+        android:text="@string/last_name_2_message"
         android:ems="10"
         android:id="@+id/editText3"
         android:layout_marginTop="25dp"
@@ -46,7 +46,7 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/editText4"
-        android:text="dd/mm/aaaa"
+        android:text="@string/Bdate"
         android:layout_below="@+id/editText5"
         android:layout_centerHorizontal="true" />
 
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText5"
-        android:text="Fecha de nacimiento:"
+        android:text="@string/Fecha_Nac"
         android:elegantTextHeight="false"
         android:layout_below="@+id/editText6"
         android:layout_alignStart="@+id/editText6"
@@ -77,5 +77,5 @@
         android:id="@+id/editText6"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/editText3"
-        android:text="Identificación" />
+        android:text="@string/ID_num" />
 </RelativeLayout>
