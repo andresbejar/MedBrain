@@ -111,7 +111,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         user.setBirthDate(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE)));
 
         cursor.close();
-        return user;
+        return users;
     }
 
     public void addMedicine(Medicine _med) {
