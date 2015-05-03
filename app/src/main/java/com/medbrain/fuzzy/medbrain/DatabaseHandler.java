@@ -58,9 +58,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "REFERENCES " + MedDBContract.MedicineContract.TABLE_NAME + "(" +
                 MedDBContract.MedicineContract._ID + ") ON DELETE CASCADE";
 
+        final String CREATE_USERS_TABLE = "CREATE TABLE" + MedDBContract.UsersContract.TABLE_NAME +
+                "(" + MedDBContract.UsersContract.COLUMN_NAME_ID + "INTEGER PRMARY KEY, " +
+                MedDBContract.UsersContract.COLUMN_NAME_First_NAME + MedDBContract.TEXT_TYPE + ", " +
+                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + ", " +
+                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + ", " +
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + MedDBContract.TEXT_TYPE + ")";
+
         db.execSQL(CREATE_MEDICINE_TABLE);
         db.execSQL(CREATE_PRESCRIPTION_TABLE);
         db.execSQL(CREATE_MEDPRESC_TABLE);
+        db.execSQL(CREATE_USERS_TABLE);
     }
 
     @Override
@@ -68,8 +76,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedicineContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.PrescriptionContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedPrescContract.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.UsersContract.TABLE_NAME);
 
         onCreate(db);
+    }
+
+    public void addUser(Users _user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_ID, _user.getID());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_First_NAME, _user.getFirstName());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, _user.getSecondName());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, _user.getThirdName());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE, _user.getBirthDate());
+
+        db.insert(MedDBContract.UsersContract.TABLE_NAME, null, values);
+        db.close();
     }
 
     public void addMedicine(Medicine _med) {
@@ -97,6 +120,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(MedDBContract.PrescriptionContract.TABLE_NAME, null, values);
         db.close();
     }
+
+    public Users getUser(String userName){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = { MedDBContract.UsersContract.COLUMN_NAME_ID,
+                MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE};
+
+        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
+                new String[]{userName}, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        Users user = new Users(userName);
+        user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_ID)));
+        user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
+        user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
+        user.setBirthDate(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE)));
+
+        cursor.close();
+        return user;
+    }
+
+
 
     public void addMedToPresc(Prescription _presc, Medicine _med) {
         SQLiteDatabase db = this.getWritableDatabase();
