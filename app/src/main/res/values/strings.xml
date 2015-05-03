@@ -4,5 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="crearReceta">Crear nueva receta</string>
-    <string name="button_add">Agregar</string>
+    <string name="button_addUser">Agregar</string>
+    <string name="name_message">Nombre</string>
+    <string name="last_name_message">Apellido</string>
+    <string name="button_createUser">Crear</string>
 </resources>
