@@ -44,4 +44,13 @@ public final class MedDBContract {
         //public static final String COLUMN_NAME_PRESC_ID = "PrescID"; //una persona puede tener muchas presc
     }
 
+    public static abstract class ContactContract implements BaseColumns{
+        public static final String TABLE_NAME = "Contact";
+        public static final String COLUMN_NAME_NAME = "Name";
+        public static final String COLUMN_NAME_PHONE = "Phone";
+        public static final String COLUMN_NAME_EMAIL = "Email";
+        public static final String COLUMN_NAME_ESPECIALIDAD = "Especialidad";
+        public static final String COLUMN_NAME_REPUTACION = "Reputacion";
+        public static final String COLUMN_NAME_PRECIO = "Precio";
+    }
 }

@@ -64,10 +64,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + "INTEGER" + ")";
 
+        final String CREATE_CONTACT_TABLE = "CREATE TABLE " + MedDBContract.ContactContract.TABLE_NAME +
+                " (" + MedDBContract.ContactContract._ID + " INTEGER PRIMARY KEY, " +
+                MedDBContract.ContactContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE +
+                ", " + MedDBContract.ContactContract.COLUMN_NAME_PHONE + MedDBContract.TEXT_TYPE +
+                ", " + MedDBContract.ContactContract.COLUMN_NAME_EMAIL + MedDBContract.TEXT_TYPE +
+                ", " + MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD + MedDBContract.TEXT_TYPE +
+                ", " + MedDBContract.ContactContract.COLUMN_NAME_REPUTACION + MedDBContract.TEXT_TYPE +
+                ", " + MedDBContract.ContactContract.COLUMN_NAME_PRECIO + MedDBContract.TEXT_TYPE +
+                ")";
+
         db.execSQL(CREATE_MEDICINE_TABLE);
         db.execSQL(CREATE_PRESCRIPTION_TABLE);
         db.execSQL(CREATE_MEDPRESC_TABLE);
         db.execSQL(CREATE_USERS_TABLE);
+        db.execSQL(CREATE_CONTACT_TABLE);
     }
 
     @Override
@@ -76,6 +87,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.PrescriptionContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedPrescContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.UsersContract.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.ContactContract.TABLE_NAME);
         onCreate(db);
     }
 
@@ -83,6 +95,51 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onConfigure(SQLiteDatabase db){
         db.setForeignKeyConstraintsEnabled(true);
     }
+
+    public void addContact(Contact _cont) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(MedDBContract.ContactContract.COLUMN_NAME_NAME, _cont.getName());
+        values.put(MedDBContract.ContactContract.COLUMN_NAME_PHONE, _cont.getPhone());
+        values.put(MedDBContract.ContactContract.COLUMN_NAME_EMAIL, _cont.getEmail());
+        values.put(MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD, _cont.getEspecialidad());
+        values.put(MedDBContract.ContactContract.COLUMN_NAME_REPUTACION, _cont.getReputacion());
+        values.put(MedDBContract.ContactContract.COLUMN_NAME_PRECIO, _cont.getPrecio());
+
+        db.insert(MedDBContract.ContactContract.TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public Contact getContact(String contName) { //ojo que mi nombre es full
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {MedDBContract.ContactContract._ID,
+                MedDBContract.ContactContract.COLUMN_NAME_NAME,
+                MedDBContract.ContactContract.COLUMN_NAME_PHONE,
+                MedDBContract.ContactContract.COLUMN_NAME_EMAIL,
+                MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD,
+                MedDBContract.ContactContract.COLUMN_NAME_REPUTACION,
+                MedDBContract.ContactContract.COLUMN_NAME_PRECIO};
+
+        Cursor cursor = db.query(MedDBContract.MedicineContract.TABLE_NAME, projection,
+                MedDBContract.ContactContract.COLUMN_NAME_NAME + " = ?", new String[]{contName}, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        Contact returnCont = new Contact(contName);
+
+        returnCont.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract._ID)));
+        returnCont.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_PHONE)));
+        returnCont.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_EMAIL)));
+        returnCont.setEspecialidad(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD)));
+        returnCont.setReputacion(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_REPUTACION)));
+        returnCont.setPrecio(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_PRECIO)));
+        cursor.close();
+
+        return returnCont;
+    }
+
 
     public void addUser(Users _user) {
         SQLiteDatabase db = this.getWritableDatabase();
