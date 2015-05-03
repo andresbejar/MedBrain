@@ -12,5 +12,7 @@
     <string name="Fecha_Nac">Fecha de nacimiento: </string>
     <string name="ID_num">Identificación</string>
     <string name="button_createUser">Crear</string>
+    <string name="button_Users">Perfiles</string>
+    <string name="title_activity_users_view">UsersView</string>
 
 </resources>
