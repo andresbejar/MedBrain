@@ -47,22 +47,9 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/editText4"
-        android:layout_below="@+id/editText5"
-        android:layout_centerHorizontal="true"
-        android:hint="dd/mm/aaaa" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText5"
-        android:text="@string/Fecha_Nac"
-        android:elegantTextHeight="false"
-        android:layout_below="@+id/editText6"
-        android:layout_alignStart="@+id/editText6"
-        android:layout_marginTop="23dp"
-        android:clickable="false"
-        android:editable="false"
-        android:enabled="true" />
+        android:hint="dd/mm/aaaa"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -83,5 +70,14 @@
         android:hint="Identificación"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/editText3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Fecha_Nac"
+        android:id="@+id/textView"
+        android:layout_below="@+id/editText6"
+        android:layout_alignStart="@+id/editText6"
+        android:layout_marginTop="23dp" />
 
 </RelativeLayout>
