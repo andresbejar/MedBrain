@@ -48,8 +48,9 @@
         android:ems="10"
         android:id="@+id/editText4"
         android:hint="dd/mm/aaaa"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -74,10 +75,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/Fecha_Nac"
         android:id="@+id/textView"
-        android:layout_below="@+id/editText6"
-        android:layout_alignStart="@+id/editText6"
-        android:layout_marginTop="23dp" />
+        android:layout_above="@+id/editText4"
+        android:layout_alignStart="@+id/editText6" />
 
 </RelativeLayout>
