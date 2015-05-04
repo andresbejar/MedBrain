@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/name_message"
         android:ems="10"
         android:id="@+id/editText"
         android:layout_marginStart="34dp"
@@ -24,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/last_name_message"
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_below="@+id/editText"
@@ -36,11 +34,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/last_name_2_message"
         android:ems="10"
         android:id="@+id/editText3"
         android:layout_marginTop="25dp"
-        android:hint="@string/last_name_message"
+        android:hint="@string/last_name_2_message"
         android:layout_below="@+id/editText2"
         android:layout_alignStart="@+id/editText2" />
 
@@ -50,9 +47,9 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/editText4"
-        android:text="@string/Bdate"
         android:layout_below="@+id/editText5"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:hint="dd/mm/aaaa" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -62,7 +59,10 @@
         android:elegantTextHeight="false"
         android:layout_below="@+id/editText6"
         android:layout_alignStart="@+id/editText6"
-        android:layout_marginTop="23dp" />
+        android:layout_marginTop="23dp"
+        android:clickable="false"
+        android:editable="false"
+        android:enabled="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -80,8 +80,8 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText6"
+        android:hint="Identificación"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/editText3"
-        android:text="@string/ID_num" />
+        android:layout_alignStart="@+id/editText3" />
 
 </RelativeLayout>
