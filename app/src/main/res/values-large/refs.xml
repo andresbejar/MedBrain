@@ -7,6 +7,5 @@
     For more on layout aliases, see:
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     -->
-    <item name="fragment_users" type="layout">@layout/fragment_users_grid</item>
 
 </resources>
