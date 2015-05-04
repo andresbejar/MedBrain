@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class AddNewUser extends ActionBarActivity {
+    private DatabaseHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,27 @@ public class AddNewUser extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void saveData(View view){
-        Intent intent = new Intent(this, AddNewUser.class);
-        startActivity(intent);
+    public void saveData(View view){ //guarda los datos en la base
+        EditText name = (EditText) findViewById(R.id.editText);
+        EditText lastName = (EditText) findViewById(R.id.editText2);
+        EditText lastName2 = (EditText) findViewById(R.id.editText3);
+        EditText id = (EditText) findViewById(R.id.editText6);
+        EditText Bdate = (EditText) findViewById(R.id.editText4);
+
+        String Name = name.getText().toString();
+        String LastName = lastName.getText().toString();
+        String LastName2 = lastName2.getText().toString();
+        int ID = Integer.parseInt(id.getText().toString());
+        int BDate = Integer.parseInt(Bdate.getText().toString());
+
+        Users user = new Users(Name);
+        user.setSecondName(LastName);
+        user.setThirdName(LastName2);
+        user.setID(ID);
+        user.setID(BDate);
+
+        dbHandler.addUser(user);
+        /*Intent intent = new Intent(this, AddNewUser.class);
+        startActivity(intent);*/
     }
 }

@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.medbrain.fuzzy.medbrain.AddNewUser">
+    tools:context="com.medbrain.fuzzy.medbrain.AddNewUser"
+    android:id="@+id/">
 
     <EditText
         android:layout_width="wrap_content"
@@ -47,7 +48,7 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/editText4"
-        android:hint="dd/mm/aaaa"
+        android:hint="@string/Bdate"
         android:layout_above="@+id/button"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="38dp" />
@@ -68,7 +69,7 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText6"
-        android:hint="Identificación"
+        android:hint="@string/ID_num"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/editText3" />
 
