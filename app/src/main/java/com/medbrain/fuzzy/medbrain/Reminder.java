@@ -5,31 +5,19 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Created by Julio on 5/1/15. Prueba
+ * Created by Julio on 5/2/15.
  */
-public class Appointment {
+public class Reminder {
     private String name;
-    private String place;
-    private Integer doctorID;
     private Calendar innerDate;
 
-    public Appointment(){
+    public Reminder(){
         name = "";
-        place = "";
-        doctorID = null;
         innerDate = null;
     }
 
     public String getName(){
         return name;
-    }
-
-    public String getPlace(){
-        return place;
-    }
-
-    public int getDoctorID(){
-        return doctorID;
     }
 
     public String getStringDate(){
@@ -57,14 +45,6 @@ public class Appointment {
 
     public void setName(String name){
         this.name = name;
-    }
-
-    public void setPlace(String place){
-        this.place = place;
-    }
-
-    public void setDoctorID(int doctorID){
-        this.doctorID = doctorID;
     }
 
     public void setInnerCalendar(Calendar innerCalendar){

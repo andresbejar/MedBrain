@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -65,6 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + "INTEGER" + ")";
 
         final String CREATE_CONTACT_TABLE = "CREATE TABLE " + MedDBContract.ContactContract.TABLE_NAME +
+                // Porque es un integer el ID del doctor? Ya que nos hacemos calculos deberia ser string
                 " (" + MedDBContract.ContactContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.ContactContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.ContactContract.COLUMN_NAME_PHONE + MedDBContract.TEXT_TYPE +
@@ -74,11 +75,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ", " + MedDBContract.ContactContract.COLUMN_NAME_PRECIO + MedDBContract.TEXT_TYPE +
                 ")";
 
+        final String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE " + MedDBContract.AppointmentContract.TABLE_NAME +
+                "(" + MedDBContract.AppointmentContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
+                MedDBContract.AppointmentContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.AppointmentContract.COLUMN_NAME_DATE + "INTEGER" + ")";
+
+        final String CREATE_REMINDERS_TABLE = "CREATE TABLE " + MedDBContract.ReminderContract.TABLE_NAME +
+                "(" + MedDBContract.ReminderContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
+                MedDBContract.ReminderContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.ReminderContract.COLUMN_NAME_DATE + "INTEGER" + ")";
+
+
         db.execSQL(CREATE_MEDICINE_TABLE);
         db.execSQL(CREATE_PRESCRIPTION_TABLE);
         db.execSQL(CREATE_MEDPRESC_TABLE);
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_CONTACT_TABLE);
+        db.execSQL(CREATE_APPOINTMENTS_TABLE);
+        db.execSQL(CREATE_REMINDERS_TABLE);
     }
 
     @Override
@@ -88,6 +104,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedPrescContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.UsersContract.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.ContactContract.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.AppointmentContract.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.ReminderContract.TABLE_NAME);
         onCreate(db);
     }
 

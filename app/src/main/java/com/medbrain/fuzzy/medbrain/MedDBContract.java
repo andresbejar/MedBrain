@@ -53,4 +53,20 @@ public final class MedDBContract {
         public static final String COLUMN_NAME_REPUTACION = "Reputacion";
         public static final String COLUMN_NAME_PRECIO = "Precio";
     }
+
+    public static abstract class AppointmentContract implements BaseColumns{
+        public static final String TABLE_NAME = "Appointments";
+        public static final String COLUMN_NAME_ID = "ID";
+        public static final String COLUMN_NAME_NAME = "Name";
+        public static final String COLUMN_NAME_PLACE = "Place";
+        public static final String COLUMN_NAME_DOCTOR_ID = "DoctorID";
+        public static final String COLUMN_NAME_DATE = "InnerDate";
+    }
+
+    public static abstract class ReminderContract implements BaseColumns{
+        public static final String TABLE_NAME = "Reminders";
+        public static final String COLUMN_NAME_ID = "ID";
+        public static final String COLUMN_NAME_NAME = "Name";
+        public static final String COLUMN_NAME_DATE = "InnerDate";
+    }
 }
