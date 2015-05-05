@@ -27,6 +27,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         crearRecetaBtn = (Button)findViewById(R.id.crearRecetaBtn);
+        crearRecetaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Clicked crear Receta");
+                Intent intent = new Intent(getApplicationContext(), PrescriptionCreationActivity.class);
+                startActivity(intent);
+            }
+        });
         fragment = new MyListFragment();
 
     }
@@ -40,6 +48,8 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, ContactsView.class);
         startActivity(intent);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

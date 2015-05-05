@@ -16,6 +16,12 @@
     <string name="title_activity_users_view">Perfiles</string>
     <string name="title_activity_add_new_user">Nuevo usuario</string>
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
+    <string name="title_activity_prescription_creation">PrescriptionCreationActivity</string>
+    <string name="title_crearReceta">Crear Receta</string>
+    <string name="medicinas">Medicinas:</string>
+    <string name="crear_medicina">Crear nueva medicina</string>
+    <string name="medico">Medico:</string>
+    <string name="add_medicine">Agregar medicina</string>
 
     <string name="button_Contacts">Contactos</string>
     <string name="button_addContact">AgregarContacto</string>

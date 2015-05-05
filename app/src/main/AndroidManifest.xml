@@ -33,8 +33,8 @@
                 android:value="com.medbrain.fuzzy.medbrain.UsersView" />
         </activity>
         <activity
-            android:name=".ContactsView"
-            android:label="@string/title_activity_contacts_view"
+            android:name=".PrescriptionCreationActivity"
+            android:label="@string/title_activity_prescription_creation"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -47,6 +47,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.ContactsView" />
+        </activity>
+        <activity
+            android:name=".ContactsView"
+            android:label="@string/title_activity_contacts_view"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.MainActivity" />
         </activity>
     </application>
 

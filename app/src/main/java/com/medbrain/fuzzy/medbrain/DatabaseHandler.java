@@ -13,7 +13,6 @@ import java.util.GregorianCalendar;
 
 /**
  * Clase handler para todas las operaciones de la BD
- * TODO: Agregar metodos para operaciones CRUD
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -57,6 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "REFERENCES " + MedDBContract.MedicineContract.TABLE_NAME + "(" +
                 MedDBContract.MedicineContract._ID + "))";              //TODO: agregar ON DELETE CASCADE
 
+        //tienen que usar UserContract._ID o usando un cursor les va a dar problemas
         final String CREATE_USERS_TABLE = "CREATE TABLE " + MedDBContract.UsersContract.TABLE_NAME +
                 "(" + MedDBContract.UsersContract._ID + " INTEGER PRIMARY KEY," +
                 MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME + MedDBContract.TEXT_TYPE + "," +
@@ -64,6 +64,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + " INTEGER" + ")";
 
+        //la columna _ID siempre es integer, no la puede cambiar
         final String CREATE_CONTACT_TABLE = "CREATE TABLE " + MedDBContract.ContactContract.TABLE_NAME +
                 " (" + MedDBContract.ContactContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.ContactContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE +
