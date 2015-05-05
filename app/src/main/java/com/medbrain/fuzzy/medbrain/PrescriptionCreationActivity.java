@@ -12,6 +12,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+/**
+ * Actividad de creacion de recetas
+ * @author Andres Bejarano
+ */
 public class PrescriptionCreationActivity extends ActionBarActivity {
 
     private Button limpiarBtn;
@@ -22,6 +26,10 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
     private Prescription newPresc;
 
 
+    /**
+     * Se ejecuta al crear la actividad
+     * @param savedInstanceState Bundle con informacion de la actividad
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +64,11 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
     }
 
 
+    /**
+     * Se ejecuta al crear el menu
+     * @param menu creado
+     * @return verdadero
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -63,6 +76,11 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * Se ejecuta al seleccionar una opcion del menu
+     * @param item MenuItem seleccionado
+     * @return verdadero
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

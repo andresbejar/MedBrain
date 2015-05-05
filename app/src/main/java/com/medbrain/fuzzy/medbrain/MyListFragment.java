@@ -12,7 +12,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 /**
- * Created by andres on 01/05/15.
+ * Clase ListFragment que maneja el despliegue de las recetas activas en MainActivity
+ * @author Andres Bejarano
  */
 public class MyListFragment extends ListFragment {
 
@@ -22,6 +23,9 @@ public class MyListFragment extends ListFragment {
     private Cursor cursor;
     //private ListView listView;
 
+    /**
+     * Metodo de prueba que crea una nueva receta y la inserta
+     */
     private void crearRecetaPrueba(){
         Prescription pruebaPresc = new Prescription();
         pruebaPresc.initializeNewPrescription();
@@ -30,14 +34,14 @@ public class MyListFragment extends ListFragment {
         dbHandler.addPrescription(pruebaPresc);
     }
 
-    private void crearAppointmentPrueba(){
-        Appointment app = new Appointment();
-        app.setID(1234);
-        app.setName("Prueba1");
-        app.setPlace("Somewhiere");
-        app.setDoctorID(1234);
-        dbHandler.addAppointment(app);
-    }
+
+    /**
+     * Se ejecuta al crear la actividad asociada al Fragment
+     * Obtiene todas las recetas en la BD y se las da al Adapter para que las despliegue
+     * Configura el evento de click en cada receta individual
+     * De momento solo se despliega un mensaje informativo
+     * @param savedInstanceState Bundle con informacion de la Activity
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         Log.i(TAG, "Entered onActivityCreated fragment");
@@ -47,7 +51,6 @@ public class MyListFragment extends ListFragment {
 
         //seccion de prueba-----------------------
         crearRecetaPrueba();
-        crearAppointmentPrueba();
         Log.i(TAG, "Added test prescription");
         //fin seccion de prueba-------------------
 
@@ -66,6 +69,13 @@ public class MyListFragment extends ListFragment {
         });
     }
 
+    /**
+     * Metodo ejecutado al crear el view en el que se encuentra el fragment
+     * @param inflater LayoutInflater usado para "inflar" el layout del fragment
+     * @param container ViewGroup contenedor donde se encontrara el fragment
+     * @param savedInstanceState Bundle con informacion de la Activity
+     * @return View creado
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         Log.i(TAG, "Entered onCreateView fragment");

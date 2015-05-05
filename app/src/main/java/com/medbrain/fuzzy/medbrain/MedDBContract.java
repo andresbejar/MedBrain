@@ -3,31 +3,46 @@ package com.medbrain.fuzzy.medbrain;
 import android.provider.BaseColumns;
 
 /**
- * Created by andres on 26/04/15.
+ * Clase que sirve para crear el esquema de la base de datos
+ * @author Andres Bejarano
+ * @version 0.1.3
+ * @see com.medbrain.fuzzy.medbrain.DatabaseHandler
  */
 public final class MedDBContract {
 
-    //constructor vacio
+    /**
+     * Constructor vacio para evitar instanciaciones accidentales
+     */
     public MedDBContract(){}
     public static final String TEXT_TYPE = " TEXT";
 
+    /**
+     * Esquema para tabla Medicinas
+     * @author Andres Bejarano
+     */
     public static abstract class MedicineContract implements BaseColumns{
 
         public static final String TABLE_NAME = "Medicines";
-        //public static final String COLUMN_NAME_ID = "ID";
         public static final String COLUMN_NAME_TITLE = "Name";
         public static final String COLUMN_NAME_DOSE = "Dose";
         public static final String COLUMN_NAME_DETAILS = "Details";
     }
 
+    /**
+     * Esquema para tabla Recetas
+     * @author Andres Bejarano
+     */
     public static abstract class PrescriptionContract implements BaseColumns{
         public static final String TABLE_NAME = "Prescriptions";
-        //public static final String COLUMN_NAME_ID = "ID";
         public static final String COLUMN_NAME_DOCTOR ="Doctor";
         public static final String COLUMN_NAME_DATE = "Date";
 
     }
 
+    /**
+     * Esquema para tabla MedPresc
+     * @author Andres Bejarano
+     */
     public static abstract class MedPrescContract implements BaseColumns{
         public static final String TABLE_NAME = "MedPresc";
         public static final String COLUMN_NAME_PRESC_ID = "PrescID";

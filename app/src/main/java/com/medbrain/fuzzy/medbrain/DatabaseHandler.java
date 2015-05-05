@@ -12,7 +12,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Clase handler para todas las operaciones de la BD
+ * Clase que crea y maneja todas las operaciones de la BD
+ * @author Andres Bejarano
+ * @version 0.1.3
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -20,14 +22,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "MedApp.db";
     public static final int DATABASE_VERSION = 3;
 
+    /**
+     * Constructor SQLiteOpenHelper
+     * @param context Contexto en que es creada la base de datos
+     */
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    /*
-    * Metodo que crea las tablas de la base de datos.
-    * TODO: Agregar strings para crear tablas restantes
-    * */
+    /**
+     * Crea la base de datos, crea las tablas basadas en el esquema
+     * @see com.medbrain.fuzzy.medbrain.MedDBContract
+     * @param db SQLiteDatabase a crear
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         final String CREATE_MEDICINE_TABLE = "CREATE TABLE " + MedDBContract.MedicineContract.TABLE_NAME +
@@ -97,6 +104,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_REMINDERS_TABLE);
     }
 
+    /**
+     * Metodo Actualiza la version de la base de datos
+     * @param db SQLiteDatabase por actualizar
+     * @param oldVersion version antigua
+     * @param newVersion version nueva
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + MedDBContract.MedicineContract.TABLE_NAME);
@@ -109,6 +122,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * Configura la base de datos para utilizar restricciones de llave foranea
+     * @param db SQLiteDatabase por configurar
+     */
     @Override
     public void onConfigure(SQLiteDatabase db){
         db.setForeignKeyConstraintsEnabled(true);
@@ -274,6 +291,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return user;
     }
 
+    /**
+     * Agrega una medicina a la base de datos
+     * @param _med Medicine a agregar a la BD
+     *
+     */
     public void addMedicine(Medicine _med) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -287,6 +309,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * Agrega una receta a la base de datos
+     * @param _presc Prescription a agregar a la BD
+     */
     public void addPrescription(Prescription _presc) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -300,6 +326,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * Agrega una medicina a una receta en la tabla MedPresc
+     * @param _presc Prescription a agregar la medicina
+     * @param _med Medicine a agregar a _presc
+     */
     public void addMedToPresc(Prescription _presc, Medicine _med) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -311,6 +342,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * Retorna un objeto medicina
+     * @param medName String nombre de la medicina por obtener
+     * @return Medicine obtenida
+     */
     public Medicine getMedicine(String medName) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -333,6 +369,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return returnMed;
     }
 
+    /**
+     * Crea un objeto Date a partir del campo Date de un cursor de la tabla Medicines
+     * @param cursor con informacion de la tabla Medicines
+     * @param index indice del campo Date en el cursor
+     * @return objeto Date
+     */
     public Date loadDate(Cursor cursor, int index) {
         if (cursor != null) {
             return new Date(cursor.getLong(index));
@@ -340,6 +382,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    /**
+     * Carga todas las medicinas de una receta
+     * @param p Prescription de la que se obtienen las medicinas
+     * @return Prescription con todas sus medicinas
+     */
     public Prescription loadMedicines(Prescription p) {
         SQLiteDatabase db = this.getReadableDatabase();
         int id = p.getID();
@@ -360,7 +407,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    // Proceso de fetch de medicinas muy lento??
+    /**
+     * Obtiene una receta a partir de su ID
+     * @param ID de la receta a obtener
+     * @return Prescription creada a partir de la informacion de la BD
+     */
     public Prescription getPrescription(int ID) {
         String name = Integer.toString(ID);
         SQLiteDatabase db = this.getReadableDatabase();
@@ -390,6 +441,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //TODO: Agregar parametro UserID para que nada mas jale las recetas del usuario actual
+
+    /**
+     * Obtiene todas las recetas activas en la BD
+     * @return Cursor con informacion de todas las recetas
+     */
     public Cursor getAllPrescriptions() {
 
         SQLiteDatabase db = this.getReadableDatabase();
