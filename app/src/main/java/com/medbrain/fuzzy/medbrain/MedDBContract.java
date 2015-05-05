@@ -73,8 +73,8 @@ public final class MedDBContract {
         public static final String TABLE_NAME = "Appointments";
         public static final String COLUMN_NAME_NAME = "Name";
         public static final String COLUMN_NAME_PLACE = "Place";
-        public static final String COLUMN_NAME_DOCTOR_ID = "DoctorID";
-        public static final String COLUMN_NAME_DATE = "InnerDate";
+        public static final String COLUMN_NAME_DOCTOR = "Doctor";
+        public static final String COLUMN_NAME_DATE = "Date";
     }
 
     public static abstract class ReminderContract implements BaseColumns{

@@ -12,23 +12,14 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 /**
- * Created by Ulises on 5/5/2015.
+ * Created by Julio on 5/5/15.
  */
-public class UserFragment extends ListFragment {
+public class AppsFragment extends ListFragment {
     private static final String TAG = "MedBrain-App";
     private SimpleCursorAdapter adapter;
     private DatabaseHandler dbHandler;
     private Cursor cursor;
-    //private ListView listView;
 
-    public void crearUsuarioPrueba(){
-        Users user = new Users("Cleto");
-        user.setSecondName("Ramirez");
-        user.setThirdName("Picado");
-        user.setBirthDate(99);
-        user.setID(115500425);
-        dbHandler.addUser(user);
-    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
@@ -37,24 +28,18 @@ public class UserFragment extends ListFragment {
 
         dbHandler = new DatabaseHandler(getActivity());
 
-        //seccion de prueba-----------------------
-        crearUsuarioPrueba();
-        Log.i(TAG, "Added test user");
-        //fin seccion de prueba-------------------
 
-        cursor = dbHandler.getAllUsers();
+        cursor = dbHandler.getAllAppointments();
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
-                cursor, new String[]{MedDBContract.UsersContract._ID, MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
-                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME},
-                new int[]{R.id.userID, R.id.firstName, R.id.secondName, R.id.thirdName}, 0);
+                cursor, new String[]{MedDBContract.AppointmentContract._ID, MedDBContract.AppointmentContract.COLUMN_NAME_NAME,
+                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE, MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR, MedDBContract.AppointmentContract.COLUMN_NAME_DATE},
+                new int[]{R.id.appID, R.id.appNameID, R.id.placeID, R.id.docID, R.id.dispDateID}, 0);
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Toast.makeText(getActivity(), "Clicked User # " + position, Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getActivity(), "Clicked Appointment # " + position, Toast.LENGTH_SHORT).show();
             }
-
         });
     }
 

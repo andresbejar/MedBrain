@@ -2,6 +2,8 @@ package com.medbrain.fuzzy.medbrain;
 
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 /**
@@ -10,12 +12,13 @@ import java.util.Locale;
 public class Reminder {
     private Integer ID;
     private String name;
-    private Calendar innerDate;
+    private Calendar date;
 
     public Reminder(){
         ID = null;
         name = "";
-        innerDate = null;
+        date = new GregorianCalendar();
+        date.setTime(new Date());
     }
 
     public Integer getID(){
@@ -31,22 +34,22 @@ public class Reminder {
         Locale usersLocale = Locale.getDefault();
         DateFormatSymbols dfs = new DateFormatSymbols(usersLocale);
         String weekdays[] = dfs.getWeekdays();
-        int day = innerDate.get(Calendar.DAY_OF_WEEK);
+        int day = date.get(Calendar.DAY_OF_WEEK);
         String nameOfDay = weekdays[day];
 
-        finalDate += nameOfDay + " " + innerDate.get(Calendar.DAY_OF_MONTH) + ", ";
+        finalDate += nameOfDay + " " + date.get(Calendar.DAY_OF_MONTH) + ", ";
 
         String months[] = dfs.getMonths();
-        int month = innerDate.get(Calendar.MONTH);
+        int month = date.get(Calendar.MONTH);
         String nameOfMonth = months[month];
 
-        finalDate += nameOfMonth + ", " + innerDate.get(Calendar.YEAR);
+        finalDate += nameOfMonth + ", " + date.get(Calendar.YEAR);
 
         return finalDate;
     }
 
     public long getInnerDate(){
-        return innerDate.getTimeInMillis();
+        return date.getTimeInMillis();
     }
 
     public void setID(Integer ID){
@@ -58,7 +61,7 @@ public class Reminder {
     }
 
     public void setInnerCalendar(int timeInMills){
-        innerDate.setTimeInMillis(timeInMills);
+        date.setTimeInMillis(timeInMills);
     }
 
 }

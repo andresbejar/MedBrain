@@ -1,5 +1,6 @@
 package com.medbrain.fuzzy.medbrain;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -60,16 +61,16 @@ public class AddNewUser extends ActionBarActivity {
         user.setID(BDate);
 
         dbHandler.addUser(user);
-        /*Intent intent = new Intent(this, AddNewUser.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, UsersView.class);
+        startActivity(intent);
     }
 
-    public void crearUsuarioPrueba(View view){
+   /* public void crearUsuarioPrueba(View view){
         Users user = new Users("Cleto");
         user.setSecondName("Ramirez");
         user.setThirdName("Picado");
         user.setBirthDate(99);
         user.setID(115500425);
         dbHandler.addUser(user);
-    }
+    }*/
 }

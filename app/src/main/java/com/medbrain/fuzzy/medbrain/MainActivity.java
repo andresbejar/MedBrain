@@ -1,16 +1,13 @@
 package com.medbrain.fuzzy.medbrain;
 
-import android.app.ListActivity;
-import android.app.ListFragment;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.util.Log;
-import android.widget.EditText;
 
 /**
  * Main Activity: actividad principal del app
@@ -94,6 +91,10 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void jumpToAddAppointment(View view){
+        Intent intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+    }
 
 
 }

@@ -8,22 +8,21 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class UsersView extends ActionBarActivity {
-    UserFragment fragment;
-    private DatabaseHandler dbHandler;
+public class CalendarActivity extends ActionBarActivity {
+    AppsFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users_view);
+        setContentView(R.layout.activity_calendar);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_users_view, menu);
-        fragment = new UserFragment();
-        dbHandler = new DatabaseHandler(this);
+        getMenuInflater().inflate(R.menu.menu_calendar, menu);
+        fragment = new AppsFragment();
         return true;
     }
 
@@ -42,12 +41,8 @@ public class UsersView extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     *
-     * @param view
-     */
-    public void jumpToAddUser(View view){
-        Intent intent = new Intent(this, AddNewUser.class);
+    public void jumpToAddNewApp(View view){
+        Intent intent = new Intent(this, AddNewApp.class);
         startActivity(intent);
     }
 }

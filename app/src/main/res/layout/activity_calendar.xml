@@ -4,22 +4,24 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.medbrain.fuzzy.medbrain.UsersView">
+    tools:context="com.medbrain.fuzzy.medbrain.CalendarActivity"
+    >
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_addUser"
-        android:id="@+id/button3"
-        android:onClick="jumpToAddUser"
+        android:text="@string/button_createUser"
+        android:id="@+id/button8"
+        android:onClick="jumpToAddNewApp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp" />
 
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="com.medbrain.fuzzy.medbrain.UserFragment"
-        android:id="@+id/fragment2"
+        android:name="com.medbrain.fuzzy.medbrain.AppsFragment"
+        android:id="@+id/fragment3"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
