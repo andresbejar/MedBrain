@@ -41,4 +41,34 @@
         android:id="@+id/userID"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/appID"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/placeID"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/docID"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dispDateID"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/appNameID"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
 </LinearLayout>

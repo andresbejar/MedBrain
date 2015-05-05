@@ -40,4 +40,14 @@
         android:layout_marginBottom="86dp"
         android:layout_above="@+id/button2"
         android:layout_alignEnd="@+id/button2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calendar_button"
+        android:id="@+id/button6"
+        android:onClick="jumpToAddAppointment"
+        android:layout_marginBottom="37dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignEnd="@+id/button4" />
 </RelativeLayout>

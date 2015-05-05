@@ -193,7 +193,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         a.setID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract._ID)));
         a.setName(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_NAME)));
         a.setPlace(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_PLACE)));
-        a.setDoctorID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR)));
+        a.setDoctorID(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR)));
         a.setInnerCalendar(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DATE)));
 
         c.close();
@@ -409,6 +409,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME};
         Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection,
+                null, null, null, null, null);
+        return cursor;
+    }
+
+    public Cursor getAllAppointments(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {MedDBContract.AppointmentContract._ID,
+                MedDBContract.AppointmentContract.COLUMN_NAME_NAME,
+                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE,
+                MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR,
+                MedDBContract.AppointmentContract.COLUMN_NAME_DATE};
+        Cursor cursor = db.query(MedDBContract.AppointmentContract.TABLE_NAME, projection,
                 null, null, null, null, null);
         return cursor;
     }

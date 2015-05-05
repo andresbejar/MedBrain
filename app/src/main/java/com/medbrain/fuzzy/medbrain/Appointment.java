@@ -13,7 +13,7 @@ public class Appointment {
     private Integer ID;
     private String name;
     private String place;
-    private Integer doctorID;
+    private String doctorID;
     private Calendar date;
 
     public Appointment() {
@@ -47,7 +47,7 @@ public class Appointment {
         return place;
     }
 
-    public int getDoctorID(){
+    public String getDoctorID(){
         return doctorID;
     }
 
@@ -86,7 +86,7 @@ public class Appointment {
         this.place = place;
     }
 
-    public void setDoctorID(int doctorID){
+    public void setDoctorID(String doctorID){
         this.doctorID = doctorID;
     }
 

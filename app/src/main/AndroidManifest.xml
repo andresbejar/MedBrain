@@ -56,6 +56,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.MainActivity" />
         </activity>
+        <activity
+            android:name=".CalendarActivity"
+            android:label="@string/title_activity_calendar"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddNewApp"
+            android:label="@string/title_activity_add_new_app"
+            android:parentActivityName=".CalendarActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
+        </activity>
     </application>
 
 </manifest>

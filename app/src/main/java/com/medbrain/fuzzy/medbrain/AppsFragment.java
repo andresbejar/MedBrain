@@ -12,31 +12,15 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 /**
- * Created by andres on 01/05/15.
+ * Created by Julio on 5/5/15.
  */
-public class MyListFragment extends ListFragment {
-
+public class AppsFragment extends ListFragment {
     private static final String TAG = "MedBrain-App";
     private SimpleCursorAdapter adapter;
     private DatabaseHandler dbHandler;
     private Cursor cursor;
-    //private ListView listView;
 
-    private void crearRecetaPrueba(){
-        Prescription pruebaPresc = new Prescription();
-        pruebaPresc.initializeNewPrescription();
-        pruebaPresc.setUserID(115150354);
-        pruebaPresc.setDoctor("Dr. Rafael Viquez");
-        dbHandler.addPrescription(pruebaPresc);
-    }
 
-//    private void crearAppointmentPrueba(){
-//        Appointment app = new Appointment();
-//        app.setName("Prueba1");
-//        app.setPlace("Somewhiere");
-//        app.setDoctorID(1234);
-//        dbHandler.addAppointment(app);
-//    }
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         Log.i(TAG, "Entered onActivityCreated fragment");
@@ -44,24 +28,18 @@ public class MyListFragment extends ListFragment {
 
         dbHandler = new DatabaseHandler(getActivity());
 
-        //seccion de prueba-----------------------
-        crearRecetaPrueba();
-//        crearAppointmentPrueba();
-        Log.i(TAG, "Added test prescription");
-        //fin seccion de prueba-------------------
 
-        cursor = dbHandler.getAllPrescriptions();
+        cursor = dbHandler.getAllAppointments();
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
-                cursor, new String[]{MedDBContract.PrescriptionContract._ID,
-                MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR}, new int[]{R.id.recetaId, R.id.doctor}, 0);
+                cursor, new String[]{MedDBContract.AppointmentContract._ID, MedDBContract.AppointmentContract.COLUMN_NAME_NAME,
+                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE, MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR, MedDBContract.AppointmentContract.COLUMN_NAME_DATE},
+                new int[]{R.id.appID, R.id.appNameID, R.id.placeID, R.id.docID, R.id.dispDateID}, 0);
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Toast.makeText(getActivity(), "Clicked prescription # " + position, Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getActivity(), "Clicked Appointment # " + position, Toast.LENGTH_SHORT).show();
             }
-
         });
     }
 
@@ -72,5 +50,4 @@ public class MyListFragment extends ListFragment {
 
         return view;
     }
-
 }
