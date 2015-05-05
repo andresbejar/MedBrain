@@ -10,6 +10,7 @@ import android.view.View;
 
 public class UsersView extends ActionBarActivity {
     UserFragment fragment;
+    private DatabaseHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class UsersView extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_users_view, menu);
         fragment = new UserFragment();
+        dbHandler = new DatabaseHandler(this);
         return true;
     }
 
@@ -40,6 +42,10 @@ public class UsersView extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void jumpToAddUser(View view){
         Intent intent = new Intent(this, AddNewUser.class);
         startActivity(intent);

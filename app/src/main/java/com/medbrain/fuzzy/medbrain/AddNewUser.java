@@ -65,12 +65,12 @@ public class AddNewUser extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void crearUsuarioPrueba(View view){
+   /* public void crearUsuarioPrueba(View view){
         Users user = new Users("Cleto");
         user.setSecondName("Ramirez");
         user.setThirdName("Picado");
         user.setBirthDate(99);
         user.setID(115500425);
         dbHandler.addUser(user);
-    }
+    }*/
 }
