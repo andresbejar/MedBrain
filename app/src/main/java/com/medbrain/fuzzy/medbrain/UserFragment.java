@@ -21,15 +21,6 @@ public class UserFragment extends ListFragment {
     private Cursor cursor;
     //private ListView listView;
 
-    public void crearUsuarioPrueba(){
-        Users user = new Users("Cleto");
-        user.setSecondName("Ramirez");
-        user.setThirdName("Picado");
-        user.setBirthDate(11/11/93);
-        user.setID(115500425);
-        dbHandler.addUser(user);
-    }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         Log.i(TAG, "Entered onActivityCreated fragment");
@@ -37,15 +28,10 @@ public class UserFragment extends ListFragment {
 
         dbHandler = new DatabaseHandler(getActivity());
 
-        //seccion de prueba-----------------------
-      //  crearUsuarioPrueba();
-        //Log.i(TAG, "Added test user");
-        //fin seccion de prueba-------------------
-
         cursor = dbHandler.getAllUsers();
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
-                cursor, new String[]{MedDBContract.UsersContract._ID, MedDBContract.UsersContract.COLUMN_NAME_First_NAME, MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
-                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME}, new int[]{R.id.userID, R.id.firstName, R.id.secondName, R.id.thirdName}, 0);
+                cursor, new String[]{"rowid _id", MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME}, new int[]{R.id.firstName, R.id.secondName, R.id.thirdName}, 0);
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){

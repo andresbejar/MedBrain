@@ -8,12 +8,18 @@ import java.util.Locale;
  * Created by Julio on 5/2/15.
  */
 public class Reminder {
+    private Integer ID;
     private String name;
     private Calendar innerDate;
 
     public Reminder(){
+        ID = null;
         name = "";
         innerDate = null;
+    }
+
+    public Integer getID(){
+        return ID;
     }
 
     public String getName(){
@@ -39,16 +45,20 @@ public class Reminder {
         return finalDate;
     }
 
-    public Calendar getInnerDate(){
-        return innerDate;
+    public long getInnerDate(){
+        return innerDate.getTimeInMillis();
+    }
+
+    public void setID(Integer ID){
+        this.ID = ID;
     }
 
     public void setName(String name){
         this.name = name;
     }
 
-    public void setInnerCalendar(Calendar innerCalendar){
-        this.innerDate = innerCalendar;
+    public void setInnerCalendar(int timeInMills){
+        innerDate.setTimeInMillis(timeInMills);
     }
 
 }

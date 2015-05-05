@@ -8,16 +8,22 @@ import java.util.Locale;
  * Created by Julio on 5/1/15. Prueba
  */
 public class Appointment {
+    private Integer ID;
     private String name;
     private String place;
     private Integer doctorID;
     private Calendar innerDate;
 
     public Appointment(){
+        ID = null;
         name = "";
         place = "";
         doctorID = null;
         innerDate = null;
+    }
+
+    public Integer getID(){
+        return ID;
     }
 
     public String getName(){
@@ -51,8 +57,12 @@ public class Appointment {
         return finalDate;
     }
 
-    public Calendar getInnerDate(){
-        return innerDate;
+    public long getInnerDate(){
+        return innerDate.getTimeInMillis();
+    }
+
+    public void setID(Integer ID){
+        this.ID = ID;
     }
 
     public void setName(String name){
@@ -67,8 +77,8 @@ public class Appointment {
         this.doctorID = doctorID;
     }
 
-    public void setInnerCalendar(Calendar innerCalendar){
-        this.innerDate = innerCalendar;
+    public void setInnerCalendar(int timeInMills){
+        innerDate.setTimeInMillis(timeInMills);
     }
 
 }
