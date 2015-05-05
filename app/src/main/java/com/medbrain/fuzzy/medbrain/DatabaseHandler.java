@@ -19,7 +19,7 @@ import java.util.GregorianCalendar;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MedApp.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -65,7 +65,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + " INTEGER" + ")";
 
         final String CREATE_CONTACT_TABLE = "CREATE TABLE " + MedDBContract.ContactContract.TABLE_NAME +
-                // Porque es un integer el ID del doctor? Ya que nos hacemos calculos deberia ser string
                 " (" + MedDBContract.ContactContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.ContactContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.ContactContract.COLUMN_NAME_PHONE + MedDBContract.TEXT_TYPE +
@@ -76,14 +75,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ")";
 
         final String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE " + MedDBContract.AppointmentContract.TABLE_NAME +
-                "(" + MedDBContract.AppointmentContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
+                "(" + MedDBContract.AppointmentContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.AppointmentContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.AppointmentContract.COLUMN_NAME_PLACE + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.AppointmentContract.COLUMN_NAME_DATE + "INTEGER" + ")";
 
         final String CREATE_REMINDERS_TABLE = "CREATE TABLE " + MedDBContract.ReminderContract.TABLE_NAME +
-                "(" + MedDBContract.ReminderContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
+                "(" + MedDBContract.ReminderContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.ReminderContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.ReminderContract.COLUMN_NAME_DATE + "INTEGER" + ")";
 
@@ -158,6 +157,83 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return returnCont;
     }
 
+    public void addAppointment(Appointment _app){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(MedDBContract.AppointmentContract._ID, _app.getID());
+        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_NAME, _app.getName());
+        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_PLACE, _app.getPlace());
+        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID, _app.getDoctorID());
+        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_DATE, _app.getInnerDate());
+
+        db.insert(MedDBContract.AppointmentContract.TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public Appointment getAppointment(Integer ID){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {MedDBContract.AppointmentContract._ID,
+                MedDBContract.AppointmentContract.COLUMN_NAME_NAME,
+                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE,
+                MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID,
+                MedDBContract.AppointmentContract.COLUMN_NAME_DATE};
+
+        Cursor c = db.query(MedDBContract.AppointmentContract.TABLE_NAME, projection, MedDBContract.AppointmentContract._ID,
+                new String[]{Integer.toString(ID)}, null, null, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+
+        Appointment a = new Appointment();
+
+        a.setID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract._ID)));
+        a.setName(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_NAME)));
+        a.setPlace(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_PLACE)));
+        a.setDoctorID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID)));
+        a.setInnerCalendar(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DATE)));
+
+        c.close();
+        return a;
+    }
+
+    public void addReminder(Reminder _rmdr){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(MedDBContract.ReminderContract._ID, _rmdr.getID());
+        values.put(MedDBContract.ReminderContract.COLUMN_NAME_NAME, _rmdr.getName());
+        values.put(MedDBContract.ReminderContract.COLUMN_NAME_DATE, _rmdr.getInnerDate());
+
+        db.insert(MedDBContract.AppointmentContract.TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public Reminder getReminder(Integer ID){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {MedDBContract.ReminderContract._ID,
+                MedDBContract.ReminderContract.COLUMN_NAME_NAME,
+                MedDBContract.ReminderContract.COLUMN_NAME_DATE};
+
+        Cursor c = db.query(MedDBContract.AppointmentContract.TABLE_NAME, projection, MedDBContract.ReminderContract._ID,
+                new String[]{Integer.toString(ID)}, null, null, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+
+        Reminder r = new Reminder();
+
+        r.setID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract._ID)));
+        r.setName(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_NAME)));
+        r.setInnerCalendar(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DATE)));
+
+        c.close();
+        return r;
+    }
 
     public void addUser(Users _user) {
         SQLiteDatabase db = this.getWritableDatabase();
