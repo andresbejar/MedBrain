@@ -21,7 +21,7 @@ public class UsersView extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_users_view, menu);
-        fragment = new UserFragment();
+       // fragment = new UserFragment();
         return true;
     }
 

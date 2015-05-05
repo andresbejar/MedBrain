@@ -58,7 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.MedicineContract._ID + "))";              //TODO: agregar ON DELETE CASCADE
 
         final String CREATE_USERS_TABLE = "CREATE TABLE " + MedDBContract.UsersContract.TABLE_NAME +
-                "(" + MedDBContract.UsersContract.COLUMN_NAME_ID + "INTEGER PRIMARY KEY," +
+                "(" + MedDBContract.UsersContract._ID + "INTEGER PRIMARY KEY," +
                 MedDBContract.UsersContract.COLUMN_NAME_First_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
@@ -163,7 +163,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_ID, _user.getID());
+        values.put(MedDBContract.UsersContract._ID, _user.getID());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_First_NAME, _user.getFirstName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, _user.getSecondName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, _user.getThirdName());
@@ -176,7 +176,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Users getUser(String userName){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] projection = { MedDBContract.UsersContract.COLUMN_NAME_ID,
+        String[] projection = { MedDBContract.UsersContract._ID,
                 MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
@@ -188,7 +188,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
         Users user = new Users(userName);
-        user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_ID)));
+        user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract._ID)));
         user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
         user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
         user.setBirthDate(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE)));
@@ -327,7 +327,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor getAllUsers() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {/*MedDBContract.UsersContract._ID,*/
+        String[] projection = {MedDBContract.UsersContract._ID,
                 MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME};
