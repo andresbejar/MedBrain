@@ -59,7 +59,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         final String CREATE_USERS_TABLE = "CREATE TABLE " + MedDBContract.UsersContract.TABLE_NAME +
                 "(" + MedDBContract.UsersContract._ID + " INTEGER PRIMARY KEY," +
-                MedDBContract.UsersContract.COLUMN_NAME_First_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + " INTEGER" + ")";
@@ -240,7 +240,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(MedDBContract.UsersContract._ID, _user.getID());
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_First_NAME, _user.getFirstName());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME, _user.getFirstName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, _user.getSecondName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, _user.getThirdName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE, _user.getBirthDate());
@@ -253,12 +253,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] projection = { MedDBContract.UsersContract._ID,
-                MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE};
 
-        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
+        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
                 new String[]{userName}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -404,7 +404,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {MedDBContract.UsersContract._ID,
-                MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME};
         Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection,

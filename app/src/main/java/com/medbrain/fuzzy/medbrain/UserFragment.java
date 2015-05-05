@@ -44,7 +44,7 @@ public class UserFragment extends ListFragment {
 
         cursor = dbHandler.getAllUsers();
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
-                cursor, new String[]{MedDBContract.UsersContract._ID, MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
+                cursor, new String[]{MedDBContract.UsersContract._ID, MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME}, new int[]{R.id.userID, R.id.firstName, R.id.secondName, R.id.thirdName}, 0);
 
         setListAdapter(adapter);
