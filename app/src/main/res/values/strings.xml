@@ -13,8 +13,8 @@
     <string name="ID_num">Identificación</string>
     <string name="button_createUser">Crear</string>
     <string name="button_Users">Perfiles</string>
-    <string name="title_activity_users_view">UsersView</string>
-    <string name="title_activity_add_new_user">AddNewUser</string>
+    <string name="title_activity_users_view">Perfiles</string>
+    <string name="title_activity_add_new_user">Nuevo usuario</string>
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
 
 <!-- TODO: Remove or change this placeholder text -->

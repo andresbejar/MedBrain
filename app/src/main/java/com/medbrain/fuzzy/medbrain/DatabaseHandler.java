@@ -323,5 +323,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor;
 
     }
+
+    public Cursor getAllUsers() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {/*MedDBContract.UsersContract._ID,*/
+                MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
+                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME};
+        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection,
+                null, null, null, null, null);
+        return cursor;
+    }
 }
 

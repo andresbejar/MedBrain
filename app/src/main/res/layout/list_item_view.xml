@@ -17,4 +17,22 @@
         android:id="@+id/doctor"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstName"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/secondName"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/thirdName"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
 </LinearLayout>
