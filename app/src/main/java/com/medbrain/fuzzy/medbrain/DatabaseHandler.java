@@ -12,14 +12,14 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Clase handler para todas las operaciones de la Base de datos
+ * Clase handler para todas las operaciones de la BD
  * TODO: Agregar metodos para operaciones CRUD
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MedApp.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -58,13 +58,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.MedicineContract._ID + "))";              //TODO: agregar ON DELETE CASCADE
 
         final String CREATE_USERS_TABLE = "CREATE TABLE " + MedDBContract.UsersContract.TABLE_NAME +
-                "(" + MedDBContract.UsersContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
-                MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + ", " +
+                "(" + MedDBContract.UsersContract._ID + " INTEGER PRIMARY KEY," +
+                MedDBContract.UsersContract.COLUMN_NAME_First_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + " INTEGER" + ")";
 
         final String CREATE_CONTACT_TABLE = "CREATE TABLE " + MedDBContract.ContactContract.TABLE_NAME +
+                // Porque es un integer el ID del doctor? Ya que nos hacemos calculos deberia ser string
                 " (" + MedDBContract.ContactContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.ContactContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.ContactContract.COLUMN_NAME_PHONE + MedDBContract.TEXT_TYPE +
@@ -76,15 +77,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         final String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE " + MedDBContract.AppointmentContract.TABLE_NAME +
                 "(" + MedDBContract.AppointmentContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
-                MedDBContract.AppointmentContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID + " INTEGER" + ", " +
-                MedDBContract.AppointmentContract.COLUMN_NAME_DATE + " INTEGER" + ")";
+                MedDBContract.AppointmentContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.AppointmentContract.COLUMN_NAME_DATE + "INTEGER" + ")";
 
         final String CREATE_REMINDERS_TABLE = "CREATE TABLE " + MedDBContract.ReminderContract.TABLE_NAME +
                 "(" + MedDBContract.ReminderContract.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, " +
-                MedDBContract.ReminderContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.ReminderContract.COLUMN_NAME_DATE + " INTEGER" + ")";
+                MedDBContract.ReminderContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.ReminderContract.COLUMN_NAME_DATE + "INTEGER" + ")";
 
 
         db.execSQL(CREATE_MEDICINE_TABLE);
@@ -157,90 +158,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return returnCont;
     }
 
-    public void addAppointment(Appointment _app){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_ID, _app.getID());
-        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_NAME, _app.getName());
-        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_PLACE, _app.getPlace());
-        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID, _app.getDoctorID());
-        values.put(MedDBContract.AppointmentContract.COLUMN_NAME_DATE, _app.getInnerDate());
-
-        db.insert(MedDBContract.AppointmentContract.TABLE_NAME, null, values);
-        db.close();
-    }
-
-    public Appointment getAppointment(Integer ID){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String[] projection = {MedDBContract.AppointmentContract.COLUMN_NAME_ID,
-                                MedDBContract.AppointmentContract.COLUMN_NAME_NAME,
-                                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE,
-                                MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID,
-                                MedDBContract.AppointmentContract.COLUMN_NAME_DATE};
-
-        Cursor c = db.query(MedDBContract.AppointmentContract.TABLE_NAME, projection, MedDBContract.AppointmentContract.COLUMN_NAME_ID,
-                new String[]{Integer.toString(ID)}, null, null, null);
-
-        if (c != null) {
-            c.moveToFirst();
-        }
-
-        Appointment a = new Appointment();
-
-        a.setID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_ID)));
-        a.setName(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_NAME)));
-        a.setPlace(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_PLACE)));
-        a.setDoctorID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR_ID)));
-        a.setInnerCalendar(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DATE)));
-
-        c.close();
-        return a;
-    }
-
-    public void addReminder(Reminder _rmdr){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(MedDBContract.ReminderContract.COLUMN_NAME_ID, _rmdr.getID());
-        values.put(MedDBContract.ReminderContract.COLUMN_NAME_NAME, _rmdr.getName());
-        values.put(MedDBContract.ReminderContract.COLUMN_NAME_DATE, _rmdr.getInnerDate());
-
-        db.insert(MedDBContract.AppointmentContract.TABLE_NAME, null, values);
-        db.close();
-    }
-
-    public Reminder getReminder(Integer ID){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String[] projection = {MedDBContract.ReminderContract.COLUMN_NAME_ID,
-                MedDBContract.ReminderContract.COLUMN_NAME_NAME,
-                MedDBContract.ReminderContract.COLUMN_NAME_DATE};
-
-        Cursor c = db.query(MedDBContract.AppointmentContract.TABLE_NAME, projection, MedDBContract.ReminderContract.COLUMN_NAME_ID,
-                new String[]{Integer.toString(ID)}, null, null, null);
-
-        if (c != null) {
-            c.moveToFirst();
-        }
-
-        Reminder r = new Reminder();
-
-        r.setID(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_ID)));
-        r.setName(c.getString(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_NAME)));
-        r.setInnerCalendar(c.getInt(c.getColumnIndexOrThrow(MedDBContract.AppointmentContract.COLUMN_NAME_DATE)));
-
-        c.close();
-        return r;
-    }
 
     public void addUser(Users _user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_ID, _user.getID());
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME, _user.getFirstName());
+        values.put(MedDBContract.UsersContract._ID, _user.getID());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_First_NAME, _user.getFirstName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, _user.getSecondName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, _user.getThirdName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE, _user.getBirthDate());
@@ -252,19 +176,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Users getUser(String userName){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] projection = { MedDBContract.UsersContract.COLUMN_NAME_ID,
-                MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
+        String[] projection = { MedDBContract.UsersContract._ID,
+                MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE};
 
-        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
+        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
                 new String[]{userName}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
         Users user = new Users(userName);
-        user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_ID)));
+        user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract._ID)));
         user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
         user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
         user.setBirthDate(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE)));
@@ -403,8 +327,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor getAllUsers() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {"rowid _id",
-                MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
+        String[] projection = {MedDBContract.UsersContract._ID,
+                MedDBContract.UsersContract.COLUMN_NAME_First_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME};
         Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection,

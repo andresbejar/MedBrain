@@ -36,8 +36,8 @@ public final class MedDBContract {
 
     public static abstract class UsersContract implements BaseColumns{
         public static final String TABLE_NAME = "Users";
-        public static final String COLUMN_NAME_ID = "ID";
-        public static final String COLUMN_NAME_FIRST_NAME = "First Name";
+        //public static final String COLUMN_NAME_ID = "ID";
+        public static final String COLUMN_NAME_First_NAME = "First Name";
         public static final String COLUMN_NAME_SECOND_NAME = "Second Name";
         public static final String COLUMN_NAME_THIRD_NAME = "Third Name";
         public static final String COLUMN_NAME_BIRTH_DATE = "Birth Date";
