@@ -2,6 +2,7 @@ package com.medbrain.fuzzy.medbrain;
 
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 /**
@@ -14,12 +15,12 @@ public class Appointment {
     private Integer doctorID;
     private Calendar innerDate;
 
-    public Appointment(){
+    public Appointment() {
         ID = null;
         name = "";
         place = "";
         doctorID = null;
-        innerDate = null;
+        innerDate = new GregorianCalendar();
     }
 
     public Integer getID(){

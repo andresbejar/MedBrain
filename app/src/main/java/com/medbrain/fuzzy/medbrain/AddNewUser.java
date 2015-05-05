@@ -1,8 +1,7 @@
 package com.medbrain.fuzzy.medbrain;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +15,7 @@ public class AddNewUser extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_user);
+        dbHandler = new DatabaseHandler(this);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AddNewUser extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-   /* public void saveData(View view){ //guarda los datos en la base
+    public void saveData(View view){ //guarda los datos en la base
         EditText name = (EditText) findViewById(R.id.editText);
         EditText lastName = (EditText) findViewById(R.id.editText2);
         EditText lastName2 = (EditText) findViewById(R.id.editText3);
@@ -61,8 +61,8 @@ public class AddNewUser extends ActionBarActivity {
 
         dbHandler.addUser(user);
         /*Intent intent = new Intent(this, AddNewUser.class);
-        startActivity(intent);
-    }*/
+        startActivity(intent);*/
+    }
 
     public void crearUsuarioPrueba(View view){
         Users user = new Users("Cleto");
