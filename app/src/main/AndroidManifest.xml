@@ -32,6 +32,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.UsersView" />
         </activity>
+        <activity
+            android:name=".ContactsView"
+            android:label="@string/title_activity_contacts_view"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddNewContact"
+            android:label="@string/title_activity_add_new_contact"
+            android:parentActivityName=".ContactsView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.ContactsView" />
+        </activity>
     </application>
 
 </manifest>

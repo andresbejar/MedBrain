@@ -36,6 +36,11 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void jumpToContacts(View view){
+        Intent intent = new Intent(this, ContactsView.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

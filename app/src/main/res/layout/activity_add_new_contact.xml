@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="274dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="false"
+        android:autoText="false"
+        android:hint="@string/name_message"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="68dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:text="Phone"
+        android:ems="10"
+        android:id="@+id/editText7"
+        android:layout_below="@+id/editText5"
+        android:layout_alignStart="@+id/editText5"
+        android:layout_alignEnd="@+id/editText5" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:text="Email"
+        android:ems="10"
+        android:id="@+id/editText8"
+        android:layout_below="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_alignEnd="@+id/editText7" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Especialidad"
+        android:id="@+id/editText9"
+        android:layout_below="@+id/editText8"
+        android:layout_alignStart="@+id/editText8"
+        android:layout_alignEnd="@+id/editText8" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reputacion"
+        android:id="@+id/editText10"
+        android:layout_below="@+id/editText9"
+        android:layout_alignStart="@+id/editText9"
+        android:layout_alignEnd="@+id/editText9" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio(colones)"
+        android:id="@+id/editText11"
+        android:layout_below="@+id/editText10"
+        android:layout_alignStart="@+id/editText10"
+        android:layout_alignEnd="@+id/editText10" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Contacto"
+        android:id="@+id/button5"
+        android:onClick="saveContact"
+        android:layout_marginBottom="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
