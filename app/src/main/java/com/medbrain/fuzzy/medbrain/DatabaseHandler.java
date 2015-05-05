@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Clase handler para todas las operaciones de la BD
+ * Clase handler para todas las operaciones de la Base de datos
  * TODO: Agregar metodos para operaciones CRUD
  */
 

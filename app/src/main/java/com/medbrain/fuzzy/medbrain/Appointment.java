@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Created by Julio on 5/1/15. Prueba
+ * Created by Julio on 5/1/15. Prueba1
  */
 public class Appointment {
     private Integer ID;

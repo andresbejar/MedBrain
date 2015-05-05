@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Created by Julio on 5/2/15.
+ * Created by Julio on 5/2/15. fdfd
  */
 public class Reminder {
     private Integer ID;
