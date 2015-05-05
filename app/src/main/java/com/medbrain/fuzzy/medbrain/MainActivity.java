@@ -46,7 +46,10 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    //ULISES
+    /**
+     * Brinca a una actividad que permite ver los usuarios guardados en la base.
+     * @param view contexto necesario para escuchar el evento del boton
+     */
     public void jumpToUsers(View view){
         Intent intent = new Intent(this, UsersView.class);
         startActivity(intent);

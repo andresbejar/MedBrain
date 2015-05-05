@@ -253,6 +253,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return r;
     }
 
+    /**
+     * agrega usuarios a la base
+     * <p>
+     *     Toma los valores de la instancia Users y guarda sus atributos en la tabla Users
+     * @param _user instancia de Users que contiene todos los atributos de un usuario
+     */
     public void addUser(Users _user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -267,6 +273,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * Permite buscar los datos de un usuario dentro de la tabla
+     * @param userName nombre del usuarioa a buscar
+     * @return User instancia del usuario cuyos atributos coinciden con los del usuario buscado dentro de la tabla
+     */
     public Users getUser(String userName){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -457,6 +468,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * obitene todos los usuarios que se encuentran registrados en la base de datos
+     * @return Cursos con informacion de todos los usuarios
+     */
     public Cursor getAllUsers() {
 
         SQLiteDatabase db = this.getReadableDatabase();

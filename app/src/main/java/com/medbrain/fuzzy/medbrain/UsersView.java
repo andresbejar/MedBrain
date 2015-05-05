@@ -43,8 +43,11 @@ public class UsersView extends ActionBarActivity {
     }
 
     /**
-     *
-     * @param view
+     *cambia de actividad
+     *<p>
+     *     Se cambia a una actividad que permite agregar usuarios
+     *<p>
+     * @param view contexto necesario para que el boton pueda llamar al metodo.
      */
     public void jumpToAddUser(View view){
         Intent intent = new Intent(this, AddNewUser.class);

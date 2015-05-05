@@ -12,28 +12,49 @@ public class Users {
     /*private int height;
     private int weight;*/
 
+    /**
+     * constructor
+     * @param firstName inicializa el nombre del usuario
+     */
     public Users (String firstName){
         FirstName = firstName;
     }
 
     //setters
+
+    /**
+     * inicializa el id del User
+     * @param id identificacion del user
+     */
     public void setID(int id){
         ID = id;
     }
 
+    /**
+     * fecha de naciemiento del user
+     * @param birthDate fecha de nac
+     */
     public void setBirthDate(int birthDate){
         BirthDate = birthDate;
     }
 
+    /**
+     * primer apellido del user
+     * @param secondName primer aopellido
+     */
     public void setSecondName(String secondName){
         SecondName = secondName;
     }
 
+    /**
+     * segundo apellido del user
+     * @param thirdName segundo apellido
+     */
     public void setThirdName(String thirdName){
         ThirdName = thirdName;
     }
 
-    //getters
+    //getters: todos los metodos siguiente devuelven los valores de la instancia
     public int getBirthDate(){
         return BirthDate;
     }

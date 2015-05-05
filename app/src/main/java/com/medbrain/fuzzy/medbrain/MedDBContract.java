@@ -49,6 +49,10 @@ public final class MedDBContract {
         public static final String COLUMN_NAME_MED_ID = "MedID";
     }
 
+    /**
+     * Esquema para tabla de Users
+     * @author Ulises Gonzalez
+     */
     public static abstract class UsersContract implements BaseColumns{
         public static final String TABLE_NAME = "Users";
        // public static final String COLUMN_NAME_ID = "ID";

@@ -41,6 +41,15 @@ public class AddNewUser extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * guarda los datos de un nuevo usuarios en la base
+     * <p>
+     *     Toma los valores de los cuadros de texto en la actividad, los onvierte en
+     *     el tipo correspondiente, se crea una instancia de la clase Usuario y se inicializan sus valores
+     *     se pasa esta instancia al data base handler que guarda los valores en la tabla. Y se devuelve a
+     *     su actividad padre.
+     * @param view contexto necesario para recibir el evento del boton CREAR
+     */
     public void saveData(View view){ //guarda los datos en la base
         EditText name = (EditText) findViewById(R.id.editText);
         EditText lastName = (EditText) findViewById(R.id.editText2);
@@ -65,12 +74,4 @@ public class AddNewUser extends ActionBarActivity {
         startActivity(intent);
     }
 
-   /* public void crearUsuarioPrueba(View view){
-        Users user = new Users("Cleto");
-        user.setSecondName("Ramirez");
-        user.setThirdName("Picado");
-        user.setBirthDate(99);
-        user.setID(115500425);
-        dbHandler.addUser(user);
-    }*/
 }

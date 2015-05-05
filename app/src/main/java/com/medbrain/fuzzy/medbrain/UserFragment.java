@@ -21,6 +21,9 @@ public class UserFragment extends ListFragment {
     private Cursor cursor;
     //private ListView listView;
 
+    /**
+     * metodo temporal que inserta un usuario en la base
+     */
     public void crearUsuarioPrueba(){
         Users user = new Users("Cleto");
         user.setSecondName("Ramirez");
@@ -30,6 +33,13 @@ public class UserFragment extends ListFragment {
         dbHandler.addUser(user);
     }
 
+    /**
+     * Se ejecuta al crear la actividad asociada al Fragment
+     * Obtiene todos los Usuarios en la BD y se las da al Adapter para que los despliegue
+     * Configura el evento de click en cada usuario individual
+     * De momento solo se despliega un mensaje informativo
+     * @param savedInstanceState informacion en la actividad
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         Log.i(TAG, "Entered onActivityCreated fragment");
