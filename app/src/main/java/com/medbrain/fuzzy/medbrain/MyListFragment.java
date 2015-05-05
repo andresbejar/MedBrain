@@ -32,7 +32,6 @@ public class MyListFragment extends ListFragment {
 
     private void crearAppointmentPrueba(){
         Appointment app = new Appointment();
-        app.setID(1234);
         app.setName("Prueba1");
         app.setPlace("Somewhiere");
         app.setDoctorID(1234);

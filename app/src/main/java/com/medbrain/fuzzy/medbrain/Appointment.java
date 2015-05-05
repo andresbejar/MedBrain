@@ -2,6 +2,7 @@ package com.medbrain.fuzzy.medbrain;
 
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -13,14 +14,25 @@ public class Appointment {
     private String name;
     private String place;
     private Integer doctorID;
-    private Calendar innerDate;
+    private Calendar date;
 
     public Appointment() {
         ID = null;
         name = "";
         place = "";
         doctorID = null;
-        innerDate = new GregorianCalendar();
+        date = new GregorianCalendar();
+        date.setTime(new Date());
+
+        int year = date.get(Calendar.YEAR);
+        int month = date.get(Calendar.MONTH);
+        int day = date.get(Calendar.DAY_OF_YEAR);
+        int hour = date.get(Calendar.HOUR);
+        int minute = date.get(Calendar.MINUTE);
+        int second = date.get(Calendar.SECOND);
+        int ms = date.get(Calendar.MILLISECOND);
+        int id = (year + month + day + hour + minute + second + ms);
+        this.setID(id);
     }
 
     public Integer getID(){
@@ -44,22 +56,22 @@ public class Appointment {
         Locale usersLocale = Locale.getDefault();
         DateFormatSymbols dfs = new DateFormatSymbols(usersLocale);
         String weekdays[] = dfs.getWeekdays();
-        int day = innerDate.get(Calendar.DAY_OF_WEEK);
+        int day = date.get(Calendar.DAY_OF_WEEK);
         String nameOfDay = weekdays[day];
 
-        finalDate += nameOfDay + " " + innerDate.get(Calendar.DAY_OF_MONTH) + ", ";
+        finalDate += nameOfDay + " " + date.get(Calendar.DAY_OF_MONTH) + ", ";
 
         String months[] = dfs.getMonths();
-        int month = innerDate.get(Calendar.MONTH);
+        int month = date.get(Calendar.MONTH);
         String nameOfMonth = months[month];
 
-        finalDate += nameOfMonth + ", " + innerDate.get(Calendar.YEAR);
+        finalDate += nameOfMonth + ", " + date.get(Calendar.YEAR);
 
         return finalDate;
     }
 
-    public long getInnerDate(){
-        return innerDate.getTimeInMillis();
+    public Calendar getDate(){
+        return date;
     }
 
     public void setID(Integer ID){
@@ -79,7 +91,7 @@ public class Appointment {
     }
 
     public void setInnerCalendar(int timeInMills){
-        innerDate.setTimeInMillis(timeInMills);
+        date.setTimeInMillis(timeInMills);
     }
 
 }
