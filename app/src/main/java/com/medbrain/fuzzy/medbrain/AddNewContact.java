@@ -9,17 +9,27 @@ import android.view.View;
 import android.widget.EditText;
 
 /**
- * Created by Yonan on 05/05/2015.
+ * Actividad que maneja la creacion de un contacto nuevo
+ * @author Yonan Cano
  */
 public class AddNewContact extends ActionBarActivity{
     private DatabaseHandler dbHandler;
 
+    /**
+     * Llamado cuando se crea la actividad
+     * @param savedInstanceState Bundle con informacion de la actividad
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_contact);
     }
 
+    /**
+     * Llamado cuando se crea el menu
+     * @param menu creado
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -27,6 +37,11 @@ public class AddNewContact extends ActionBarActivity{
         return true;
     }
 
+    /**
+     * Llamado cuando se selecciona una opcion del menu
+     * @param item opcion seleccionada
+     * @return boolean
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -42,27 +57,28 @@ public class AddNewContact extends ActionBarActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Crea un nuevo contacto y lo guarda en la BD
+     * @param view que llama al metodo
+     */
     public void saveContact(View view){ //guarda los datos del contacto en la base
         EditText name = (EditText) findViewById(R.id.editText5);
         EditText phone = (EditText) findViewById(R.id.editText7);
         EditText email = (EditText) findViewById(R.id.editText8);
         EditText espec = (EditText) findViewById(R.id.editText9);
         EditText reput = (EditText) findViewById(R.id.editText10);
-        EditText precio = (EditText) findViewById(R.id.editText11);
 
         String Name2 = name.getText().toString();
         String Phone2 = phone.getText().toString();
         String Email2 = email.getText().toString();
         String Espec2 = espec.getText().toString();
         String Reput2 = reput.getText().toString();
-        String Precio2 = precio.getText().toString();
 
         Contact cnt = new Contact(Name2);
         cnt.setPhone(Phone2);
         cnt.setEmail(Email2);
         cnt.setEspecialidad(Espec2);
         cnt.setReputacion(Reput2);
-        cnt.setPrecio(Precio2);
 
         dbHandler.addContact(cnt);
         /*Intent intent = new Intent(this, AddNewUser.class);

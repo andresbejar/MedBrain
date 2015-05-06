@@ -7,11 +7,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+
 /**
- * Created by Yonan on 05/05/2015.
+ * Actividad que maneja la vista de los contactos actuales
+ * @author Yonan Cano
  */
 public class ContactsView extends ActionBarActivity {
 
+    /**
+     * Se ejecuta cuando se crea la actividad
+     * @param savedInstanceState Bundle con informacion de la actividad
+     */
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -23,6 +29,11 @@ public class ContactsView extends ActionBarActivity {
             }*/
         }
 
+    /**
+     * Se ejecuta cuando se crea el menu
+     * @param menu creado
+     * @return true
+     */
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             // Inflate the menu; this adds items to the action bar if it is present.
@@ -30,6 +41,11 @@ public class ContactsView extends ActionBarActivity {
             return true;
         }
 
+    /**
+     * Se ejecuta cuando se selecciona una opcion del menu
+     * @param item seleccionado del menu
+     * @return boolean
+     */
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             // Handle action bar item clicks here. The action bar will
@@ -58,6 +74,10 @@ public class ContactsView extends ActionBarActivity {
          }
          }*/
 
+    /**
+     * Redirige al usuario a la actividad de agregar un nuevo contacto
+     * @param view que llama al metodo
+     */
     public void jumpToAddContact(View view){
         Intent intent = new Intent(this, AddNewUser.class);
         startActivity(intent);

@@ -55,7 +55,10 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    //YONAN
+    /**
+     * Redirige al usuario a la actividad de vista de contactos
+     * @param view que llama al metodo
+     */
     public void jumpToContacts(View view){
         Intent intent = new Intent(this, ContactsView.class);
         startActivity(intent);

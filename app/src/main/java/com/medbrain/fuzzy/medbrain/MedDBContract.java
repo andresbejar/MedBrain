@@ -70,7 +70,6 @@ public final class MedDBContract {
         public static final String COLUMN_NAME_EMAIL = "Email";
         public static final String COLUMN_NAME_ESPECIALIDAD = "Especialidad";
         public static final String COLUMN_NAME_REPUTACION = "Reputacion";
-        public static final String COLUMN_NAME_PRECIO = "Precio";
     }
 
     public static abstract class AppointmentContract implements BaseColumns{
