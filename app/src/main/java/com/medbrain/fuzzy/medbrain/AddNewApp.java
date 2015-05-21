@@ -42,8 +42,9 @@ public class AddNewApp extends ActionBarActivity {
     }
 
     /**
-     *
+     * Guarda la información ingresada por el usuario en la pantalla de agregar citas
      * @param view
+     * @return void
      */
     public void saveData(View view){ //guarda los datos en la base
         EditText name = (EditText) findViewById(R.id.editText12);

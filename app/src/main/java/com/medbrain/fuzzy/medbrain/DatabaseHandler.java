@@ -179,7 +179,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return returnCont;
     }
-
+    /**
+     * Metodo para agregar una cita nueva a la base de datos SQLite
+     * @param un objeto de tipo Appointment que tiene sus datos inicializados
+     * @return void
+     */
     public void addAppointment(Appointment _app){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -193,7 +197,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(MedDBContract.AppointmentContract.TABLE_NAME, null, values);
         db.close();
     }
-
+    /**
+     * Metodo para jalar una cita nueva desde la base de datos SQLite
+     * @param un objeto de tipo Integer que es el ID de la cita a buscar
+     * @return un objeto de tipo Appointment
+     */
     public Appointment getAppointment(Integer ID){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -221,7 +229,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         c.close();
         return a;
     }
-
+    /**
+     * Igual que el getter de Appointment pero para Reminders
+     * @param un objeto de tipo Reminder que tiene sus datos inicializados
+     * @return void
+     */
     public void addReminder(Reminder _rmdr){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -233,7 +245,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(MedDBContract.AppointmentContract.TABLE_NAME, null, values);
         db.close();
     }
-
+    /**
+     * Metodo para jalar un reminder nueva desde la base de datos SQLite
+     * @param un objeto de tipo Integer que tiene sus datos inicializados
+     * @return un objeto de tipo Reminder
+     */
     public Reminder getReminder(Integer ID){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -488,7 +504,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 null, null, null, null, null);
         return cursor;
     }
-
+    /**
+     * Metodo para jalar un cursor que permita recorrer todas las citas creadas
+     * @param null
+     * @return un objeto de tipo Cursor
+     */
     public Cursor getAllAppointments(){
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {MedDBContract.AppointmentContract._ID,

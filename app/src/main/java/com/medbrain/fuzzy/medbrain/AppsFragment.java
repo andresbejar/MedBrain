@@ -20,7 +20,11 @@ public class AppsFragment extends ListFragment {
     private DatabaseHandler dbHandler;
     private Cursor cursor;
 
-
+    /**
+     * Devuelve todas las citas creadas actualmente y las jala desde la base de datos para desplegarlas en forma de lista
+     * @param Bundle savedInstanceState
+     * @return void
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         Log.i(TAG, "Entered onActivityCreated fragment");
