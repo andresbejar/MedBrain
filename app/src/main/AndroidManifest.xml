@@ -76,6 +76,10 @@
             android:name=".MedSelectionActivity"
             android:label="@string/title_activity_med_selection" >
         </activity>
+        <activity
+            android:name=".PrescriptionViewActivity"
+            android:label="@string/title_activity_prescription_view" >
+        </activity>
     </application>
 
 </manifest>

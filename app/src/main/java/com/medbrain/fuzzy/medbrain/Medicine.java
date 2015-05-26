@@ -26,6 +26,12 @@ public class Medicine implements Parcelable {
     }
 
     /**
+     * Constructor default
+     * @param _id ID de la medicina
+     */
+    public Medicine(int _id){id = _id;}
+
+    /**
      * Retorna el nombre de la medicina
      * @return String nombre de la medicina
      */

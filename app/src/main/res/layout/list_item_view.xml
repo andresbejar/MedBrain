@@ -17,6 +17,8 @@
         android:id="@+id/doctor"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
+
+    <!---MAEStodo esto de aqui para abajo tienen que quitarlo y se hacen su propio layout-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

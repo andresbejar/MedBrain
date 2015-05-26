@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MedApp.db";
     public static final int DATABASE_VERSION = 3;
+    private static final String TAG = "MedBrain-App";
 
     /**
      * Constructor SQLiteOpenHelper
@@ -365,10 +367,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * Retorna un objeto medicina
-     * @param medName String nombre de la medicina por obtener
+     * @param medId ID de la medicina por obtener
      * @return Medicine obtenida
      */
-    public Medicine getMedicine(String medName) {
+    public Medicine getMedicine(int medId) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] projection = {MedDBContract.MedicineContract._ID,
@@ -377,11 +379,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.MedicineContract.COLUMN_NAME_DETAILS};
 
         Cursor cursor = db.query(MedDBContract.MedicineContract.TABLE_NAME, projection,
-                MedDBContract.MedicineContract.COLUMN_NAME_TITLE + " = ?", new String[]{medName}, null, null, null);
+                MedDBContract.MedicineContract._ID + " = ?", new String[]{Integer.toString(medId)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        Medicine returnMed = new Medicine(medName);
+        Medicine returnMed = new Medicine(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract.COLUMN_NAME_TITLE)));
         returnMed.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract._ID)));
         returnMed.setDose(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract.COLUMN_NAME_DOSE)));
         returnMed.setDetails(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.MedicineContract.COLUMN_NAME_DETAILS)));
@@ -413,17 +415,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int id = p.getID();
         String [] projection = {MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID};
         Cursor cursor = db.query(MedDBContract.MedPrescContract.TABLE_NAME, projection,
-                MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
+                MedDBContract.MedPrescContract.COLUMN_NAME_PRESC_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
 
-        /*String query = "SELECT P.MedID " +
-                "FROM MedPresc P " +
-                "WHERE P.PrescID = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{Integer.toString(id)});*/
-
-        if (cursor != null)
+        if (cursor != null){
             cursor.moveToFirst();
+        }
+        Log.i(TAG, "DbHandler: loadMedicines cursor count is: " + cursor.getCount());
+
 
         while (!cursor.isAfterLast()) {
+            Log.i(TAG, "DbHandler: loading medicines...");
             p.addMedicine(cursor.getInt(0));
             cursor.moveToNext();
         }
