@@ -340,6 +340,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.insert(MedDBContract.PrescriptionContract.TABLE_NAME, null, values);
         db.close();
+
+        //ahora se agregan todas las medicinas de la receta a la tabla MedPresc
+        for(int med : _presc.Medicines){
+            addMedToPresc(_presc, med);
+        }
     }
 
     /**
@@ -347,12 +352,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * @param _presc Prescription a agregar la medicina
      * @param _med Medicine a agregar a _presc
      */
-    public void addMedToPresc(Prescription _presc, Medicine _med) {
+    public void addMedToPresc(Prescription _presc, int _med) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(MedDBContract.MedPrescContract.COLUMN_NAME_PRESC_ID, _presc.getID());
-        values.put(MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID, _med.getID());
+        values.put(MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID, _med);
 
         db.insert(MedDBContract.MedPrescContract.TABLE_NAME, null, values);
         db.close();
@@ -406,15 +411,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Prescription loadMedicines(Prescription p) {
         SQLiteDatabase db = this.getReadableDatabase();
         int id = p.getID();
-        String query = "SELECT m.Name " +
-                "FROM Medicines m JOIN MedPresc P on m.ID = P.MedID " +
+        String [] projection = {MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID};
+        Cursor cursor = db.query(MedDBContract.MedPrescContract.TABLE_NAME, projection,
+                MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
+
+        /*String query = "SELECT P.MedID " +
+                "FROM MedPresc P " +
                 "WHERE P.PrescID = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{Integer.toString(id)});
+        Cursor cursor = db.rawQuery(query, new String[]{Integer.toString(id)});*/
+
         if (cursor != null)
             cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            p.addMedicine(cursor.getString(0));
+            p.addMedicine(cursor.getInt(0));
             cursor.moveToNext();
         }
 
@@ -499,6 +509,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(MedDBContract.AppointmentContract.TABLE_NAME, projection,
                 null, null, null, null, null);
         return cursor;
+    }
+
+    public Cursor getAllMeds(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String [] projection = {MedDBContract.MedicineContract._ID,
+                                MedDBContract.MedicineContract.COLUMN_NAME_TITLE,
+                                MedDBContract.MedicineContract.COLUMN_NAME_DETAILS,
+                                MedDBContract.MedicineContract.COLUMN_NAME_DOSE};
+        Cursor cursor = db.query(MedDBContract.MedicineContract.TABLE_NAME, projection,
+                                null, null, null, null, null);
+        return cursor;
+
     }
 }
 

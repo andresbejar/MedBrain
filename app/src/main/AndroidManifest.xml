@@ -72,6 +72,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
         </activity>
+        <activity
+            android:name=".MedSelectionActivity"
+            android:label="@string/title_activity_med_selection" >
+        </activity>
     </application>
 
 </manifest>

@@ -39,11 +39,20 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Log.i(TAG, "Clicked crear Receta");
                 Intent intent = new Intent(getApplicationContext(), PrescriptionCreationActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, CREAR_RECETA_REQUEST);
             }
         });
         fragment = new MyListFragment();
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == CREAR_RECETA_REQUEST){
+            if(resultCode == RESULT_OK){
+                Log.i(TAG, "New Prescription created succesfully");
+            }
+        }
     }
 
     /**

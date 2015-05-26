@@ -1,5 +1,6 @@
 package com.medbrain.fuzzy.medbrain;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -21,7 +22,6 @@ public class MyListFragment extends ListFragment {
     private SimpleCursorAdapter adapter;
     private DatabaseHandler dbHandler;
     private Cursor cursor;
-    //private ListView listView;
 
     /**
      * Metodo de prueba que crea una nueva receta y la inserta
@@ -50,7 +50,7 @@ public class MyListFragment extends ListFragment {
         dbHandler = new DatabaseHandler(getActivity());
 
         //seccion de prueba-----------------------
-        crearRecetaPrueba();
+        //crearRecetaPrueba();
         Log.i(TAG, "Added test prescription");
         //fin seccion de prueba-------------------
 
@@ -69,6 +69,8 @@ public class MyListFragment extends ListFragment {
         });
     }
 
+
+
     /**
      * Metodo ejecutado al crear el view en el que se encuentra el fragment
      * @param inflater LayoutInflater usado para "inflar" el layout del fragment
@@ -82,6 +84,18 @@ public class MyListFragment extends ListFragment {
         View view = inflater.inflate(R.layout.list_fragment, container);
 
         return view;
+    }
+
+    public void refresh(){
+        Log.i(TAG, "Refreshing cursor");
+        adapter.swapCursor(dbHandler.getAllPrescriptions());
+    }
+
+    @Override
+    public void onResume(){
+        Log.i(TAG, "Entered onResume");
+        super.onResume();
+        refresh();
     }
 
 }
