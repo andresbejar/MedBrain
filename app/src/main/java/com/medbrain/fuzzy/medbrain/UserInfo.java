@@ -24,13 +24,12 @@ public class UserInfo extends ActionBarActivity {
         setContentView(R.layout.activity_user_info);
 
         Intent info = getIntent();
-        Log.i(TAG, "intent recibido");
         dbHandler = new DatabaseHandler(this);
         TextView name = (TextView) findViewById(R.id.textView5);
         TextView cedula = (TextView) findViewById(R.id.textView7);
         TextView bDate = (TextView) findViewById(R.id.textView9);
         userId = info.getIntExtra("id", 0);
-
+        Log.i(TAG, "intent recibido");
         //se recupera el user que corresponde al ID y se llena la pantalla
         usrSelected = dbHandler.getUserByID(userId);
 
