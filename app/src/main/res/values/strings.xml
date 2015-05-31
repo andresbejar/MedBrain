@@ -26,6 +26,7 @@
     <string name="button_Editar">Editar</string>
     <string name="button_CambiarUsuario">Cambiar perfil</string>
     <string name="button_Guardar">Guardar</string>
+    <string name="button_Eliminar">Eliminar</string>
 
     <string name="button_Contacts">Contactos</string>
     <string name="button_addContact">AgregarContacto</string>
