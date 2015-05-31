@@ -23,6 +23,9 @@ public class Users {
     public Users(){}
     //setters
 
+    public void setFirstName(String firstName){
+        FirstName = firstName;
+    }
     /**
      * inicializa el id del User
      * @param id identificacion del user

@@ -294,7 +294,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        Users user = new Users(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME)));
+        Users user = new Users();
+        user.setFirstName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME)));
         user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract._ID)));
         user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
         user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
