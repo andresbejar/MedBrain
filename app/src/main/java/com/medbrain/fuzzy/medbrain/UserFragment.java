@@ -1,6 +1,7 @@
 package com.medbrain.fuzzy.medbrain;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 /**
  * Created by Ulises on 5/5/2015.
@@ -61,7 +64,11 @@ public class UserFragment extends ListFragment {
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Toast.makeText(getActivity(), "Clicked User # " + position, Toast.LENGTH_SHORT).show();
+                TextView Id = (TextView) view.findViewById(R.id.userID);
+                int userId = Integer.parseInt(Id.getText().toString());
+                Intent intent = new Intent(getActivity(), UserInfo.class);
+                intent.putExtra("id", userId);
+                startActivity(intent);
 
             }
 

@@ -80,6 +80,14 @@
             android:name=".PrescriptionViewActivity"
             android:label="@string/title_activity_prescription_view" >
         </activity>
+        <activity
+            android:name=".UserInfo"
+            android:label="@string/title_activity_user_info"
+            android:parentActivityName=".UsersView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UsersView" />
+        </activity>
     </application>
 
 </manifest>
