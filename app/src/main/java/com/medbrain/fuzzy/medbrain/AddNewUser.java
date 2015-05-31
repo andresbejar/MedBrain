@@ -67,7 +67,7 @@ public class AddNewUser extends ActionBarActivity {
         user.setSecondName(LastName);
         user.setThirdName(LastName2);
         user.setID(ID);
-        user.setID(BDate);
+        user.setBirthDate(BDate);
 
         dbHandler.addUser(user);
         Intent intent = new Intent(this, UsersView.class);
