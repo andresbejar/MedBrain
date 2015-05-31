@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 //import android.view.View;
 
@@ -25,9 +26,11 @@ public class UserInfo extends ActionBarActivity {
 
         Intent info = getIntent();
         dbHandler = new DatabaseHandler(this);
+
         TextView name = (TextView) findViewById(R.id.textView5);
         TextView cedula = (TextView) findViewById(R.id.textView7);
         TextView bDate = (TextView) findViewById(R.id.textView9);
+
         userId = info.getIntExtra("id", 0);
         Log.i(TAG, "intent recibido");
         //se recupera el user que corresponde al ID y se llena la pantalla
@@ -37,6 +40,12 @@ public class UserInfo extends ActionBarActivity {
         cedula.setText(Integer.toString(usrSelected.getID()));
         bDate.setText(Integer.toString(usrSelected.getBirthDate()));
 
+    }
+
+    public void jmpToEdit(View view){
+        Intent intent = new Intent(this, EditUserInfo.class);
+        intent.putExtra("id", userId);
+        startActivity(intent);
     }
 
     @Override

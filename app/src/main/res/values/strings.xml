@@ -25,6 +25,7 @@
     <string name="add_medicine">Agregar medicina</string>
     <string name="button_Editar">Editar</string>
     <string name="button_CambiarUsuario">Cambiar perfil</string>
+    <string name="button_Guardar">Guardar</string>
 
     <string name="button_Contacts">Contactos</string>
     <string name="button_addContact">AgregarContacto</string>
@@ -53,6 +54,7 @@
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
     <string name="title_activity_user_info">UserInfo</string>
+    <string name="title_activity_edit_user_info">EditUserInfo</string>
 
 
 </resources>

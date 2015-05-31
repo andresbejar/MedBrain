@@ -56,7 +56,8 @@
         android:id="@+id/textView8"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:onClick="jmpToEdit" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,8 +67,7 @@
         android:layout_below="@+id/textView8"
         android:layout_alignStart="@+id/textView7"
         android:layout_marginTop="32dp"
-        android:hint="dd/mm/aaaa"
-        android:textStyle="bold"/>
+        android:hint="dd/mm/aaaa" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

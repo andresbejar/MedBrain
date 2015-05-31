@@ -88,6 +88,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.UsersView" />
         </activity>
+        <activity
+            android:name=".EditUserInfo"
+            android:label="@string/title_activity_edit_user_info"
+            android:parentActivityName=".UserInfo" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UserInfo" />
+        </activity>
     </application>
 
 </manifest>
