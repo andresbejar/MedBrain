@@ -15,7 +15,7 @@ public class UserInfo extends ActionBarActivity {
     private static final String TAG = "MedBrain-App";
 
     private int userId;
-    private Users usrSelected;
+    private Users usrSelected = new Users();
     private DatabaseHandler dbHandler;
 
     @Override

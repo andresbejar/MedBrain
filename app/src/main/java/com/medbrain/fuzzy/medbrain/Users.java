@@ -20,6 +20,7 @@ public class Users {
         FirstName = firstName;
     }
 
+    public Users(){}
     //setters
 
     /**
