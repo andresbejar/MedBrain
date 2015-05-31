@@ -3,12 +3,15 @@ package com.medbrain.fuzzy.medbrain;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 
+
 public class UserInfo extends ActionBarActivity {
+    private static final String TAG = "MedBrain-App";
 
     private int userId;
     private Users usrSelected;
@@ -20,6 +23,7 @@ public class UserInfo extends ActionBarActivity {
         setContentView(R.layout.activity_user_info);
 
         Intent info = getIntent();
+        Log.i(TAG, "intent recibido");
         dbHandler = new DatabaseHandler(this);
         TextView name = (TextView) findViewById(R.id.textView5);
         TextView cedula = (TextView) findViewById(R.id.textView7);
