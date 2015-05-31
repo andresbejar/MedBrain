@@ -289,13 +289,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE};
 
-        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract._ID,
+        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract._ID + "=?",
                 new String[]{Integer.toString(userID)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        Users user = new Users();
-        user.setFirstName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME)));
+        Users user = new Users(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME)));
+        //user.setFirstName();
         user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract._ID)));
         user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
         user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
