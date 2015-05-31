@@ -12,7 +12,7 @@ import android.widget.EditText;
 public class EditUserInfo extends ActionBarActivity {
 
     private int userId;
-    private Users editUsr;
+    private Users editUsr = new Users();
     private DatabaseHandler dbHandler;
     private EditText firstName = (EditText)findViewById(R.id.editText16);
     private EditText secondName = (EditText)findViewById(R.id.editText17);
