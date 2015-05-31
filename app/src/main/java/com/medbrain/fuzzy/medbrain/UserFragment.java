@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 
 /**
@@ -65,9 +65,11 @@ public class UserFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 TextView Id = (TextView) view.findViewById(R.id.userID);
+                Log.i(TAG, "Id de la receta seleccionada: " + Id.getText());
                 int userId = Integer.parseInt(Id.getText().toString());
                 Intent intent = new Intent(getActivity(), UserInfo.class);
                 intent.putExtra("id", userId);
+                Log.i(TAG, "antes de llamar a info");
                 startActivity(intent);
 
             }

@@ -65,7 +65,6 @@ public class MyListFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 TextView presc = (TextView)view.findViewById(R.id.recetaId);
-                Log.i(TAG, "Id de la receta seleccionada: " + presc.getText());
                 int prescId = Integer.parseInt(presc.getText().toString());
                 Intent intent = new Intent(getActivity(), PrescriptionViewActivity.class);
                 intent.putExtra("id", prescId);
