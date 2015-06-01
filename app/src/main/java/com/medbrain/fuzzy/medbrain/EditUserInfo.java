@@ -52,7 +52,7 @@ public class EditUserInfo extends ActionBarActivity {
         thirdName = (EditText)findViewById(R.id.editText18);
         ID = (EditText)findViewById(R.id.editText19);
         bDate = (EditText)findViewById(R.id.editText20);
-
+int t;
         String name = firstName.getText().toString();
         String lastName = secondName.getText().toString();
         String lastName2 = thirdName.getText().toString();
