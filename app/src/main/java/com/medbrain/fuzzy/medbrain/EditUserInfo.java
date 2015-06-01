@@ -14,11 +14,11 @@ public class EditUserInfo extends ActionBarActivity {
     private int userId;
     private Users editUsr = new Users();
     private DatabaseHandler dbHandler;
-    private EditText firstName = (EditText)findViewById(R.id.editText16);
-    private EditText secondName = (EditText)findViewById(R.id.editText17);
-    private EditText thirdName = (EditText)findViewById(R.id.editText18);
-    private EditText ID = (EditText)findViewById(R.id.editText19);
-    private EditText bDate = (EditText)findViewById(R.id.editText20);
+    private EditText firstName;
+    private EditText secondName;
+    private EditText thirdName;
+    private EditText ID;
+    private EditText bDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,12 @@ public class EditUserInfo extends ActionBarActivity {
 
 //se llenan los campos con un preview de la informacion actual
 
+        firstName = (EditText)findViewById(R.id.editText16);
+        secondName = (EditText)findViewById(R.id.editText17);
+        thirdName = (EditText)findViewById(R.id.editText18);
+        ID = (EditText)findViewById(R.id.editText19);
+        bDate = (EditText)findViewById(R.id.editText20);
+
         firstName.setText(editUsr.getFirstName());
         secondName.setText(editUsr.getSecondName());
         thirdName.setText(editUsr.getThirdName());
@@ -41,6 +47,12 @@ public class EditUserInfo extends ActionBarActivity {
     }
 
     public void saveChanges(View view){
+        firstName = (EditText)findViewById(R.id.editText16);
+        secondName = (EditText)findViewById(R.id.editText17);
+        thirdName = (EditText)findViewById(R.id.editText18);
+        ID = (EditText)findViewById(R.id.editText19);
+        bDate = (EditText)findViewById(R.id.editText20);
+
         String name = firstName.getText().toString();
         String lastName = secondName.getText().toString();
         String lastName2 = thirdName.getText().toString();
