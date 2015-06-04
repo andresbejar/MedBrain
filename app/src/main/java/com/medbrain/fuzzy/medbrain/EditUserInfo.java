@@ -76,6 +76,9 @@ public class EditUserInfo extends ActionBarActivity {
         int iD = Integer.parseInt(ID.getText().toString());
 
         dbHandler.deleteUser(iD);
+
+        Intent intent = new Intent(this, UserInfo.class);
+        startActivity(intent);
     }
 
     @Override
