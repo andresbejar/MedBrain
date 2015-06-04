@@ -547,5 +547,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor;
 
     }
+
+    public void updateUser(int id, String name, String lastName, String lastName2, int birthDate){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //valores a modificar
+        ContentValues values = new ContentValues();
+        values.put(MedDBContract.UsersContract._ID, id);
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME, name);
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, lastName);
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, lastName2);
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE, birthDate);
+
+        //fila a modificar
+        String selection = MedDBContract.UsersContract._ID + "=?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        db.update(
+                MedDBContract.UsersContract.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
+    public void deleteUser(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selection = MedDBContract.UsersContract._ID + "=?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        db.delete(MedDBContract.UsersContract.TABLE_NAME, selection, selectionArgs);
+    }
 }
 

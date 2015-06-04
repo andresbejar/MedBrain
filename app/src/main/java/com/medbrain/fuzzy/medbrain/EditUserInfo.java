@@ -52,21 +52,30 @@ public class EditUserInfo extends ActionBarActivity {
         thirdName = (EditText)findViewById(R.id.editText18);
         ID = (EditText)findViewById(R.id.editText19);
         bDate = (EditText)findViewById(R.id.editText20);
-int t;
+
         String name = firstName.getText().toString();
         String lastName = secondName.getText().toString();
         String lastName2 = thirdName.getText().toString();
         int iD = Integer.parseInt(ID.getText().toString());
         int birthDate = Integer.parseInt(bDate.getText().toString());
 
-        editUsr.setFirstName(name);
+        dbHandler.updateUser(iD, name, lastName, lastName2, birthDate);
+
+        /*editUsr.setFirstName(name);
         editUsr.setID(iD);
         editUsr.setSecondName(lastName);
         editUsr.setThirdName(lastName2);
-        editUsr.setBirthDate(birthDate);
+        editUsr.setBirthDate(birthDate);*/
 
         Intent intent = new Intent(this, UserInfo.class);
         startActivity(intent);
+    }
+
+    public void deleteUser(View view){
+        ID = (EditText)findViewById(R.id.editText19);
+        int iD = Integer.parseInt(ID.getText().toString());
+
+        dbHandler.deleteUser(iD);
     }
 
     @Override
