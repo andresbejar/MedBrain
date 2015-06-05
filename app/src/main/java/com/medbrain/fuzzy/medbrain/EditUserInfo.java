@@ -67,8 +67,9 @@ public class EditUserInfo extends ActionBarActivity {
         editUsr.setThirdName(lastName2);
         editUsr.setBirthDate(birthDate);*/
 
-        Intent intent = new Intent(this, UserInfo.class);
-        startActivity(intent);
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     public void deleteUser(View view){
@@ -77,8 +78,8 @@ public class EditUserInfo extends ActionBarActivity {
 
         dbHandler.deleteUser(iD);
 
-        Intent intent = new Intent(this, UserInfo.class);
-        startActivity(intent);
+       // Intent intent = new Intent(this, UserInfo.class);
+       // startActivity(intent);
     }
 
     @Override

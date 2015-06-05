@@ -51,7 +51,7 @@ public class UserFragment extends ListFragment {
         dbHandler = new DatabaseHandler(getActivity());
 
         //seccion de prueba-----------------------
-        crearUsuarioPrueba();
+        //crearUsuarioPrueba();
         Log.i(TAG, "Added test user");
         //fin seccion de prueba-------------------
 

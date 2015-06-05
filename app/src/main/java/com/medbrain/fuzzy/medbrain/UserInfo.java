@@ -32,9 +32,9 @@ public class UserInfo extends ActionBarActivity {
         TextView bDate = (TextView) findViewById(R.id.textView9);
 
         userId = info.getIntExtra("id", 0);
-        Log.i(TAG, "intent recibido");
         //se recupera el user que corresponde al ID y se llena la pantalla
         usrSelected = dbHandler.getUserByID(userId);
+        Log.i(TAG, "intent recibido");
 
         name.setText(usrSelected.getFirstName() + " " + usrSelected.getSecondName() + " " + usrSelected.getThirdName());
         cedula.setText(Integer.toString(usrSelected.getID()));
