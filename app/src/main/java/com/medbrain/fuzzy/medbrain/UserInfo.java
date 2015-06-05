@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 public class UserInfo extends ActionBarActivity {
     private static final String TAG = "MedBrain-App";
+    private static final int EDIT_USR_REQ = 0;
 
     private int userId;
     private Users usrSelected = new Users();
@@ -45,7 +46,18 @@ public class UserInfo extends ActionBarActivity {
     public void jmpToEdit(View view){
         Intent intent = new Intent(this, EditUserInfo.class);
         intent.putExtra("id", userId);
-        startActivity(intent);
+        startActivityForResult(intent, EDIT_USR_REQ);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == EDIT_USR_REQ){
+            if(resultCode == RESULT_OK){
+                Log.i(TAG, "Usuario modificado o borrado");
+                finish();
+                startActivity(getIntent());
+            }
+        }
     }
 
     @Override

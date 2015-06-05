@@ -78,8 +78,10 @@ public class EditUserInfo extends ActionBarActivity {
 
         dbHandler.deleteUser(iD);
 
-       // Intent intent = new Intent(this, UserInfo.class);
-       // startActivity(intent);
+        Intent intent = new Intent(this, UsersView.class);
+        startActivity(intent);
+        //setResult(RESULT_OK, intent);
+        //finish();
     }
 
     @Override
