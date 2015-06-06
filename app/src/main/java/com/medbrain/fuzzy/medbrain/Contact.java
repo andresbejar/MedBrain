@@ -21,7 +21,7 @@ public class Contact {
     public Contact(String name){ this.name = name;}
 
     /**
-     * Constructor alternativo incializacion vacia
+     * Constructor alternativo incializacion vacia, se costruye el contatcto por medio de sets
      */
     public Contact(){}
 
