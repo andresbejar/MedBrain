@@ -77,8 +77,13 @@
             android:label="@string/title_activity_med_selection" >
         </activity>
         <activity
-            android:name=".PrescriptionViewActivity"
-            android:label="@string/title_activity_prescription_view" >
+        android:name=".PrescriptionViewActivity"
+        android:label="@string/title_activity_prescription_view" >
+        </activity>
+        <activity
+            android:name=".ContactViewActivity"
+            android:label="@string/title_activity_contact_view"
+            android:parentActivityName=".ContactsView">
         </activity>
     </application>
 
