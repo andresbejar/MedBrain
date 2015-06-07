@@ -626,7 +626,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * Obitene todos los contactos que se encuentran registrados en la base de datos
+     * Obitene todos los contactos que se encuentran registrados en la Base de Datos
      * @return Cursor con informacion de todos los contatos
      */
     public Cursor getAllContacts(){
