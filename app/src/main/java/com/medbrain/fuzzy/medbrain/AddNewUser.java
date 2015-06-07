@@ -58,8 +58,11 @@ public class AddNewUser extends ActionBarActivity {
         EditText Bdate = (EditText) findViewById(R.id.editText4);
 
         String Name = name.getText().toString();
+        Name += " ";
         String LastName = lastName.getText().toString();
+        LastName += " ";
         String LastName2 = lastName2.getText().toString();
+        LastName2 += " ";
         int ID = Integer.parseInt(id.getText().toString());
         int BDate = Integer.parseInt(Bdate.getText().toString());
 
@@ -67,7 +70,7 @@ public class AddNewUser extends ActionBarActivity {
         user.setSecondName(LastName);
         user.setThirdName(LastName2);
         user.setID(ID);
-        user.setID(BDate);
+        user.setBirthDate(BDate);
 
         dbHandler.addUser(user);
         Intent intent = new Intent(this, UsersView.class);

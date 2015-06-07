@@ -85,6 +85,22 @@
             android:label="@string/title_activity_contact_view"
             android:parentActivityName=".ContactsView">
         </activity>
+        <activity
+            android:name=".UserInfo"
+            android:label="@string/title_activity_user_info"
+            android:parentActivityName=".UsersView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UsersView" />
+        </activity>
+        <activity
+            android:name=".EditUserInfo"
+            android:label="@string/title_activity_edit_user_info"
+            android:parentActivityName=".UserInfo" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UserInfo" />
+        </activity>
     </application>
 
 </manifest>
