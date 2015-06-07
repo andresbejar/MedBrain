@@ -23,6 +23,8 @@ import android.widget.ListView;
  */
 public class ContactsView extends ActionBarActivity {
 
+    ContactFragment fragment;
+
     private static final String TAG = "MedBrain-App";
 
     //------LAYOUT ITEMS DEL DRAWER, NO BORRAR--------------------------------------------
@@ -34,95 +36,97 @@ public class ContactsView extends ActionBarActivity {
     private String[] navOptions;
     //---------------------------------------------------------------------------------------
 
+
     /**
      * Se ejecuta cuando se crea la actividad
      * @param savedInstanceState Bundle con informacion de la actividad
      */
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_contacts_view);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_contacts_view);
 
-            //----SECCION DE CONFIG DEL DRAWER----------------------------------------------------------
-            mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-            mTitle = mDrawerTitle = getTitle();
-            mDrawerTitle = "MedBrain";
-            mDrawerList = (ListView)findViewById(R.id.left_drawer);
-            navOptions = getResources().getStringArray(R.array.nav_options);
-            mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, navOptions));
-            mDrawerLayout.setDrawerShadow(R.drawable.ic_drawer_shadow, GravityCompat.START);
-            mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        //----SECCION DE CONFIG DEL DRAWER----------------------------------------------------------
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mTitle = mDrawerTitle = getTitle();
+        mDrawerTitle = "MedBrain";
+        mDrawerList = (ListView)findViewById(R.id.left_drawer);
+        navOptions = getResources().getStringArray(R.array.nav_options);
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, navOptions));
+        mDrawerLayout.setDrawerShadow(R.drawable.ic_drawer_shadow, GravityCompat.START);
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open_drawer, R.string.close_drawer){
-                public void onDrawerClosed(View view) {
-                    getSupportActionBar().setTitle(mTitle);
-                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-                }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open_drawer, R.string.close_drawer){
+            public void onDrawerClosed(View view) {
+                getSupportActionBar().setTitle(mTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
 
-                public void onDrawerOpened(View drawerView) {
-                    getSupportActionBar().setTitle(mDrawerTitle);
-                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-                }
-            };
-            mDrawerLayout.setDrawerListener(mDrawerToggle);
-            setTitle(navOptions[1]);
-            //------------------------------------------------------------------------------------------
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle(mDrawerTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        setTitle(navOptions[1]);
+        //------------------------------------------------------------------------------------------
 
-        }
+    }
 
     /**
      * Se ejecuta cuando se crea el menu
      * @param menu creado
      * @return true
      */
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.menu_contacts_view, menu);
-            return true;
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_contacts_view, menu);
+        fragment = new ContactFragment();
+        return true;
+    }
 
     /**
      * Se ejecuta cuando se selecciona una opcion del menu
      * @param item seleccionado del menu
      * @return boolean
      */
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            if (mDrawerToggle.onOptionsItemSelected(item)) {
-                return true;
-            }
-            int id = item.getItemId();
-            if (id == R.id.action_settings) {
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-        /**
-         * A placeholder fragment containing a simple view.
-         /
-         public static class PlaceholderFragment extends Fragment {
+    /**
+     * A placeholder fragment containing a simple view.
+     /
+     public static class PlaceholderFragment extends Fragment {
 
-         public PlaceholderFragment() { }
+     public PlaceholderFragment() { }
 
-         @Override
-         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-         Bundle savedInstanceState) {
-         View rootView = inflater.inflate(R.layout.fragment_display_message,
-         container, false);
-         return rootView;
-         }
-         }*/
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+     Bundle savedInstanceState) {
+     View rootView = inflater.inflate(R.layout.fragment_display_message,
+     container, false);
+     return rootView;
+     }
+     }*/
 
     /**
      * Redirige al usuario a la actividad de agregar un nuevo contacto
      * @param view que llama al metodo
      */
     public void jumpToAddContact(View view){
-        Intent intent = new Intent(this, AddNewUser.class);
+        Intent intent = new Intent(this, AddNewContact.class);
         startActivity(intent);
     }
 

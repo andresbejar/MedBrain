@@ -25,10 +25,12 @@
     <string name="add_medicine">Agregar medicina</string>
 
     <string name="button_Contacts">Contactos</string>
-    <string name="button_addContact">AgregarContacto</string>
+    <string name="button_addContact">Agregar Contacto</string>
     <string name="button_createContact">CrearContacto</string>
-    <string name="title_activity_contacts_view">ContactsView</string>
-    <string name="title_activity_add_new_contact">AddNewContact</string>
+    <string name="title_activity_contacts_view">Contactos Medicos</string>
+    <string name="title_activity_contact_view">Contacto Medico</string>
+    <string name="title_activity_add_new_contact">Nuevo Contacto</string>
+    <string name="title_activity_contacts_edition">Contacto Medico</string>
 
     <string name="title_activity_calendar">Calendario</string>
 
