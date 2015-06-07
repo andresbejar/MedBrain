@@ -38,12 +38,18 @@
     <string name="title_section3">Section 3</string>
 
     <string name="calendar_button">Calendario</string>
-    <string name="title_activity_add_new_app">Agregar Cita</string>
+
+    <string name="title_activity_add_new_rmdr">Agregar Recordatorio</string>
+    <string name="button_addAppointment">Crear Cita</string>
+    <string name="button_addReminder">Crear Recordatorio</string>
 
     <string name="appointment_title">Nombre cita</string>
     <string name="appointment_place">Lugar de la cita</string>
     <string name="appointment_doctor">Doctor encargado</string>
     <string name="appointment_date">Fecha</string>
+
+    <string name="rmdr_title">Texto para recordar</string>
+    <string name="title_activity_add_new_appointment">Agregar Cita</string>
 
 
 </resources>

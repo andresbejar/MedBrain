@@ -10,19 +10,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_createUser"
+        android:text="@string/button_addAppointment"
         android:id="@+id/button8"
         android:onClick="jumpToAddNewApp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp" />
+        android:layout_alignParentStart="true" />
 
     <fragment
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:name="com.medbrain.fuzzy.medbrain.AppsFragment"
         android:id="@+id/fragment3"
+        tools:layout="@layout/list_fragment"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_addReminder"
+        android:id="@+id/button9"
+        android:onClick="jumpToAddNewReminder"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

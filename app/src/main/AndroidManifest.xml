@@ -65,8 +65,19 @@
                 android:value="com.medbrain.fuzzy.medbrain.MainActivity" />
         </activity>
         <activity
-            android:name=".AddNewApp"
-            android:label="@string/title_activity_add_new_app"
+            android:name=".AddNewRmdr"
+            android:label="@string/title_activity_add_new_rmdr"
+            android:parentActivityName=".CalendarActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
+        </activity>
+
+        <receiver android:name=".appNotificationService" />
+
+        <activity
+            android:name=".AddNewAppointment"
+            android:label="@string/title_activity_add_new_appointment"
             android:parentActivityName=".CalendarActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

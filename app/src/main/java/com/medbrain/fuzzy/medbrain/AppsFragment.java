@@ -35,9 +35,8 @@ public class AppsFragment extends ListFragment {
 
         cursor = dbHandler.getAllAppointments();
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
-                cursor, new String[]{MedDBContract.AppointmentContract._ID, MedDBContract.AppointmentContract.COLUMN_NAME_NAME,
-                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE, MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR, MedDBContract.AppointmentContract.COLUMN_NAME_DATE},
-                new int[]{R.id.appID, R.id.appNameID, R.id.placeID, R.id.docID, R.id.dispDateID}, 0);
+                cursor, new String[]{MedDBContract.AppointmentContract.COLUMN_NAME_NAME, MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR, MedDBContract.AppointmentContract.COLUMN_NAME_DATE},
+                new int[]{R.id.appNameID, R.id.docID, R.id.dispDateID}, 0);
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){

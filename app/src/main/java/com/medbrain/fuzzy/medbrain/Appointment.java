@@ -149,7 +149,7 @@ public class Appointment {
      * @param int timeInMills
      * @return void
      */
-    public void setInnerCalendar(int timeInMills){
+    public void setInnerCalendar(long timeInMills){
         date.setTimeInMillis(timeInMills);
     }
 

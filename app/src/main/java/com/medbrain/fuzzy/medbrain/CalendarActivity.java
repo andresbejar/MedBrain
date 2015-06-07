@@ -42,7 +42,12 @@ public class CalendarActivity extends ActionBarActivity {
     }
 
     public void jumpToAddNewApp(View view){
-        Intent intent = new Intent(this, AddNewApp.class);
+        Intent intent = new Intent(this, AddNewAppointment.class);
+        startActivity(intent);
+    }
+
+    public void jumpToAddNewReminder(View view){
+        Intent intent = new Intent(this, AddNewRmdr.class);
         startActivity(intent);
     }
 }
