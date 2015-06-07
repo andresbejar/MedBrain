@@ -16,7 +16,7 @@ public class AddNewUser extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_user);
-        dbHandler = new DatabaseHandler(this)
+        dbHandler = new DatabaseHandler(this);
     }
 
     @Override
