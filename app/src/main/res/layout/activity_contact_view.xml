@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.medbrain.fuzzy.medbrain.ContactViewActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Nombre Contacto"
+        android:id="@+id/textViewNombcont"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/imageButtonEdit"
+        android:layout_alignEnd="@+id/imageViewCont" />
+
+    <ImageView
+        android:layout_width="203dp"
+        android:layout_height="191dp"
+        android:id="@+id/imageViewCont"
+        android:src="@mipmap/ic_launcher"
+        android:layout_below="@+id/imageButtonEdit"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:id="@+id/editTextTelef"
+        android:text="Telefono"
+        android:layout_below="@+id/imageViewCont"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="12345678"
+        android:id="@+id/textViewNoTel"
+        android:layout_alignBottom="@+id/editTextTelef"
+        android:layout_alignEnd="@+id/imageViewCont" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:id="@+id/editTextEmail"
+        android:text="Email"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textViewNoTel"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="juan.valdes@gmail.com"
+        android:id="@+id/textViewEmail"
+        android:layout_alignBottom="@+id/editTextEmail"
+        android:layout_alignStart="@+id/textViewNoTel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:id="@+id/editTextEspec"
+        android:text="Especialidad"
+        android:layout_below="@+id/textViewEmail"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="Cirujano Plastico"
+        android:id="@+id/textViewEspec"
+        android:layout_alignTop="@+id/editTextEspec"
+        android:layout_alignStart="@+id/textViewRep" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:id="@+id/editTextRep"
+        android:text="Reputacion"
+        android:layout_below="@+id/textViewEspec"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Baja"
+        android:id="@+id/textViewRep"
+        android:layout_alignBottom="@+id/editTextRep"
+        android:layout_alignEnd="@+id/imageViewCont" />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButtonEdit"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButtonEliminar"
+        android:layout_below="@+id/imageButtonEdit"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_menu_delete" />
+
+
+</RelativeLayout>
