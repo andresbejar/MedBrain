@@ -132,6 +132,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /**
+     * Elimina un contacto de la BD
+     * @param _id ID del contacto
+     */
+    public void deleteContact(long _id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        db.delete(MedDBContract.ContactContract.TABLE_NAME, MedDBContract.ContactContract._ID + "= "+_id, null);
+        db.close();
+    }
+
+    /**
      * Agrega un nuevo contacto a la BD
      * @param _cont contacto por agregar
      */
@@ -181,6 +192,41 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return returnCont;
     }
+
+    /**
+     * Obtiene un contacto de la BD segun su ID
+     * @param contId ID del contacto a obtener
+     * @return contacto obtenido
+     */
+    public Contact getContactById(int contId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {MedDBContract.ContactContract._ID,
+                MedDBContract.ContactContract.COLUMN_NAME_NAME,
+                MedDBContract.ContactContract.COLUMN_NAME_PHONE,
+                MedDBContract.ContactContract.COLUMN_NAME_EMAIL,
+                MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD,
+                MedDBContract.ContactContract.COLUMN_NAME_REPUTACION
+        };
+
+        Cursor cursor = db.query(MedDBContract.ContactContract.TABLE_NAME, projection, MedDBContract.ContactContract._ID + "=?",
+                new String[]{Integer.toString(contId)}, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        Contact returnCont = new Contact();
+
+        returnCont.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract._ID)));
+        returnCont.setName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_NAME)));
+        returnCont.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_PHONE)));
+        returnCont.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_EMAIL)));
+        returnCont.setEspecialidad(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD)));
+        returnCont.setReputacion(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.ContactContract.COLUMN_NAME_REPUTACION)));
+        cursor.close();
+
+        return returnCont;
+    }
+
 
     public void addAppointment(Appointment _app){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -577,6 +623,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(id)};
 
         db.delete(MedDBContract.UsersContract.TABLE_NAME, selection, selectionArgs);
+    }
+
+    /**
+     * Obitene todos los contactos que se encuentran registrados en la Base de Datos
+     * @return Cursor con informacion de todos los contatos
+     */
+    public Cursor getAllContacts(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String [] projection = {MedDBContract.ContactContract._ID,
+                MedDBContract.ContactContract.COLUMN_NAME_NAME,
+                MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD};
+        Cursor cursor = db.query(MedDBContract.ContactContract.TABLE_NAME, projection,
+                null, null, null, null, null);
+        return cursor;
+
     }
 }
 
