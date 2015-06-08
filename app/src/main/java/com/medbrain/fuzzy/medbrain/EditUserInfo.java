@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class EditUserInfo extends ActionBarActivity {
@@ -17,7 +18,7 @@ public class EditUserInfo extends ActionBarActivity {
     private EditText firstName;
     private EditText secondName;
     private EditText thirdName;
-    private EditText ID;
+    private TextView ID;
     private EditText bDay;
     private EditText bMonth;
     private EditText bYear;
@@ -37,18 +38,18 @@ public class EditUserInfo extends ActionBarActivity {
         firstName = (EditText)findViewById(R.id.editText16);
         secondName = (EditText)findViewById(R.id.editText17);
         thirdName = (EditText)findViewById(R.id.editText18);
-        ID = (EditText)findViewById(R.id.editText19);
+        ID = (TextView)findViewById(R.id.textView15);
         bDay = (EditText)findViewById(R.id.editText20);
-        bMonth= (EditText)findViewById(R.id.editText20);
-        bYear= (EditText)findViewById(R.id.editText20);
+        bMonth= (EditText)findViewById(R.id.editText21);
+        bYear= (EditText)findViewById(R.id.editText22);
 
         firstName.setText(editUsr.getFirstName());
         secondName.setText(editUsr.getSecondName());
         thirdName.setText(editUsr.getThirdName());
         ID.setText(Integer.toString(editUsr.getID()));
         bDay.setText(editUsr.getBirthDay());
-        bDay.setText(editUsr.getBirthMonth());
-        bDay.setText(editUsr.getBirthYear());
+        bMonth.setText(editUsr.getBirthMonth());
+        bYear.setText(editUsr.getBirthYear());
 
     }
 
@@ -56,10 +57,10 @@ public class EditUserInfo extends ActionBarActivity {
         firstName = (EditText)findViewById(R.id.editText16);
         secondName = (EditText)findViewById(R.id.editText17);
         thirdName = (EditText)findViewById(R.id.editText18);
-        ID = (EditText)findViewById(R.id.editText19);
+        ID = (TextView)findViewById(R.id.textView15);
         bDay = (EditText)findViewById(R.id.editText20);
-        bMonth = (EditText)findViewById(R.id.editText20);
-        bYear = (EditText)findViewById(R.id.editText20);
+        bMonth = (EditText)findViewById(R.id.editText21);
+        bYear = (EditText)findViewById(R.id.editText22);
 
         String name = firstName.getText().toString();
         String lastName = secondName.getText().toString();
@@ -83,7 +84,7 @@ public class EditUserInfo extends ActionBarActivity {
     }
 
     public void deleteUser(View view){
-        ID = (EditText)findViewById(R.id.editText19);
+        ID = (TextView)findViewById(R.id.textView15);
         int iD = Integer.parseInt(ID.getText().toString());
 
         dbHandler.deleteUser(iD);

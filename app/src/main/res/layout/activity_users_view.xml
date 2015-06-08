@@ -30,7 +30,13 @@
             android:name="com.medbrain.fuzzy.medbrain.UserFragment"
             android:id="@+id/fragment2"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignTop="@+id/button3"
+            android:layout_alignParentLeft="false" />
 
     </RelativeLayout>
 

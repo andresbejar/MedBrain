@@ -41,17 +41,6 @@
         android:layout_below="@+id/editText2"
         android:layout_alignStart="@+id/editText2" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:hint="@string/Bdate"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,7 +67,68 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/Fecha_Nac"
         android:id="@+id/textView"
-        android:layout_above="@+id/editText4"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/editText6"
         android:layout_alignStart="@+id/editText6" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_toStartOf="@+id/button"
+        android:hint="  dd"
+        android:layout_marginRight="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView11"
+        android:hint="/"
+        android:linksClickable="false"
+        android:ellipsize="none"
+        android:focusable="false"
+        android:height="30dp"
+        android:layout_alignBottom="@+id/editText4"
+        android:layout_alignEnd="@+id/editText4" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText11"
+        android:hint="mm"
+        android:layout_marginRight="220dp"
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@+id/textView11" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView12"
+        android:hint="/"
+        android:linksClickable="false"
+        android:ellipsize="none"
+        android:focusable="false"
+        android:height="30dp"
+        android:layout_alignBottom="@+id/editText11"
+        android:layout_alignStart="@+id/button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText12"
+        android:hint="aaaa"
+        android:layout_marginRight="155dp"
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@+id/textView12" />
 
 </RelativeLayout>

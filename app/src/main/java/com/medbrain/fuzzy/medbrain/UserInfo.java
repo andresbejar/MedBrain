@@ -39,7 +39,7 @@ public class UserInfo extends ActionBarActivity {
 
         name.setText(usrSelected.getFirstName() + " " + usrSelected.getSecondName() + " " + usrSelected.getThirdName());
         cedula.setText(Integer.toString(usrSelected.getID()));
-        bDate.setText(usrSelected.getBirthDay() + "/" + usrSelected.getBirthMonth() + "/" + usrSelected.getBirthYear());
+        bDate.setText(usrSelected.getBirthDay() + " / " + usrSelected.getBirthMonth() + " / " + usrSelected.getBirthYear());
 
     }
 

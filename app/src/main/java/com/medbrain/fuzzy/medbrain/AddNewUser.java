@@ -56,8 +56,8 @@ public class AddNewUser extends ActionBarActivity {
         EditText lastName2 = (EditText) findViewById(R.id.editText3);
         EditText id = (EditText) findViewById(R.id.editText6);
         EditText day = (EditText) findViewById(R.id.editText4);
-        EditText month = (EditText) findViewById(R.id.editText4);
-        EditText year = (EditText) findViewById(R.id.editText4);
+        EditText month = (EditText) findViewById(R.id.editText11);
+        EditText year = (EditText) findViewById(R.id.editText12);
 
         String Name = name.getText().toString();
         Name += " ";

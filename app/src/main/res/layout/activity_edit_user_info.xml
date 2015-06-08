@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="23dp"
-        android:hint="FirstName" />
+        android:hint="Nombre" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_below="@+id/editText16"
         android:layout_alignParentStart="true"
         android:layout_marginTop="36dp"
-        android:hint="SecondName"/>
+        android:hint="Primer Apellido"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,18 +37,7 @@
         android:layout_below="@+id/editText17"
         android:layout_alignParentStart="true"
         android:layout_marginTop="31dp"
-        android:hint="ThirdName"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editText19"
-        android:layout_below="@+id/editText18"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
-        android:hint="ID"/>
+        android:hint="Segundo Apellido"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,21 +45,26 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/Fecha_Nac"
         android:id="@+id/textView10"
-        android:layout_below="@+id/editText19"
         android:layout_alignParentStart="true"
         android:layout_marginTop="31dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_below="@+id/editText18" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText20"
+        android:hint="     dd"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="27dp"
         android:layout_below="@+id/textView10"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="23dp"
-        android:hint="dd/mm/aaaa" />
+        android:layout_toStartOf="@+id/button6"
+        android:layout_alignEnd="@+id/button9" />
+
+
 
     <Button
         android:layout_width="wrap_content"
@@ -90,5 +84,56 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:onClick="deleteUser" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView13"
+        android:hint="/"
+        android:layout_alignTop="@+id/editText20"
+        android:layout_alignEnd="@+id/editText20"
+        android:layout_marginTop="11dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText21"
+        android:hint="mm"
+        android:layout_alignTop="@+id/editText20"
+        android:layout_toEndOf="@+id/button9"
+        android:layout_marginRight="210dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView14"
+        android:hint="/"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_alignEnd="@+id/editText21" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText22"
+        android:hint="aaaa"
+        android:layout_above="@+id/textView15"
+        android:layout_toEndOf="@+id/textView14"
+        android:layout_marginRight="160dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView15"
+        android:layout_below="@+id/editText20"
+        android:layout_alignParentStart="true"
+        android:hint="Identificación"/>
 
 </RelativeLayout>
