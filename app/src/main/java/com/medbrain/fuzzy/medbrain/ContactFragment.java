@@ -55,7 +55,7 @@ public class ContactFragment extends ListFragment {
         //crearContactoPrueba();
         //Obtiene y despliega todas los contactos en la BD
         cursor = dbHandler.getAllContacts();
-        adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
+        adapter = new SimpleCursorAdapter(getActivity(), R.layout.cont_item_view,
                 cursor, new String[]{MedDBContract.ContactContract._ID,
                 MedDBContract.ContactContract.COLUMN_NAME_NAME,
                 MedDBContract.ContactContract.COLUMN_NAME_ESPECIALIDAD},

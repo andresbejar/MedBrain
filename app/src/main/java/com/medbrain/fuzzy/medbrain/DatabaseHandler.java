@@ -134,17 +134,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * Elimina un contacto de la BD
-     * @param _id ID del contacto
-     */
-    public void deleteContact(long _id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        db.delete(MedDBContract.ContactContract.TABLE_NAME, MedDBContract.ContactContract._ID + "= "+_id, null);
-        db.close();
-    }
-
-    /**
      * Agrega un nuevo contacto a la BD
      * @param _cont contacto por agregar
      */
@@ -638,6 +627,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(id)};
 
         db.delete(MedDBContract.UsersContract.TABLE_NAME, selection, selectionArgs);
+    }
+
+    /**
+     * Elimina un contacto de la BD
+     * @param _id ID del contacto
+     */
+    public void deleteContact(int _id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(MedDBContract.ContactContract.TABLE_NAME, MedDBContract.ContactContract._ID + "= "+_id, null);
     }
 
     /**

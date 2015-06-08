@@ -35,6 +35,8 @@ public class ContactViewActivity extends ActionBarActivity{
         setContentView(R.layout.activity_contact_view);
 
         Intent info = getIntent();
+        final Intent intentCont = new Intent(this, ContactsView.class);
+
         dbHandler = new DatabaseHandler(this);
 
         TextView nombreT,emailT,phoneT,especT,repT;
@@ -64,8 +66,9 @@ public class ContactViewActivity extends ActionBarActivity{
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Eliminar Contacto: " + contId);
-                //dbHandler.deleteContact(idCont);
-                //dbHandler.delete(TABLE_NAME, "name='George'");
+                dbHandler.deleteContact(contId);
+                Log.i(TAG, "Eliminado Contacto: " + contId);
+                startActivity(intentCont);
             }
         });
 
@@ -105,14 +108,18 @@ public class ContactViewActivity extends ActionBarActivity{
 
     /**
      * Elimina el contatco deseado de la base de datos
-     * @param idCont identificador del contacto
+     * @param view con la vista actual
      */
-   /* public void eliminarContacto(View view, int idCont){
+    /*public void deleteContact(View view){
+        ID = (TextView)findViewById(R.id.editText19);
+        int idCont = Integer.parseInt(ID.getText().toString());
+
         dbHandler = new DatabaseHandler(this);
-        //dbHandler.deleteContact(idCont);
+        dbHandler.deleteContact(idCont);
         Log.i(TAG, "Suprimir Contacto: " + idCont);
         Intent intent = new Intent(this, ContactsView.class);
         startActivity(intent);
     }
     */
+
 }
