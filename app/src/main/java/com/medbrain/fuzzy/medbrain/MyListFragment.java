@@ -1,8 +1,6 @@
 package com.medbrain.fuzzy.medbrain;
 
-import android.app.Activity;
 import android.app.ListFragment;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -24,6 +21,7 @@ public class MyListFragment extends ListFragment {
     private SimpleCursorAdapter adapter;
     private DatabaseHandler dbHandler;
     private Cursor cursor;
+    //private ListView listView;
 
     /**
      * Metodo de prueba que crea una nueva receta y la inserta
@@ -52,7 +50,7 @@ public class MyListFragment extends ListFragment {
         dbHandler = new DatabaseHandler(getActivity());
 
         //seccion de prueba-----------------------
-        //crearRecetaPrueba();
+        crearRecetaPrueba();
         Log.i(TAG, "Added test prescription");
         //fin seccion de prueba-------------------
 
@@ -64,18 +62,12 @@ public class MyListFragment extends ListFragment {
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                TextView presc = (TextView)view.findViewById(R.id.recetaId);
-                int prescId = Integer.parseInt(presc.getText().toString());
-                Intent intent = new Intent(getActivity(), PrescriptionViewActivity.class);
-                intent.putExtra("id", prescId);
-                startActivity(intent);
+                Toast.makeText(getActivity(), "Clicked prescription # " + position, Toast.LENGTH_SHORT).show();
 
             }
 
         });
     }
-
-
 
     /**
      * Metodo ejecutado al crear el view en el que se encuentra el fragment
@@ -90,18 +82,6 @@ public class MyListFragment extends ListFragment {
         View view = inflater.inflate(R.layout.list_fragment, container);
 
         return view;
-    }
-
-    public void refresh(){
-        Log.i(TAG, "Refreshing cursor");
-        adapter.swapCursor(dbHandler.getAllPrescriptions());
-    }
-
-    @Override
-    public void onResume(){
-        Log.i(TAG, "Entered onResume");
-        super.onResume();
-        refresh();
     }
 
 }

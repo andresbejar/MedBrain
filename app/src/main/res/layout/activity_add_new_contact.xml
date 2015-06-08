@@ -8,20 +8,23 @@
         android:layout_width="274dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:text="Name"
         android:ems="10"
         android:id="@+id/editText5"
-        android:layout_marginTop="65dp"
-        android:autoText="false"
-        android:layout_marginLeft="68dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="60dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="false"
+        android:autoText="false"
+        android:hint="@string/name_message"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="68dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="phone"
-        android:hint="Phone"
+        android:text="Phone"
         android:ems="10"
         android:id="@+id/editText7"
         android:layout_below="@+id/editText5"
@@ -32,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:text="Email"
         android:ems="10"
         android:id="@+id/editText8"
         android:layout_below="@+id/editText7"
@@ -42,7 +45,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Especialidad"
+        android:text="Especialidad"
         android:id="@+id/editText9"
         android:layout_below="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
@@ -51,39 +54,29 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Reputacion"
+        android:text="Reputacion"
         android:id="@+id/editText10"
         android:layout_below="@+id/editText9"
         android:layout_alignStart="@+id/editText9"
         android:layout_alignEnd="@+id/editText9" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio(colones)"
+        android:id="@+id/editText11"
+        android:layout_below="@+id/editText10"
+        android:layout_alignStart="@+id/editText10"
+        android:layout_alignEnd="@+id/editText10" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hecho"
+        android:text="Agregar Contacto"
         android:id="@+id/button5"
         android:onClick="saveContact"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="65dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Adjuntar Imagen:"
-        android:id="@+id/textView4"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/editText10"
-        android:layout_alignStart="@+id/editText10" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageButtonAdjunt"
-        android:onClick="addPhoto"
-        android:src="@android:drawable/ic_input_get"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignEnd="@+id/editText10" />
 
 </RelativeLayout>

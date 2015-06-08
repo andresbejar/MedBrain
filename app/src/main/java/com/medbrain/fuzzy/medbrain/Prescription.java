@@ -14,9 +14,9 @@ public class Prescription {
     private String Doctor; //TODO: Cambiar el String por objeto Contacto
 
     /**
-     * Vector que almacena los IDs de las medicinas asociadas con esta receta
+     * Vector que almacena las medicinas asociadas con esta receta
      */
-    public ArrayList<Integer> Medicines;
+    private ArrayList<String> Medicines;
 
     private Calendar Expiration;
     public int userID;
@@ -26,7 +26,7 @@ public class Prescription {
      * Inicializa el vector de medicinas
      */
     public Prescription(){
-        Medicines = new ArrayList<Integer>();
+        Medicines = new ArrayList<String>();
     }
 
     /**
@@ -119,7 +119,7 @@ public class Prescription {
      * Agrega una medicina a la receta
      * @param _med Medicine a agregar a la receta
      */
-    public void addMedicine(int _med){
+    public void addMedicine(String _med){
         Medicines.add(_med);
     }
 
@@ -128,7 +128,7 @@ public class Prescription {
      * @param index indice de la medicina
      * @return String nombre de la medicina
      */
-    public int getMedicine(int index){
+    public String getMedicine(int index){
         return Medicines.get(index);
     }
 
@@ -137,10 +137,10 @@ public class Prescription {
      * @param _med medicina a borrar
      * @return verdadero si la medicina se borro, falso si no existe
      */
-    public boolean deleteMedicine(int _med){
+    public boolean deleteMedicine(String _med){
         int size = Medicines.size();
         for(int i = 0; i < size; i++){
-            if(Medicines.get(i) == _med){
+            if(Medicines.get(i).compareTo(_med) == 0){
                 Medicines.remove(i);
                 return true;
             }

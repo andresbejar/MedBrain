@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="nav_options">
-        <item>Recetas</item>
-        <item>Contactos</item>
-        <item>Calendario</item>
-        <item>Perfiles</item>
-    </string-array>
-</resources>
