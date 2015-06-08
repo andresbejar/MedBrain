@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="crearReceta">Crear nueva receta</string>
     <string name="button_addUser">Agregar</string>
+    <string name="button_cancel">Cancelar</string>
     <string name="name_message">Nombre</string>
     <string name="last_name_message">1er Apellido</string>
     <string name="last_name_2_message">2do Apellido</string>
@@ -22,15 +23,19 @@
     <string name="crear_medicina">Crear nueva medicina</string>
     <string name="medico">Medico:</string>
     <string name="add_medicine">Agregar medicina</string>
+    <string name="button_Editar">Editar</string>
+    <string name="button_CambiarUsuario">Cambiar perfil</string>
+    <string name="button_Guardar">Guardar</string>
+    <string name="button_Eliminar">Eliminar</string>
 
     <string name="button_Contacts">Contactos</string>
-    <string name="button_addContact">AgregarContacto</string>
+    <string name="button_addContact">Agregar Contacto</string>
     <string name="button_createContact">CrearContacto</string>
-    <string name="title_activity_contacts_view">ContactsView</string>
-    <string name="title_activity_add_new_contact">AddNewContact</string>
+    <string name="title_activity_contacts_view">Contactos Medicos</string>
+    <string name="title_activity_contact_view">Contacto Medico</string>
+    <string name="title_activity_add_new_contact">Nuevo Contacto</string>
+    <string name="title_activity_contacts_edition">Contacto Medico</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_calendar">Calendario</string>
 
     <string name="title_section1">Section 1</string>
@@ -47,6 +52,15 @@
     <string name="appointment_place">Lugar de la cita</string>
     <string name="appointment_doctor">Doctor encargado</string>
     <string name="appointment_date">Fecha</string>
+    <string name="title_activity_med_selection">MedSelectionActivity</string>
+    <string name="crear_med">Crear medicina</string>
+    <string name="seleccionar_med">Escoger medicina de una lista</string>
+    <string name="title_activity_prescription_view">PrescriptionViewActivity</string>
+
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+    <string name="title_activity_user_info">UserInfo</string>
+    <string name="title_activity_edit_user_info">EditUserInfo</string>
 
     <string name="rmdr_title">Texto para recordar</string>
     <string name="title_activity_add_new_appointment">Agregar Cita</string>

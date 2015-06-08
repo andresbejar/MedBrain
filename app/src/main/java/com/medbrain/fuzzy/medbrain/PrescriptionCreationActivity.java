@@ -1,15 +1,21 @@
 package com.medbrain.fuzzy.medbrain;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -24,6 +30,11 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
     private EditText inputDoctor;
     private ListView medListView;
     private Prescription newPresc;
+    private DatabaseHandler dbHandler;
+    private static final int ADD_MED_REQ = 0;
+    private ArrayList<Medicine> medList = new ArrayList<Medicine>();
+    private ArrayAdapter<Medicine> adapter;
+    private static final String TAG = "MedBrain-App";
 
 
     /**
@@ -34,6 +45,7 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prescription_creation);
+        dbHandler = new DatabaseHandler(this);
 
         //se obtienen los view items
         limpiarBtn = (Button)findViewById(R.id.clearBtn);
@@ -41,9 +53,15 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
         addMedBtn = (Button)findViewById(R.id.addMedBtn);
         inputDoctor = (EditText)findViewById(R.id.editDoctor);
         medListView = (ListView)findViewById(R.id.listView);
+        //se inicializa el adapter de medicinas!
+        adapter = new ArrayAdapter<Medicine>(this, android.R.layout.simple_list_item_1, medList);
+        medListView.setAdapter(adapter);//BANG!
 
+        newPresc = new Prescription();
+        newPresc.initializeNewPrescription();
         //temporal, eliminar!
         limpiarBtn.setOnClickListener(new OnClickListener() {
+            //TODO: limpiar los campos de texto
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Por implementar...", Toast.LENGTH_SHORT).show();
@@ -52,15 +70,39 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
         guardarBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Por implementar...", Toast.LENGTH_SHORT).show();
+
+                newPresc.setDoctor(inputDoctor.getText().toString());
+                dbHandler.addPrescription(newPresc);
+
+                Log.i(TAG, "Added new prescription succesfully");
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
         addMedBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Por implementar...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MedSelectionActivity.class);
+
+                //OJO: Llama a MedSelectionActivity y debe recibir la medicina que el usr selecciono
+                Log.i(TAG, "Calling MedSelectionActivity");
+                startActivityForResult(intent, ADD_MED_REQ);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == ADD_MED_REQ){
+            if(resultCode == RESULT_OK){
+                Medicine med = data.getParcelableExtra("medicine");
+                newPresc.addMedicine(med.getID());
+                adapter.add(med);
+
+                Log.i(TAG, "Received and added new medicine");
+            }
+        }
     }
 
 

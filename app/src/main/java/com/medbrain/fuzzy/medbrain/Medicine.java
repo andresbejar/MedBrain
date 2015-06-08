@@ -1,6 +1,9 @@
 package com.medbrain.fuzzy.medbrain;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -8,34 +11,40 @@ import java.util.GregorianCalendar;
  * Clase Medicina, almacena y maneja toda la informacion de una medicina en particular
  * @author Andres Bejarano
  */
-public class Medicine {
-    private String Name;
-    private int ID;
-    private String Dose;
-    private String Details;
+public class Medicine implements Parcelable {
+    private String name;
+    private int id;
+    private String dose;
+    private String details;
 
     /**
      * Constructor
      * @param name nombre de la medicina
      */
     public Medicine(String name){
-        Name = name;
+        this.name = name;
     }
+
+    /**
+     * Constructor default
+     * @param _id ID de la medicina
+     */
+    public Medicine(int _id){id = _id;}
 
     /**
      * Retorna el nombre de la medicina
      * @return String nombre de la medicina
      */
     public String getName(){
-        return Name;
+        return name;
     }
 
     /**
-     * Retorna el ID de la medicina
-     * @return int ID de la medicina
+     * Retorna el id de la medicina
+     * @return int id de la medicina
      */
     public int getID(){
-        return ID;
+        return id;
     }
 
     /**
@@ -43,7 +52,7 @@ public class Medicine {
      * @return String dosis de la medicina
      */
     public String getDose(){
-        return Dose;
+        return dose;
     }
 
     /**
@@ -51,20 +60,20 @@ public class Medicine {
      * @param dose String dosis especificada
      */
     public void setDose(String dose) {
-        Dose = dose;
+        this.dose = dose;
     }
 
     /**
-     * Especifica la ID de la medicina
+     * Especifica la id de la medicina
      * @param ID especificada
      */
     public void setID(int ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     /**
      * Inicializa una nueva medicina, cuya informacion aun no existe en la BD
-     * Crea un nuevo ID de la medicina basado en la hora de creacion del objeto
+     * Crea un nuevo id de la medicina basado en la hora de creacion del objeto
      */
     public void initializeNewMedicine(){
         Calendar calendar = new GregorianCalendar();
@@ -87,7 +96,7 @@ public class Medicine {
      * @param _details String detalles especificados
      */
     public void setDetails(String _details){
-        Details = _details;
+        details = _details;
     }
 
     /**
@@ -95,8 +104,47 @@ public class Medicine {
      * @return String detalles de la medicina
      */
     public String getDetails(){
-        return Details;
+        return details;
     }
 
+    @Override
+    public String toString(){
+        return name + ", " + dose;
+    }
+
+    //-------METODOS QUE DEBE IMPLEMENTAR PARA QUE SEA PARCELIZABLE---------------------------------
+    public Medicine(Parcel in){
+        String [] data = new String[4];
+        in.readStringArray(data);
+
+        this.name = data[0];
+        this.id = Integer.parseInt(data[1]);
+        this.dose = data[2];
+        this.details = data[3];
+
+    }
+
+    @Override
+    public int describeContents(){
+        //stub!
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags){
+        dest.writeStringArray(new String[]{this.name, Integer.toString(this.id), this.dose, this.details});
+    }
+
+    public static final Creator CREATOR = new Creator() {
+        @Override
+        public Medicine createFromParcel(Parcel source) {
+            return new Medicine(source);
+        }
+
+        @Override
+        public Medicine[] newArray(int size) {
+            return new Medicine[size];
+        }
+    };
 
 }

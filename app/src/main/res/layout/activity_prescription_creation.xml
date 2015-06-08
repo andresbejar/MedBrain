@@ -13,8 +13,6 @@
         android:layout_height="wrap_content"
         android:text="@string/title_crearReceta"
         android:id="@+id/titleTextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textIsSelectable="false"
         android:textStyle="bold" />

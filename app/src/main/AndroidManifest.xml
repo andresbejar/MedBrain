@@ -83,6 +83,35 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
         </activity>
+        <activity
+            android:name=".MedSelectionActivity"
+            android:label="@string/title_activity_med_selection" >
+        </activity>
+        <activity
+        android:name=".PrescriptionViewActivity"
+        android:label="@string/title_activity_prescription_view" >
+        </activity>
+        <activity
+            android:name=".ContactViewActivity"
+            android:label="@string/title_activity_contact_view"
+            android:parentActivityName=".ContactsView">
+        </activity>
+        <activity
+            android:name=".UserInfo"
+            android:label="@string/title_activity_user_info"
+            android:parentActivityName=".UsersView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UsersView" />
+        </activity>
+        <activity
+            android:name=".EditUserInfo"
+            android:label="@string/title_activity_edit_user_info"
+            android:parentActivityName=".UserInfo" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UserInfo" />
+        </activity>
     </application>
 
 </manifest>
