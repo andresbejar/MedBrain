@@ -18,7 +18,9 @@ public class EditUserInfo extends ActionBarActivity {
     private EditText secondName;
     private EditText thirdName;
     private EditText ID;
-    private EditText bDate;
+    private EditText bDay;
+    private EditText bMonth;
+    private EditText bYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +38,17 @@ public class EditUserInfo extends ActionBarActivity {
         secondName = (EditText)findViewById(R.id.editText17);
         thirdName = (EditText)findViewById(R.id.editText18);
         ID = (EditText)findViewById(R.id.editText19);
-        bDate = (EditText)findViewById(R.id.editText20);
+        bDay = (EditText)findViewById(R.id.editText20);
+        bMonth= (EditText)findViewById(R.id.editText20);
+        bYear= (EditText)findViewById(R.id.editText20);
 
         firstName.setText(editUsr.getFirstName());
         secondName.setText(editUsr.getSecondName());
         thirdName.setText(editUsr.getThirdName());
         ID.setText(Integer.toString(editUsr.getID()));
-        bDate.setText(Integer.toString(editUsr.getBirthDate()));
+        bDay.setText(editUsr.getBirthDay());
+        bDay.setText(editUsr.getBirthMonth());
+        bDay.setText(editUsr.getBirthYear());
 
     }
 
@@ -51,15 +57,19 @@ public class EditUserInfo extends ActionBarActivity {
         secondName = (EditText)findViewById(R.id.editText17);
         thirdName = (EditText)findViewById(R.id.editText18);
         ID = (EditText)findViewById(R.id.editText19);
-        bDate = (EditText)findViewById(R.id.editText20);
+        bDay = (EditText)findViewById(R.id.editText20);
+        bMonth = (EditText)findViewById(R.id.editText20);
+        bYear = (EditText)findViewById(R.id.editText20);
 
         String name = firstName.getText().toString();
         String lastName = secondName.getText().toString();
         String lastName2 = thirdName.getText().toString();
         int iD = Integer.parseInt(ID.getText().toString());
-        int birthDate = Integer.parseInt(bDate.getText().toString());
+        String birthDay = bDay.getText().toString();
+        String birthMonth = bMonth.getText().toString();
+        String birthYear = bYear.getText().toString();
 
-        dbHandler.updateUser(iD, name, lastName, lastName2, birthDate);
+        dbHandler.updateUser(iD, name, lastName, lastName2, birthDay, birthMonth, birthYear);
 
         /*editUsr.setFirstName(name);
         editUsr.setID(iD);

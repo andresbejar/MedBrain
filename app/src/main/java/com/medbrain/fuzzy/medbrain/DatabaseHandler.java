@@ -70,7 +70,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
-                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE + " INTEGER" + ")";
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR + MedDBContract.TEXT_TYPE + ")";
 
 
         final String CREATE_CONTACT_TABLE = "CREATE TABLE " + MedDBContract.ContactContract.TABLE_NAME +
@@ -320,7 +322,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME, _user.getFirstName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, _user.getSecondName());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, _user.getThirdName());
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE, _user.getBirthDate());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY, _user.getBirthDay());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH, _user.getBirthMonth());
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR, _user.getBirthYear());
+
+
 
         db.insert(MedDBContract.UsersContract.TABLE_NAME, null, values);
         db.close();
@@ -333,7 +339,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
-                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE};
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY,
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH,
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR};
 
         Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract._ID + "=?",
                 new String[]{Integer.toString(userID)}, null, null, null);
@@ -345,8 +353,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract._ID)));
         user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
         user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
-        user.setBirthDate(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE)));
-
+        user.setBirthDay(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY)));
+        user.setBirthMonth(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH)));
+        user.setBirthMonth(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR)));
         cursor.close();
         return user;
     }
@@ -362,7 +371,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME,
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME,
-                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE};
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY,
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH,
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR};
 
         Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME,
                 new String[]{userName}, null, null, null);
@@ -373,7 +384,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         user.setID(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract._ID)));
         user.setSecondName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME)));
         user.setThirdName(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME)));
-        user.setBirthDate(cursor.getInt(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE)));
+        user.setBirthDay(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY)));
+        user.setBirthDay(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH)));
+        user.setBirthDay(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR)));
 
         cursor.close();
         return user;
@@ -594,7 +607,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void updateUser(int id, String name, String lastName, String lastName2, int birthDate){
+    public void updateUser(int id, String name, String lastName, String lastName2, String day, String month, String year){
         SQLiteDatabase db = this.getReadableDatabase();
 
         //valores a modificar
@@ -603,7 +616,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(MedDBContract.UsersContract.COLUMN_NAME_FIRST_NAME, name);
         values.put(MedDBContract.UsersContract.COLUMN_NAME_SECOND_NAME, lastName);
         values.put(MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME, lastName2);
-        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DATE, birthDate);
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY, day);
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH, month);
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR, year);
 
         //fila a modificar
         String selection = MedDBContract.UsersContract._ID + "=?";

@@ -8,7 +8,9 @@ public class Users {
     private String SecondName;
     private String ThirdName;
     private int ID;
-    private int BirthDate;
+    private String BirthDay;
+    private String BirthMonth;
+    private String BirthYear;
     /*private int height;
     private int weight;*/
 
@@ -37,11 +39,15 @@ public class Users {
 
     /**
      * fecha de naciemiento del user
-     * @param birthDate fecha de nac
+     * @param birthDay fecha de nac
      */
-    public void setBirthDate(int birthDate){
-        BirthDate = birthDate;
+    public void setBirthDay(String birthDay){
+        BirthDay = birthDay;
     }
+
+    public void setBirthMonth(String birthMonth){BirthMonth = birthMonth;}
+
+    public void setBirthYear(String birthYear){BirthYear = birthYear;}
 
     /**
      * primer apellido del user
@@ -60,8 +66,16 @@ public class Users {
     }
 
     //getters: todos los metodos siguiente devuelven los valores de la instancia
-    public int getBirthDate(){
-        return BirthDate;
+    public String getBirthDay(){
+        return BirthDay;
+    }
+
+    public String getBirthMonth(){
+        return BirthMonth;
+    }
+
+    public String getBirthYear(){
+        return BirthYear;
     }
 
     public String getFirstName(){

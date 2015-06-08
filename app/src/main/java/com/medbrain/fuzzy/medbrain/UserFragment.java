@@ -31,7 +31,7 @@ public class UserFragment extends ListFragment {
         Users user = new Users("Cleto");
         user.setSecondName("Ramirez");
         user.setThirdName("Picado");
-        user.setBirthDate(99);
+        user.setBirthDay("99");
         user.setID(115500425);
         dbHandler.addUser(user);
     }

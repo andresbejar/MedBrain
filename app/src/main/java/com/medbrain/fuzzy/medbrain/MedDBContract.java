@@ -59,7 +59,9 @@ public final class MedDBContract {
         public static final String COLUMN_NAME_FIRST_NAME = "FirstName";
         public static final String COLUMN_NAME_SECOND_NAME = "SecondName";
         public static final String COLUMN_NAME_THIRD_NAME = "ThirdName";
-        public static final String COLUMN_NAME_BIRTH_DATE = "BirthDate";
+        public static final String COLUMN_NAME_BIRTH_DAY = "Day";
+        public static final String COLUMN_NAME_BIRTH_MONTH = "Month";
+        public static final String COLUMN_NAME_BIRTH_YEAR = "Year";
         //public static final String COLUMN_NAME_PRESC_ID = "PrescID"; //una persona puede tener muchas presc
     }
 
