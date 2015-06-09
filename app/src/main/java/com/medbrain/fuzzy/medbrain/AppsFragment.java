@@ -30,7 +30,7 @@ public class AppsFragment extends ListFragment {
 
     /**
      * Devuelve todas las citas creadas actualmente y las jala desde la base de datos para desplegarlas en forma de lista
-     * @param Bundle savedInstanceState
+     * @param  savedInstanceState
      * @return void
      */
     @Override
@@ -85,6 +85,18 @@ public class AppsFragment extends ListFragment {
         View view = inflater.inflate(R.layout.list_fragment, container);
 
         return view;
+    }
+
+    public void refresh(){
+        Log.i(TAG, "Refreshing cursor");
+        adapter.swapCursor(dbHandler.getAllAppointments());
+    }
+
+    @Override
+    public void onResume(){
+        Log.i(TAG, "Entered onResume");
+        super.onResume();
+        refresh();
     }
 
 }

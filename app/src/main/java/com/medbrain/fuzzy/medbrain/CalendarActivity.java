@@ -21,6 +21,8 @@ public class CalendarActivity extends ActionBarActivity {
     AppsFragment fragment;
 
     private static final String TAG = "MedBrain-App";
+    private static final int CREAR_CITA = 0;
+    private static final int CREAR_RECORDATORIO = 1;
 
     //------LAYOUT ITEMS DEL DRAWER, NO BORRAR--------------------------------------------
     private DrawerLayout mDrawerLayout;
@@ -93,12 +95,23 @@ public class CalendarActivity extends ActionBarActivity {
 
     public void jumpToAddNewApp(View view){
         Intent intent = new Intent(this, AddNewAppointment.class);
-        startActivity(intent);
+        startActivityForResult(intent, CREAR_CITA);
     }
 
     public void jumpToAddNewReminder(View view){
         Intent intent = new Intent(this, AddNewRmdr.class);
-        startActivity(intent);
+        startActivityForResult(intent, CREAR_RECORDATORIO);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode == RESULT_OK){
+            if(requestCode == CREAR_CITA){
+                Log.i(TAG, "Se creo una cita");
+            }
+            if(requestCode == CREAR_RECORDATORIO){
+                Log.i(TAG, "Se creo un recordatorio");
+            }
+        }
     }
 
     //-------MAS CONFIG DEL DRAWER------------------------------------------------------------------

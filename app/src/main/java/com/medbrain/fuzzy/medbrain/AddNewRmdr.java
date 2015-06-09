@@ -1,5 +1,6 @@
 package com.medbrain.fuzzy.medbrain;
 
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -51,6 +52,7 @@ public class AddNewRmdr extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @TargetApi(11)
     public void saveData(View view){
 
         EditText name = (EditText) findViewById(R.id.editText15);
@@ -68,8 +70,10 @@ public class AddNewRmdr extends ActionBarActivity {
 
         dbHandler.addReminder(rmdr);
         remindReminder(newName, newCal.getTimeInMillis(), newHours);
-        Intent intent = new Intent(this, CalendarActivity.class);
-        startActivity(intent);
+        setResult(RESULT_OK, null);
+        finish();
+        //Intent intent = new Intent(this, CalendarActivity.class);
+        //startActivity(intent);
     }
 
     private void remindReminder(String rmdrName, long timeInMills, int hoursBefore){

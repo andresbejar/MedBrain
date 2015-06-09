@@ -80,8 +80,11 @@ public class AddNewAppointment extends ActionBarActivity {
 
         dbHandler.addAppointment(app);
         remindAppointment(newName, newCal.getTimeInMillis(), newHours);
-        Intent intent = new Intent(this, CalendarActivity.class);
-        startActivity(intent);
+
+        setResult(RESULT_OK, null);
+        finish();
+        //Intent intent = new Intent(this, CalendarActivity.class);
+        //startActivity(intent);
     }
 
     private void remindAppointment(String appName, long timeInMills, int hoursBefore){
