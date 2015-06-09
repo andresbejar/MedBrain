@@ -73,6 +73,14 @@
                 android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
         </activity>
         <activity
+            android:name=".AddNewRmdr"
+            android:label="@string/title_activity_add_new_rmdr"
+            android:parentActivityName=".CalendarActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
+        </activity>
+        <activity
             android:name=".MedSelectionActivity"
             android:label="@string/title_activity_med_selection" >
         </activity>

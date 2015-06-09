@@ -44,6 +44,7 @@
 
     <string name="calendar_button">Calendario</string>
     <string name="title_activity_add_new_app">Agregar Cita</string>
+    <string name="title_activity_add_new_rmdr">Agregar Recordatorio</string>
 
     <string name="appointment_title">Nombre cita</string>
     <string name="appointment_place">Lugar de la cita</string>

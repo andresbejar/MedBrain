@@ -8,7 +8,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.medbrain.fuzzy.medbrain.AddNewAppointment">
 
-
     <ScrollView
         android:id="@+id/ScrollView01"
         android:layout_width="wrap_content"
