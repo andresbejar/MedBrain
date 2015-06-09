@@ -8,8 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import android.widget.SimpleCursorAdapter.ViewBinder;
+
+import java.text.DateFormat;
+import java.util.Locale;
+import java.util.Date;
 
 /**
  * Created by Julio on 5/5/15.
@@ -20,20 +28,26 @@ public class AppsFragment extends ListFragment {
     private DatabaseHandler dbHandler;
     private Cursor cursor;
 
-
+    /**
+     * Devuelve todas las citas creadas actualmente y las jala desde la base de datos para desplegarlas en forma de lista
+     * @param Bundle savedInstanceState
+     * @return void
+     */
     @Override
-    public void onActivityCreated(Bundle savedInstanceState){
+    public void onActivityCreated(Bundle savedInstanceState) {
         Log.i(TAG, "Entered onActivityCreated fragment");
         super.onCreate(savedInstanceState);
 
         dbHandler = new DatabaseHandler(getActivity());
 
-
         cursor = dbHandler.getAllAppointments();
-        adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
-                cursor, new String[]{MedDBContract.AppointmentContract._ID, MedDBContract.AppointmentContract.COLUMN_NAME_NAME,
-                MedDBContract.AppointmentContract.COLUMN_NAME_PLACE, MedDBContract.AppointmentContract.COLUMN_NAME_DOCTOR, MedDBContract.AppointmentContract.COLUMN_NAME_DATE},
-                new int[]{R.id.appID, R.id.appNameID, R.id.placeID, R.id.docID, R.id.dispDateID}, 0);
+        adapter = new SimpleCursorAdapter(getActivity(),
+                R.layout.events_item_view,
+                cursor,
+                new String[]{MedDBContract.AppointmentContract.COLUMN_NAME_NAME, MedDBContract.AppointmentContract.COLUMN_NAME_PLACE, MedDBContract.AppointmentContract.COLUMN_NAME_DATE},
+                new int[]{R.id.appNameID, R.id.placeID, R.id.dispDateID},
+                0);
+        adapter.setViewBinder(new CustomViewBinder());
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -43,6 +57,28 @@ public class AppsFragment extends ListFragment {
         });
     }
 
+    private class CustomViewBinder implements ViewBinder {
+
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int i) {
+            if (i == 4) {
+                TextView textView = (TextView) view;
+
+                int dateStyle = DateFormat.FULL;
+                int timeStyle = DateFormat.SHORT;
+                Date date = new Date(Long.parseLong(cursor.getString(i)));
+
+                DateFormat df = DateFormat.getDateTimeInstance(dateStyle, timeStyle, Locale.getDefault());
+                String formattedDate = df.format(date);
+                textView.setText(formattedDate);
+                return true;
+            }
+            return false;
+
+        }
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         Log.i(TAG, "Entered onCreateView fragment");
@@ -50,4 +86,5 @@ public class AppsFragment extends ListFragment {
 
         return view;
     }
+
 }

@@ -16,6 +16,12 @@ public class Appointment {
     private String doctorID;
     private Calendar date;
 
+    /**
+     * Constructor de la clase Cita, asigna un entero como identificador que es formado por todos los numeros posibles de la fecha actual
+     * donde fue creado el objeto
+     * @param
+     * @return void
+     */
     public Appointment() {
         ID = null;
         name = "";
@@ -35,22 +41,46 @@ public class Appointment {
         this.setID(id);
     }
 
+    /**
+     * Devuelve en ID de la cita como un integer formado por la fecha de la cita.
+     * @param null
+     * @return Integer
+     */
     public Integer getID(){
         return ID;
     }
-
+    /**
+     * Devuelve el nombre de la cita como un string
+     * @param null
+     * @return String
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * Devuelve el lugar de la cita como un string
+     * @param null
+     * @return String
+     */
     public String getPlace(){
         return place;
     }
 
+    /**
+     * Devuelve un ID al doctor de la cita
+     * @param null
+     * @return String
+     */
     public String getDoctorID(){
         return doctorID;
     }
 
+    /**
+     * Formatea la fecha en un string facil de leer con nombres de los dias de la semana
+     * @param null
+     * @return String
+     */
     public String getStringDate(){
         String finalDate = "";
         Locale usersLocale = Locale.getDefault();
@@ -70,27 +100,56 @@ public class Appointment {
         return finalDate;
     }
 
+    /**
+     * Devuelve un objeto de tipo Calendar para poder deducir la fecha de la cita.
+     * @param null
+     * @return Calendar
+     */
     public Calendar getDate(){
         return date;
     }
 
+    /**
+     * Fija el ID de la cita que se maneja solo internamente
+     * @param Integer ID
+     * @return void
+     */
     public void setID(Integer ID){
         this.ID = ID;
     }
 
+    /**
+     * Fija el nombre de la cita
+     * @param String name
+     * @return void
+     */
     public void setName(String name){
         this.name = name;
     }
 
+    /**
+     * Fija el lugar de la cita
+     * @param String place
+     * @return void
+     */
     public void setPlace(String place){
         this.place = place;
     }
 
+    /**
+     * Fija el ID del doctor correspondiente a la cita
+     * @param String correspondiente al doctor de la clase Contact
+     * @return void
+     */
     public void setDoctorID(String doctorID){
         this.doctorID = doctorID;
     }
-
-    public void setInnerCalendar(int timeInMills){
+    /**
+     * Fija la fecha interna del objeto con el tiempo en milisegundos
+     * @param int timeInMills
+     * @return void
+     */
+    public void setInnerCalendar(long timeInMills){
         date.setTimeInMillis(timeInMills);
     }
 

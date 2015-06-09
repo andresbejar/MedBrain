@@ -17,8 +17,6 @@
         android:id="@+id/doctor"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
-
-    <!---MAEStodo esto de aqui para abajo tienen que quitarlo y se hacen su propio layout-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,25 +68,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/contID"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/appNameID"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nameCont"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/especCont"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
 </LinearLayout>

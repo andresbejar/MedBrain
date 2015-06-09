@@ -3,19 +3,16 @@ package com.medbrain.fuzzy.medbrain;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * Actividad que maneja la creacion de un contacto nuevo
  * @author Yonan Cano
  */
 public class AddNewContact extends ActionBarActivity{
-    private static final String TAG = "MedBrain-App";
     private DatabaseHandler dbHandler;
 
     /**
@@ -26,7 +23,6 @@ public class AddNewContact extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_contact);
-        dbHandler = new DatabaseHandler(this);
     }
 
     /**
@@ -85,14 +81,7 @@ public class AddNewContact extends ActionBarActivity{
         cnt.setReputacion(Reput2);
 
         dbHandler.addContact(cnt);
-        Intent intent = new Intent(this, ContactsView.class);
-        startActivity(intent);
-    }
-
-    public void addPhoto(View view){
-        //Intent intent = new Intent(this, AddNewContact.class);
-        //Toast.makeText(getActivity(), "Elegir la Foto", Toast.LENGTH_SHORT).show();
-        Log.i(TAG, "Agregar la Foto");
-        //startActivity(intent);
+        /*Intent intent = new Intent(this, AddNewUser.class);
+        startActivity(intent);*/
     }
 }

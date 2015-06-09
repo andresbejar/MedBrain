@@ -60,7 +60,7 @@ public class Reminder {
         this.name = name;
     }
 
-    public void setInnerCalendar(int timeInMills){
+    public void setInnerCalendar(long timeInMills){
         date.setTimeInMillis(timeInMills);
     }
 
