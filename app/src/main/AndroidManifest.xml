@@ -65,24 +65,43 @@
                 android:value="com.medbrain.fuzzy.medbrain.MainActivity" />
         </activity>
         <activity
-            android:name=".AddNewRmdr"
-            android:label="@string/title_activity_add_new_rmdr"
-            android:parentActivityName=".CalendarActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
-        </activity>
-
-        <receiver android:name=".appNotificationService" />
-
-        <activity
             android:name=".AddNewAppointment"
-            android:label="@string/title_activity_add_new_appointment"
+            android:label="@string/title_activity_add_new_app"
             android:parentActivityName=".CalendarActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.medbrain.fuzzy.medbrain.CalendarActivity" />
         </activity>
+        <activity
+            android:name=".MedSelectionActivity"
+            android:label="@string/title_activity_med_selection" >
+        </activity>
+        <activity
+        android:name=".PrescriptionViewActivity"
+        android:label="@string/title_activity_prescription_view" >
+        </activity>
+        <activity
+            android:name=".ContactViewActivity"
+            android:label="@string/title_activity_contact_view"
+            android:parentActivityName=".ContactsView">
+        </activity>
+        <activity
+            android:name=".UserInfo"
+            android:label="@string/title_activity_user_info"
+            android:parentActivityName=".UsersView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UsersView" />
+        </activity>
+        <activity
+            android:name=".EditUserInfo"
+            android:label="@string/title_activity_edit_user_info"
+            android:parentActivityName=".UserInfo" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.medbrain.fuzzy.medbrain.UserInfo" />
+        </activity>
+        <receiver android:name=".appNotificationService" />
     </application>
 
 </manifest>

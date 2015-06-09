@@ -22,7 +22,12 @@ public class Users {
         FirstName = firstName;
     }
 
+    public Users(){}
     //setters
+
+    public void setFirstName(String firstName){
+        FirstName = firstName;
+    }
 
     /**
      * inicializa el id del User
