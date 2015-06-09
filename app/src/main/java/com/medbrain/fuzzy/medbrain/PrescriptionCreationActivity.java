@@ -23,6 +23,8 @@ import java.util.ArrayList;
  */
 public class PrescriptionCreationActivity extends ActionBarActivity {
 
+    //TODO: AGREGARLE FECHA DE EXPIRACION
+
     private Button limpiarBtn;
     private Button guardarBtn;
     private Button addMedBtn;

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 
 public class PrescriptionViewActivity extends ActionBarActivity {
+
+    //TODO: AGREGARLE BOTON DE BORRAR RECETA
     private static final String TAG = "MedBrain-App";
 
     private TextView prescTitle;
@@ -42,6 +44,7 @@ public class PrescriptionViewActivity extends ActionBarActivity {
         prescTitle = (TextView)findViewById(R.id.recetaTextView);
         doctor = (TextView)findViewById(R.id.doctorTextView);
         medicinas = (ListView)findViewById(R.id.medicinasListView);
+
         prescId = info.getIntExtra("id", 0);
         Log.i(TAG, "ID de la receta recibido: " + prescId);
 
@@ -63,6 +66,7 @@ public class PrescriptionViewActivity extends ActionBarActivity {
         //termino setup del id de la receta y el doctor
         prescTitle.setText(Integer.toString(currPresc.getID()));
         doctor.setText(currPresc.getDoctor());
+        setTitle(prescTitle.getText());
 
     }
 
@@ -79,6 +83,11 @@ public class PrescriptionViewActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_prescription_view, menu);
         return true;
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
