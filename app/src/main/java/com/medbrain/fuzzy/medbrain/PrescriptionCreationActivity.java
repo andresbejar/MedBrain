@@ -29,6 +29,7 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
     private Button guardarBtn;
     private Button addMedBtn;
     private EditText inputDoctor;
+    private EditText inputMotivo;
     private ListView medListView;
     private Prescription newPresc;
     private DatabaseHandler dbHandler;
@@ -53,6 +54,7 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
         guardarBtn = (Button)findViewById(R.id.saveBtn);
         addMedBtn = (Button)findViewById(R.id.addMedBtn);
         inputDoctor = (EditText)findViewById(R.id.editDoctor);
+        inputMotivo = (EditText)findViewById(R.id.editMotivo);
         medListView = (ListView)findViewById(R.id.listView);
         //se inicializa el adapter de medicinas!
         adapter = new ArrayAdapter<Medicine>(this, android.R.layout.simple_list_item_1, medList);
@@ -73,6 +75,7 @@ public class PrescriptionCreationActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 newPresc.setDoctor(inputDoctor.getText().toString());
+                newPresc.setMotivo(inputMotivo.getText().toString());
                 dbHandler.addPrescription(newPresc);
 
                 Log.i(TAG, "Added new prescription succesfully");

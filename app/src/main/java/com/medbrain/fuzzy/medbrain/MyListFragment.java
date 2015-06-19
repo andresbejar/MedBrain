@@ -59,7 +59,7 @@ public class MyListFragment extends ListFragment {
         cursor = dbHandler.getAllPrescriptions();
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
                 cursor, new String[]{MedDBContract.PrescriptionContract._ID,
-                MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR}, new int[]{R.id.recetaId, R.id.doctor}, 0);
+                MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE}, new int[]{R.id.recetaId, R.id.motivo}, 0);
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener(){

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class PrescriptionViewActivity extends ActionBarActivity {
     private TextView prescTitle;
     private TextView doctor;
     private ListView medicinas;
+    private Button deleteBtn;
     private Prescription currPresc;;
 
     private int prescId;
@@ -44,6 +46,15 @@ public class PrescriptionViewActivity extends ActionBarActivity {
         prescTitle = (TextView)findViewById(R.id.recetaTextView);
         doctor = (TextView)findViewById(R.id.doctorTextView);
         medicinas = (ListView)findViewById(R.id.medicinasListView);
+        deleteBtn = (Button)findViewById(R.id.borrarRecetaBtn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHandler.deletePrescription(prescId);
+                Log.i(TAG, "Deleted prescription and now finishing activity...");
+                finish();
+            }
+        });
 
         prescId = info.getIntExtra("id", 0);
         Log.i(TAG, "ID de la receta recibido: " + prescId);
@@ -64,7 +75,7 @@ public class PrescriptionViewActivity extends ActionBarActivity {
         });
 
         //termino setup del id de la receta y el doctor
-        prescTitle.setText(Integer.toString(currPresc.getID()));
+        prescTitle.setText(currPresc.getMotivo());
         doctor.setText(currPresc.getDoctor());
         setTitle(prescTitle.getText());
 

@@ -21,7 +21,7 @@ import java.util.GregorianCalendar;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MedApp.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     private static final String TAG = "MedBrain-App";
 
     /**
@@ -50,6 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "( " + MedDBContract.PrescriptionContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.PrescriptionContract.COLUMN_NAME_DATE + " INTEGER" +
+                ", " + MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE + MedDBContract.TEXT_TYPE +
                 ")";
 
         final String CREATE_MEDPRESC_TABLE = "CREATE TABLE " + MedDBContract.MedPrescContract.TABLE_NAME +
@@ -59,10 +60,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ", " + MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + "), " +
                 "FOREIGN KEY(" + MedDBContract.MedPrescContract.COLUMN_NAME_PRESC_ID + ") " +
                 "REFERENCES " + MedDBContract.PrescriptionContract.TABLE_NAME + "(" +
-                MedDBContract.PrescriptionContract._ID + "), " +        //TODO: agregar ON DELETE CASCADE
+                MedDBContract.PrescriptionContract._ID + ") ON DELETE CASCADE, " +        //TODO: agregar ON DELETE CASCADE
                 "FOREIGN KEY(" + MedDBContract.MedPrescContract.COLUMN_NAME_MED_ID + ") " +
                 "REFERENCES " + MedDBContract.MedicineContract.TABLE_NAME + "(" +
-                MedDBContract.MedicineContract._ID + "))";              //TODO: agregar ON DELETE CASCADE
+                MedDBContract.MedicineContract._ID + ") ON DELETE CASCADE)";              //TODO: agregar ON DELETE CASCADE
 
 
         final String CREATE_USERS_TABLE = "CREATE TABLE " + MedDBContract.UsersContract.TABLE_NAME +
@@ -411,6 +412,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(MedDBContract.PrescriptionContract._ID, _presc.getID());
         values.put(MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR, _presc.getDoctor());
         values.put(MedDBContract.PrescriptionContract.COLUMN_NAME_DATE, _presc.getExpiration().getTimeInMillis());
+        values.put(MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE, _presc.getMotivo());
 
         db.insert(MedDBContract.PrescriptionContract.TABLE_NAME, null, values);
         db.close();
@@ -516,7 +518,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {MedDBContract.PrescriptionContract._ID,
                 MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR,
-                MedDBContract.PrescriptionContract.COLUMN_NAME_DATE};
+                MedDBContract.PrescriptionContract.COLUMN_NAME_DATE,
+                MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE};
 
         Cursor cursor = db.query(MedDBContract.PrescriptionContract.TABLE_NAME, projection,
                 MedDBContract.PrescriptionContract._ID + " = ?", new String[]{name}, null, null, null);
@@ -532,6 +535,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(date);
         returnPresc.setExpiration(calendar);
+        returnPresc.setMotivo(cursor.getString(cursor.getColumnIndexOrThrow(MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE)));
 
         cursor.close();
         returnPresc = loadMedicines(returnPresc);
@@ -549,11 +553,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {MedDBContract.PrescriptionContract._ID,
-                                MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR };
+                                MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE};
         Cursor cursor = db.query(MedDBContract.PrescriptionContract.TABLE_NAME, projection,
                 null, null, null, null, null);
         return cursor;
 
+    }
+
+    public boolean deletePrescription(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = MedDBContract.PrescriptionContract._ID + "=?";
+        String [] selectionArgs = {Integer.toString(id)};
+        db.delete(MedDBContract.PrescriptionContract.TABLE_NAME, selection, selectionArgs);
+        return true;
     }
 
     /**

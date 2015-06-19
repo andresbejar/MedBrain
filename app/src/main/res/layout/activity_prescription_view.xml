@@ -14,14 +14,20 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/recetaTextView"
-        android:hint="recetaID"
+        android:hint="Motivo"
         android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/doctorTextView"
-        android:hint="doctorName" />
+        android:hint="Doctor" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/borrarRecetaBtn"
+        android:text="Borrar receta"
+        />
 
     <ListView
         android:layout_width="wrap_content"

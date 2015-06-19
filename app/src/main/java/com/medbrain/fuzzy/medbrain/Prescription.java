@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 public class Prescription {
     private int ID;
     private String Doctor; //TODO: Cambiar el String por objeto Contacto
+    private String motivo;
 
     /**
      * Vector que almacena los IDs de las medicinas asociadas con esta receta
@@ -67,6 +68,22 @@ public class Prescription {
      */
     public String getDoctor() {
         return Doctor;
+    }
+
+    /**
+     * Especifica el motivo de la receta
+     * @param _motivo motivo de la receta
+     */
+    public void setMotivo(String _motivo) {
+        motivo = _motivo;
+    }
+
+    /**
+     * Retorna el motivo de la receta
+     * @return motivo de la receta
+     */
+    public String getMotivo(){
+        return motivo;
     }
 
 

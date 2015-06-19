@@ -95,24 +95,6 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    /**
-     * Brinca a una actividad que permite ver los usuarios guardados en la base.
-     * @param view contexto necesario para escuchar el evento del boton
-     */
-    public void jumpToUsers(View view){
-        Intent intent = new Intent(this, UsersView.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Redirige al usuario a la actividad de vista de contactos
-     * @param view que llama al metodo
-     */
-    public void jumpToContacts(View view){
-        Intent intent = new Intent(this, ContactsView.class);
-        startActivity(intent);
-    }
-
 
     /**
      *
@@ -148,10 +130,6 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void jumpToAddAppointment(View view){
-        Intent intent = new Intent(this, CalendarActivity.class);
-        startActivity(intent);
-    }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override

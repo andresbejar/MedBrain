@@ -71,6 +71,20 @@
             android:hint="Nombre"
         />
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Motivo de la receta:"
+            android:id="@+id/motivo"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/editMotivo"
+            android:hint="Motivo"/>
+
     </LinearLayout>
 
 
