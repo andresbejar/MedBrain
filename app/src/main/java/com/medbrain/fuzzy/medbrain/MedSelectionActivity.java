@@ -16,12 +16,14 @@ public class MedSelectionActivity extends ActionBarActivity implements Selection
     private MedicineCreationFragment medCreateFrag;
     private static final int ADD_MED_REQ = 0;
     private static final String TAG = "MedBrain-App";
+    private Medicine selectedMed;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_med_selection);
+        Intent intent = getIntent();
 
         medFrag = new MedicineListFragment();
 
@@ -55,15 +57,25 @@ public class MedSelectionActivity extends ActionBarActivity implements Selection
     }
 
     public void onItemSelected(Medicine med){
-        //TODO: llamar al metodo de julio con el objeto medicine
-        //POR IMPLEMENTAR--------------------------------------------------------------------------------
-        Log.i(TAG, "Medicine selected. Returning to PrescriptionCreationActivity");
+        Intent rmdrMed = new Intent(this, AddNewRmdr.class);
+        rmdrMed.putExtra("medicine", med);
+        selectedMed = med;
+        startActivityForResult(rmdrMed, ADD_MED_REQ);
+        Log.i(TAG, "Medicine selected. Calling AddNewRmdr....");
 
-        Intent intent = new Intent();
-        intent.putExtra("medicine", med);
+    }
 
-        setResult(RESULT_OK, intent);
-        finish();
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == ADD_MED_REQ){
+            if(resultCode == RESULT_OK){
+                Log.i(TAG, "Se logro calendarizar la medicina");
+                Intent intent = new Intent();
+                intent.putExtra("medicine", selectedMed);
+
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        }
     }
 
 
