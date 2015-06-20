@@ -85,5 +85,6 @@
         android:text="@string/button_CambiarUsuario"
         android:id="@+id/button4"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="cambiarUsr"/>
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.medbrain.fuzzy.medbrain;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 //import android.view.View;
 
 
@@ -15,6 +17,8 @@ import android.widget.TextView;
 public class UserInfo extends ActionBarActivity {
     private static final String TAG = "MedBrain-App";
     private static final int EDIT_USR_REQ = 0;
+    CurrentUser currentUser = CurrentUser.getInstance();        // Singleton
+    DatabaseHandler db = new DatabaseHandler(this);
 
     private int userId;
     private Users usrSelected = new Users();
@@ -47,6 +51,16 @@ public class UserInfo extends ActionBarActivity {
         Intent intent = new Intent(this, EditUserInfo.class);
         intent.putExtra("id", userId);
         startActivityForResult(intent, EDIT_USR_REQ);
+    }
+
+    public void cambiarUsr(View view){
+        int ID = usrSelected.getID();
+        int oldID = currentUser.getID();
+        db.updateOldLog(oldID);
+        db.updateNewLog(ID);
+        currentUser.setCurrentUser(ID);
+        Context context = getApplicationContext();
+        Toast.makeText(context, "Usuario actual: " + usrSelected.getFirstName() + usrSelected.getSecondName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

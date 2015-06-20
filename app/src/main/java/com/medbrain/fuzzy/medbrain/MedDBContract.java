@@ -63,6 +63,7 @@ public final class MedDBContract {
         public static final String COLUMN_NAME_BIRTH_DAY = "Day";
         public static final String COLUMN_NAME_BIRTH_MONTH = "Month";
         public static final String COLUMN_NAME_BIRTH_YEAR = "Year";
+        public static final String COLUMN_NAME_LOG = "Logged";
         //public static final String COLUMN_NAME_PRESC_ID = "PrescID"; //una persona puede tener muchas presc
     }
 

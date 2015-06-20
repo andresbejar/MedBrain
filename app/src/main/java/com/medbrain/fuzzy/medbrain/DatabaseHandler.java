@@ -73,7 +73,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.UsersContract.COLUMN_NAME_THIRD_NAME + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY + MedDBContract.TEXT_TYPE + "," +
                 MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH + MedDBContract.TEXT_TYPE + "," +
-                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR + MedDBContract.TEXT_TYPE + ")";
+                MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR + MedDBContract.TEXT_TYPE + "," +
+                MedDBContract.UsersContract.COLUMN_NAME_LOG + MedDBContract.TEXT_TYPE + ")";
 
 
         final String CREATE_CONTACT_TABLE = "CREATE TABLE " + MedDBContract.ContactContract.TABLE_NAME +
@@ -315,8 +316,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_DAY, _user.getBirthDay());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_MONTH, _user.getBirthMonth());
         values.put(MedDBContract.UsersContract.COLUMN_NAME_BIRTH_YEAR, _user.getBirthYear());
-
-
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_LOG, "F");
 
         db.insert(MedDBContract.UsersContract.TABLE_NAME, null, values);
         db.close();
@@ -624,6 +624,40 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //fila a modificar
         String selection = MedDBContract.UsersContract._ID + "=?";
         String[] selectionArgs = {String.valueOf(id)};
+
+        db.update(
+                MedDBContract.UsersContract.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
+    public void updateNewLog(int newID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        //valor a modificar del nuevo usuario
+        ContentValues values = new ContentValues();
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_LOG, "T");
+        //fila a modificar del nuevo usuario
+        String selection = MedDBContract.UsersContract._ID + "=?";
+        String [] selectionArgs = {String.valueOf(newID)};
+
+        db.update(
+                MedDBContract.UsersContract.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
+    public void updateOldLog(int oldID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String f = "F";
+        //valor a modificar del nuevo usuario
+        ContentValues values = new ContentValues();
+        values.put(MedDBContract.UsersContract.COLUMN_NAME_LOG, f);
+        values.put(MedDBContract.UsersContract._ID, oldID);
+        //fila a modificar del nuevo usuario
+        String selection = MedDBContract.UsersContract._ID + "=?";
+        String[] selectionArgs = {String.valueOf(oldID)};
 
         db.update(
                 MedDBContract.UsersContract.TABLE_NAME,
