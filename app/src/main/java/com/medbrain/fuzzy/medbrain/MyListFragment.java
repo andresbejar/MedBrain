@@ -24,17 +24,8 @@ public class MyListFragment extends ListFragment {
     private SimpleCursorAdapter adapter;
     private DatabaseHandler dbHandler;
     private Cursor cursor;
+    private CurrentUser user = CurrentUser.getInstance();
 
-    /**
-     * Metodo de prueba que crea una nueva receta y la inserta
-     */
-    private void crearRecetaPrueba(){
-        Prescription pruebaPresc = new Prescription();
-        pruebaPresc.initializeNewPrescription();
-        pruebaPresc.setUserID(115150354);
-        pruebaPresc.setDoctor("Dr. Rafael Viquez");
-        dbHandler.addPrescription(pruebaPresc);
-    }
 
 
     /**
@@ -51,12 +42,8 @@ public class MyListFragment extends ListFragment {
 
         dbHandler = new DatabaseHandler(getActivity());
 
-        //seccion de prueba-----------------------
-        //crearRecetaPrueba();
-        Log.i(TAG, "Added test prescription");
-        //fin seccion de prueba-------------------
-
-        cursor = dbHandler.getAllPrescriptions();
+        //cursor = dbHandler.getAllPrescriptions();
+        cursor = dbHandler.getUserPrescriptions(user.getID());
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item_view,
                 cursor, new String[]{MedDBContract.PrescriptionContract._ID,
                 MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE}, new int[]{R.id.recetaId, R.id.motivo}, 0);
@@ -94,7 +81,8 @@ public class MyListFragment extends ListFragment {
 
     public void refresh(){
         Log.i(TAG, "Refreshing cursor");
-        adapter.swapCursor(dbHandler.getAllPrescriptions());
+        //adapter.swapCursor(dbHandler.getAllPrescriptions());
+        adapter.swapCursor(dbHandler.getUserPrescriptions(user.getID()));
     }
 
     @Override

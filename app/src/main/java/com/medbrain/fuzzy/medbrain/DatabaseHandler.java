@@ -24,6 +24,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 4;
     private static final String TAG = "MedBrain-App";
 
+
     /**
      * Constructor SQLiteOpenHelper
      * @param context Contexto en que es creada la base de datos
@@ -51,6 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR + MedDBContract.TEXT_TYPE +
                 ", " + MedDBContract.PrescriptionContract.COLUMN_NAME_DATE + " INTEGER" +
                 ", " + MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE + MedDBContract.TEXT_TYPE +
+                ", " + MedDBContract.PrescriptionContract.COLUMN_NAME_USER + " INTEGER" +
                 ")";
 
         final String CREATE_MEDPRESC_TABLE = "CREATE TABLE " + MedDBContract.MedPrescContract.TABLE_NAME +
@@ -407,12 +409,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addPrescription(Prescription _presc) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        CurrentUser user = CurrentUser.getInstance();
 
 
         values.put(MedDBContract.PrescriptionContract._ID, _presc.getID());
         values.put(MedDBContract.PrescriptionContract.COLUMN_NAME_DOCTOR, _presc.getDoctor());
         values.put(MedDBContract.PrescriptionContract.COLUMN_NAME_DATE, _presc.getExpiration().getTimeInMillis());
         values.put(MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE, _presc.getMotivo());
+        values.put(MedDBContract.PrescriptionContract.COLUMN_NAME_USER, user.getID());
 
         db.insert(MedDBContract.PrescriptionContract.TABLE_NAME, null, values);
         db.close();
@@ -543,8 +547,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return returnPresc;
     }
 
-    //TODO: Agregar parametro UserID para que nada mas jale las recetas del usuario actual
-
     /**
      * Obtiene todas las recetas activas en la BD
      * @return Cursor con informacion de todas las recetas
@@ -558,6 +560,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 null, null, null, null, null);
         return cursor;
 
+    }
+
+    public Cursor getUserPrescriptions(int userID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                MedDBContract.PrescriptionContract._ID,
+                MedDBContract.PrescriptionContract.COLUMN_NAME_MOTIVE,
+        };
+        Cursor cursor = db.query(MedDBContract.PrescriptionContract.TABLE_NAME, projection,
+                                MedDBContract.PrescriptionContract.COLUMN_NAME_USER + "=?",
+                                new String[]{Integer.toString(userID)}, null, null, null);
+        return cursor;
     }
 
     public boolean deletePrescription(int id){
@@ -632,6 +646,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
+    public void updateLoggedUser(int oldID, int newID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues oldValues = new ContentValues();
+        ContentValues newValues = new ContentValues();
+        oldValues.put(MedDBContract.UsersContract.COLUMN_NAME_LOG, "F");
+        newValues.put(MedDBContract.UsersContract.COLUMN_NAME_LOG, "T");
+        db.update(MedDBContract.UsersContract.TABLE_NAME, oldValues,
+                MedDBContract.UsersContract._ID + "=?", new String[]{Integer.toString(oldID)});
+        db.update(MedDBContract.UsersContract.TABLE_NAME, newValues,
+                MedDBContract.UsersContract._ID + "=?", new String[]{Integer.toString(newID)});
+    }
+
     public void updateNewLog(int newID){
         SQLiteDatabase db = this.getReadableDatabase();
         //valor a modificar del nuevo usuario
@@ -664,6 +690,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 values,
                 selection,
                 selectionArgs);
+    }
+
+    public Cursor getLoggedUser(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String [] projection = {MedDBContract.UsersContract._ID};
+        Cursor cursor = db.query(MedDBContract.UsersContract.TABLE_NAME, projection, MedDBContract.UsersContract.COLUMN_NAME_LOG +
+                                "=?", new String[]{"T"}, null, null, null);
+        return cursor;
     }
 
     public void deleteUser(int id){

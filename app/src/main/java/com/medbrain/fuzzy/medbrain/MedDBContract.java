@@ -37,6 +37,7 @@ public final class MedDBContract {
         public static final String COLUMN_NAME_DOCTOR ="Doctor";
         public static final String COLUMN_NAME_DATE = "Date";
         public static final String COLUMN_NAME_MOTIVE = "Motive";
+        public static final String COLUMN_NAME_USER = "User";
 
     }
 

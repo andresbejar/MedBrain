@@ -3,6 +3,7 @@ package com.medbrain.fuzzy.medbrain;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 
 public class AddNewUser extends ActionBarActivity {
     private DatabaseHandler dbHandler;
+    private CurrentUser usr = CurrentUser.getInstance();
+    private static final String TAG = "MedBrain:AddNewUser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +80,21 @@ public class AddNewUser extends ActionBarActivity {
         user.setBirthDay(bDay);
         user.setBirthMonth(bMonth);
         user.setBirthYear(bYear);
-
         dbHandler.addUser(user);
-        Intent intent = new Intent(this, UsersView.class);
+
+        //aqui se cambia el usuario loggeado por el recien creado
+        if(user.getID() == 0){ //si no hay usuario loggeado
+            dbHandler.updateNewLog(ID);
+        }
+        else{
+            dbHandler.updateLoggedUser(user.getID(), ID);
+        }
+
+        Log.i(TAG, "Loggeando al usuario " + ID);
+        usr.setCurrentUser(ID);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
 }

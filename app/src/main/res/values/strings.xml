@@ -63,4 +63,8 @@
     <string name="button_addAppointment">Crear Cita</string>
     <string name="button_addReminder">Crear Recordatorio</string>
     <string name="rmdr_title">Texto para recordar</string>
+    <string name="title_activity_login">MedBrain Login</string>
+    <string name="welcome_screen">Bienvenido a MedBrain!</string>
+    <string name="crear_usuario">Crear nuevo usuario</string>
+
 </resources>

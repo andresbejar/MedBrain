@@ -18,7 +18,6 @@ public class UserInfo extends ActionBarActivity {
     private static final String TAG = "MedBrain-App";
     private static final int EDIT_USR_REQ = 0;
     CurrentUser currentUser = CurrentUser.getInstance();        // Singleton
-    DatabaseHandler db = new DatabaseHandler(this);
 
     private int userId;
     private Users usrSelected = new Users();
@@ -56,11 +55,18 @@ public class UserInfo extends ActionBarActivity {
     public void cambiarUsr(View view){
         int ID = usrSelected.getID();
         int oldID = currentUser.getID();
-        db.updateOldLog(oldID);
-        db.updateNewLog(ID);
+        //db.updateOldLog(oldID);
+        //db.updateNewLog(ID);
+
+        //2x1
+        dbHandler.updateLoggedUser(oldID, ID);
         currentUser.setCurrentUser(ID);
         Context context = getApplicationContext();
-        Toast.makeText(context, "Usuario actual: " + usrSelected.getFirstName() + usrSelected.getSecondName(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Usuario actual: " + usrSelected.getFirstName() + usrSelected.getSecondName(), Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Usuario actual: " + usrSelected.getFirstName() + usrSelected.getSecondName());
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
