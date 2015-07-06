@@ -31,8 +31,16 @@
             android:id="@+id/fragment3"
             tools:layout="@layout/list_fragment"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="70dp" />
+            android:layout_centerHorizontal="true"/>
+
+        <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:name="com.medbrain.fuzzy.medbrain.RmdrsFragment"
+            android:id="@+id/fragment4"
+            tools:layout="@layout/list_fragment"
+            android:layout_below="@id/fragment3"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:layout_width="wrap_content"

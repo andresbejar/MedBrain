@@ -25,7 +25,7 @@ public class appNotificationService extends BroadcastReceiver {
 
         Notification n = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.ic_event_available_black_48dp)
-                .setContentTitle("Recordatorio de Cita")
+                .setContentTitle("Recordatorio de Evento")
                 .setContentText(appName)
                 .setWhen(appTime)
                 .build();

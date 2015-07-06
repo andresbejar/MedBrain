@@ -8,6 +8,8 @@
 
         <item name="android:homeAsUpIndicator">@drawable/ic_action_name</item>
         <item name="homeAsUpIndicator">@drawable/ic_action_name</item>
+        <item name="colorAccent">@color/darkblue</item>
+
     </style>
 
     <style name="MyActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">

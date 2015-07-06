@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 public class CalendarActivity extends ActionBarActivity {
     AppsFragment fragment;
+    RmdrsFragment fragment2;
 
     private static final String TAG = "MedBrain-App";
     private static final int CREAR_CITA = 0;
@@ -71,7 +72,8 @@ public class CalendarActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_calendar, menu);
-        fragment = new AppsFragment();
+        //fragment = new AppsFragment();
+        fragment2 = new RmdrsFragment();
         return true;
     }
 

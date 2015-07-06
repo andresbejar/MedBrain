@@ -98,7 +98,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         final String CREATE_REMINDERS_TABLE = "CREATE TABLE " + MedDBContract.ReminderContract.TABLE_NAME +
                 "(" + MedDBContract.ReminderContract._ID + " INTEGER PRIMARY KEY, " +
                 MedDBContract.ReminderContract.COLUMN_NAME_NAME + MedDBContract.TEXT_TYPE + ", " +
-                MedDBContract.ReminderContract.COLUMN_NAME_DATE + "INTEGER" + ")";
+                MedDBContract.ReminderContract.COLUMN_NAME_DATE + " INTEGER" + ")";
 
 
         db.execSQL(CREATE_MEDICINE_TABLE);
@@ -273,7 +273,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(MedDBContract.ReminderContract.COLUMN_NAME_NAME, _rmdr.getName());
         values.put(MedDBContract.ReminderContract.COLUMN_NAME_DATE, _rmdr.getInnerDate());
 
-        db.insert(MedDBContract.AppointmentContract.TABLE_NAME, null, values);
+        db.insert(MedDBContract.ReminderContract.TABLE_NAME, null, values);
         db.close();
     }
 

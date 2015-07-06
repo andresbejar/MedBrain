@@ -111,7 +111,7 @@ public class Appointment {
 
     /**
      * Fija el ID de la cita que se maneja solo internamente
-     * @param Integer ID
+     * @param int ID
      * @return void
      */
     public void setID(Integer ID){
@@ -120,7 +120,7 @@ public class Appointment {
 
     /**
      * Fija el nombre de la cita
-     * @param String name
+     * @param string name
      * @return void
      */
     public void setName(String name){
@@ -129,7 +129,7 @@ public class Appointment {
 
     /**
      * Fija el lugar de la cita
-     * @param String place
+     * @param string place
      * @return void
      */
     public void setPlace(String place){
@@ -138,7 +138,7 @@ public class Appointment {
 
     /**
      * Fija el ID del doctor correspondiente a la cita
-     * @param String correspondiente al doctor de la clase Contact
+     * @param string correspondiente al doctor de la clase Contact
      * @return void
      */
     public void setDoctorID(String doctorID){

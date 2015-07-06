@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -23,11 +24,30 @@ import java.util.GregorianCalendar;
 public class AddNewRmdr extends ActionBarActivity {
     private DatabaseHandler dbHandler;
 
+    EditText name;
+    DatePicker date;
+    TimePicker time;
+    NumberPicker hours;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_rmdr);
         dbHandler = new DatabaseHandler(this);
+
+        name = (EditText) findViewById(R.id.editText15);
+        date = (DatePicker) findViewById(R.id.datePicker2);
+        time = (TimePicker) findViewById(R.id.timePicker2);
+        hours = (NumberPicker) findViewById(R.id.numberPicker2);
+
+        Intent medIntent = getIntent();
+        String cleanName = "";
+        Medicine existingMedicine = medIntent.getParcelableExtra("medicine");
+
+        if(existingMedicine != null){
+            cleanName += existingMedicine.getName() + ", " + existingMedicine.getDose();
+            name.setText(cleanName, TextView.BufferType.EDITABLE);
+        }
     }
 
     @Override
@@ -55,10 +75,9 @@ public class AddNewRmdr extends ActionBarActivity {
     @TargetApi(11)
     public void saveData(View view){
 
-        EditText name = (EditText) findViewById(R.id.editText15);
-        DatePicker date = (DatePicker) findViewById(R.id.datePicker2);
-        TimePicker time = (TimePicker) findViewById(R.id.timePicker2);
-        NumberPicker hours = (NumberPicker) findViewById(R.id.numberPicker2);
+
+
+
 
         Calendar newCal = new GregorianCalendar(date.getYear(), date.getMonth(), date.getDayOfMonth(), time.getCurrentHour(), time.getCurrentMinute());
         String newName = name.getText().toString();

@@ -88,6 +88,6 @@ public final class MedDBContract {
     public static abstract class ReminderContract implements BaseColumns{
         public static final String TABLE_NAME = "Reminders";
         public static final String COLUMN_NAME_NAME = "Name";
-        public static final String COLUMN_NAME_DATE = "InnerDate";
+        public static final String COLUMN_NAME_DATE = "Date";
     }
 }
