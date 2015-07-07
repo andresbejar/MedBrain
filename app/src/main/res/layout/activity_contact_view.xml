@@ -36,7 +36,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:id="@+id/editTextTelef"
-        android:text="Telefono"
+        android:text="Telefono1"
         android:layout_below="@+id/imageViewCont"
         android:layout_alignParentStart="true"
         android:layout_marginTop="29dp" />
@@ -45,10 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:hint="12345678"
-        android:id="@+id/textViewNoTel"
+        android:hint="11112222"
+        android:id="@+id/textViewNoTel1"
         android:layout_alignBottom="@+id/editTextTelef"
-        android:layout_alignEnd="@+id/imageViewCont" />
+        android:layout_toEndOf="@+id/editTextEspec" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,8 +57,7 @@
         android:textStyle="bold"
         android:id="@+id/editTextEmail"
         android:text="Email"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textViewNoTel"
+        android:layout_alignBottom="@+id/textViewEmail"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -67,8 +66,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:hint="juan.valdes@gmail.com"
         android:id="@+id/textViewEmail"
-        android:layout_alignBottom="@+id/editTextEmail"
-        android:layout_alignStart="@+id/textViewNoTel" />
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/editTextRep"
+        android:layout_toEndOf="@+id/editTextRep" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,9 +77,8 @@
         android:textStyle="bold"
         android:id="@+id/editTextEspec"
         android:text="Especialidad"
-        android:layout_below="@+id/textViewEmail"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,7 +87,7 @@
         android:hint="Cirujano Plastico"
         android:id="@+id/textViewEspec"
         android:layout_alignTop="@+id/editTextEspec"
-        android:layout_alignStart="@+id/textViewRep" />
+        android:layout_toStartOf="@+id/imageButtonEliminar" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,25 +95,26 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:id="@+id/editTextRep"
-        android:text="Reputacion"
-        android:layout_below="@+id/textViewEspec"
+        android:text="Telefono2"
+        android:layout_below="@+id/editTextTelef"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp" />
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Baja"
+        android:text="22223333"
         android:id="@+id/textViewRep"
         android:layout_alignBottom="@+id/editTextRep"
-        android:layout_alignEnd="@+id/imageViewCont" />
+        android:layout_alignStart="@+id/textViewNoTel1" />
 
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageButtonEdit"
+        android:onClick="jmpToEdit"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:src="@android:drawable/ic_menu_edit" />

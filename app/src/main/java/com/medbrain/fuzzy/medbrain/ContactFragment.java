@@ -32,10 +32,10 @@ public class ContactFragment extends ListFragment {
      */
     public void crearContactoPrueba(){
         Contact contpb = new Contact("Juan Valdes");
-        contpb.setPhone("12345678");
+        contpb.setPhone1("12345678");
+        contpb.setPhone2("88887777");
         contpb.setEmail("jvaldez");
         contpb.setEspecialidad("Odontologo");
-        contpb.setReputacion("Baja");
         dbHandler.addContact(contpb);
     }
 

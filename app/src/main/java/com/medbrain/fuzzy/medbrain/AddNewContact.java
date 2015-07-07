@@ -67,22 +67,23 @@ public class AddNewContact extends ActionBarActivity{
      */
     public void saveContact(View view){ //guarda los datos del contacto en la base
         EditText name = (EditText) findViewById(R.id.editText5);
-        EditText phone = (EditText) findViewById(R.id.editText7);
+        EditText phone1 = (EditText) findViewById(R.id.editText7);
+        EditText phone2 = (EditText) findViewById(R.id.editText19);
         EditText email = (EditText) findViewById(R.id.editText8);
         EditText espec = (EditText) findViewById(R.id.editText9);
-        EditText reput = (EditText) findViewById(R.id.editText10);
+
 
         String Name2 = name.getText().toString();
-        String Phone2 = phone.getText().toString();
+        String Phone1T = phone1.getText().toString();
+        String Phone2T = phone2.getText().toString();
         String Email2 = email.getText().toString();
         String Espec2 = espec.getText().toString();
-        String Reput2 = reput.getText().toString();
 
         Contact cnt = new Contact(Name2);
-        cnt.setPhone(Phone2);
+        cnt.setPhone1(Phone1T);
+        cnt.setPhone2(Phone2T);
         cnt.setEmail(Email2);
         cnt.setEspecialidad(Espec2);
-        cnt.setReputacion(Reput2);
 
         dbHandler.addContact(cnt);
         Intent intent = new Intent(this, ContactsView.class);

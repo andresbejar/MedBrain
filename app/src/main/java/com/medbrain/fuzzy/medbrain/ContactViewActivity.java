@@ -34,17 +34,16 @@ public class ContactViewActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_view);
 
-        Intent info = getIntent();
         final Intent intentCont = new Intent(this, ContactsView.class);
-
+        Intent info = getIntent();
         dbHandler = new DatabaseHandler(this);
 
-        TextView nombreT,emailT,phoneT,especT,repT;
+        TextView nombreT,emailT,phone1T,phone2T,especT;
         nombreT = (TextView)findViewById(R.id.textViewNombcont);
-        phoneT = (TextView)findViewById(R.id.textViewNoTel);
+        phone1T = (TextView)findViewById(R.id.textViewNoTel1);
+        phone2T = (TextView)findViewById(R.id.textViewRep);
         emailT = (TextView)findViewById(R.id.textViewEmail);
         especT = (TextView)findViewById(R.id.textViewEspec);
-        repT = (TextView)findViewById(R.id.textViewRep);
 
         //String nomb = info.getStringExtra("id"); //emailT.getText().toString();
         contId = info.getIntExtra("id", 0);
@@ -55,10 +54,10 @@ public class ContactViewActivity extends ActionBarActivity{
         contactoAct = dbHandler.getContactById(contId);
 
         nombreT.setText(contactoAct.getName());
-        phoneT.setText(contactoAct.getPhone());
+        phone1T.setText(contactoAct.getPhone1());
+        phone2T.setText(contactoAct.getPhone2());
         emailT.setText(contactoAct.getEmail());
         especT.setText(contactoAct.getEspecialidad());
-        repT.setText(contactoAct.getReputacion());
 
         //eliminar contacto
         deleteButton = (ImageButton)findViewById(R.id.imageButtonEliminar);
@@ -73,15 +72,23 @@ public class ContactViewActivity extends ActionBarActivity{
         });
 
         //editar contacto
-        editButton = (ImageButton)findViewById(R.id.imageButtonEdit);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "Editar Contacto: " + contId);
-                //dbHandler.deleteContact(idCont);
-                //dbHandler.delete(TABLE_NAME, "name='George'");
-            }
-        });
+        //editButton = (ImageButton)findViewById(R.id.imageButtonEdit);
+        //editButton.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View view) {
+        //        Log.i(TAG, "Editar Contacto: " + contId);
+         //       startActivity(intentCont2);
+                //dbHandler.editContact(contId);
+        //        Log.i(TAG, "Editado Contacto: " + contId);
+                //startActivity(intentCont);
+         //   }
+        //});
+    }
+
+    public void jmpToEdit(View view){
+        Intent intent = new Intent(this, ContactEdition.class);
+        intent.putExtra("id", contId);
+        startActivity(intent);
     }
 
     @Override

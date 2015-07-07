@@ -10,7 +10,7 @@
         android:inputType="textPersonName"
         android:hint="Name"
         android:ems="10"
-        android:id="@+id/editText5"
+        android:id="@+id/editText1"
         android:layout_marginTop="65dp"
         android:autoText="false"
         android:layout_marginLeft="68dp"
@@ -23,10 +23,10 @@
         android:inputType="phone"
         android:hint="Phone1"
         android:ems="10"
-        android:id="@+id/editText7"
-        android:layout_below="@+id/editText5"
-        android:layout_alignStart="@+id/editText5"
-        android:layout_alignEnd="@+id/editText5" />
+        android:id="@+id/editText2"
+        android:layout_below="@+id/editText1"
+        android:layout_alignStart="@+id/editText1"
+        android:layout_alignEnd="@+id/editText1" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -34,26 +34,26 @@
         android:inputType="textEmailAddress"
         android:hint="Email"
         android:ems="10"
-        android:id="@+id/editText8"
-        android:layout_below="@+id/editText19"
-        android:layout_alignStart="@+id/editText19"
-        android:layout_alignEnd="@+id/editText9" />
+        android:id="@+id/editText4"
+        android:layout_below="@+id/editText3"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Especialidad"
-        android:id="@+id/editText9"
-        android:layout_below="@+id/editText8"
-        android:layout_alignLeft="@+id/editText19"
-        android:layout_alignEnd="@+id/editText19" />
+        android:id="@+id/editText5"
+        android:layout_below="@+id/editText4"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignEnd="@+id/editText4" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hecho"
-        android:id="@+id/button5"
-        android:onClick="saveContact"
+        android:id="@+id/buttonH"
+        android:onClick="saveChanges"
         android:layout_marginBottom="62dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -63,27 +63,27 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Adjuntar Imagen:"
-        android:id="@+id/textView4"
+        android:id="@+id/textView1"
         android:layout_alignBottom="@+id/imageButtonAdjunt"
-        android:layout_alignStart="@+id/editText9" />
+        android:layout_alignStart="@+id/editText5" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageButtonAdjunt"
-        android:onClick="addPhoto"
+        android:onClick="addPhoto2"
         android:src="@android:drawable/ic_input_get"
-        android:layout_below="@+id/editText9"
-        android:layout_toEndOf="@+id/button5"
+        android:layout_below="@+id/editText5"
+        android:layout_toEndOf="@+id/buttonH"
         android:layout_marginTop="31dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Phone2"
-        android:id="@+id/editText19"
-        android:layout_below="@+id/editText7"
-        android:layout_alignStart="@+id/editText7"
-        android:layout_alignEnd="@+id/editText7" />
+        android:id="@+id/editText3"
+        android:layout_below="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
 
 </RelativeLayout>

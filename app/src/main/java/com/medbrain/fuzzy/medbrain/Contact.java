@@ -7,10 +7,10 @@ package com.medbrain.fuzzy.medbrain;
 public class Contact {
     private int ID;
     private String name;
-    private String phone;
+    private String phone1;
+    private String phone2;
     private String email;
     private String especialidad;
-    private String reputacion; //Muy Baja - Baja - Media - Alta - Muy Alta
     public int userID;
 
 
@@ -51,18 +51,34 @@ public class Contact {
 
     /**
      * Especifica el telefono del contacto
-     * @param phone numero de telefono del contacto
+     * @param phone1 numero de telefono del contacto
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
     }
 
     /**
      * Obtiene el numero de telefono del contacto
      * @return numero de telefono del contacto
      */
-    public String getPhone(){
-        return phone;
+    public String getPhone1(){
+        return phone1;
+    }
+
+    /**
+     * Especifica el telefono del contacto
+     * @param phone2 numero de telefono del contacto
+     */
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
+    }
+
+    /**
+     * Obtiene el numero de telefono del contacto
+     * @return numero de telefono del contacto
+     */
+    public String getPhone2(){
+        return phone2;
     }
 
     /**
@@ -95,22 +111,6 @@ public class Contact {
      */
     public String getEspecialidad(){
         return especialidad;
-    }
-
-    /**
-     * Especifica la reputacion del contacto
-     * @param rep reputacion del contacto
-     */
-    public void setReputacion(String rep) {
-        this.reputacion = rep;
-    }
-
-    /**
-     * Obtiene la reputacion del contacto
-     * @return String reputacion del contacto
-     */
-    public String getReputacion(){
-        return reputacion;
     }
 
     /**
