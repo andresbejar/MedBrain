@@ -8,16 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.widget.SimpleCursorAdapter.ViewBinder;
-
 import java.text.DateFormat;
-import java.util.Locale;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Julio on 5/5/15.
@@ -27,6 +25,7 @@ public class AppsFragment extends ListFragment {
     private SimpleCursorAdapter adapter;
     private DatabaseHandler dbHandler;
     private Cursor cursor;
+    private CurrentUser user = CurrentUser.getInstance();
 
     /**
      * Devuelve todas las citas creadas actualmente y las jala desde la base de datos para desplegarlas en forma de lista
@@ -40,7 +39,7 @@ public class AppsFragment extends ListFragment {
 
         dbHandler = new DatabaseHandler(getActivity());
 
-        cursor = dbHandler.getAllAppointments();
+        cursor = dbHandler.getAllAppointments(user.getID());
         adapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.events_item_view,
                 cursor,
@@ -89,7 +88,7 @@ public class AppsFragment extends ListFragment {
 
     public void refresh(){
         Log.i(TAG, "Refreshing cursor");
-        adapter.swapCursor(dbHandler.getAllAppointments());
+        adapter.swapCursor(dbHandler.getAllAppointments(user.getID()));
     }
 
     @Override

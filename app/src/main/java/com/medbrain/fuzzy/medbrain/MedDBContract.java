@@ -83,11 +83,13 @@ public final class MedDBContract {
         public static final String COLUMN_NAME_PLACE = "Place";
         public static final String COLUMN_NAME_DOCTOR = "Doctor";
         public static final String COLUMN_NAME_DATE = "Date";
+        public static final String COLUMN_NAME_USER = "User";
     }
 
     public static abstract class ReminderContract implements BaseColumns{
         public static final String TABLE_NAME = "Reminders";
         public static final String COLUMN_NAME_NAME = "Name";
         public static final String COLUMN_NAME_DATE = "Date";
+        public static final String COLUMN_NAME_USER = "User";
     }
 }

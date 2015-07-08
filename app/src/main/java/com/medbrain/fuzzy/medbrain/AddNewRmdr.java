@@ -83,11 +83,19 @@ public class AddNewRmdr extends ActionBarActivity {
         String newName = name.getText().toString();
         int newHours = hours.getValue();
 
-        Reminder rmdr = new Reminder();
-        rmdr.setName(newName);
-        rmdr.setInnerCalendar(newCal.getTimeInMillis());
+        //Reminder rmdr = new Reminder();
+        //rmdr.setName(newName);
+        //rmdr.setInnerCalendar(newCal.getTimeInMillis());
 
-        dbHandler.addReminder(rmdr);
+        Appointment app = new Appointment();
+        app.setName("Recordatorio");
+        app.setPlace(newName);
+        app.setDoctorID(" ");
+        app.setInnerCalendar(newCal.getTimeInMillis());
+
+        dbHandler.addAppointment(app);
+
+        //dbHandler.addReminder(rmdr);
         remindReminder(newName, newCal.getTimeInMillis(), newHours);
         setResult(RESULT_OK, null);
         finish();
